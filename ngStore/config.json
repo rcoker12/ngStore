@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "ngStoreConnectionString": "server=HP2014;Database=ngStore;Integrated Security=true;MultipleActiveResultSets=true;"
+  }
+}

@@ -13,5 +13,6 @@ namespace ngStore.Database.Entities
         public decimal UnitPrice { get; set; }
         public string Package { get; set; }
         public bool IsDiscontinued { get; set; }
+        public Supplier Supplier { get; set; }
     }
 }
