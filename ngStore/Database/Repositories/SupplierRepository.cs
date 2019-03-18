@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ngStore.Database.Repositories
 {
-    public class SupplierRepository : IBaseRepository<Supplier>
+    public class SupplierRepository : IBaseRepository<Supplier>, ISupplierRepository
     {
         private readonly ngStoreContext _ctx;
 

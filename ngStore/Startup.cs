@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using ngStore.Database;
+using ngStore.Database.Interfaces;
+using ngStore.Database.Repositories;
 
 namespace ngStore
 {
@@ -30,6 +32,10 @@ namespace ngStore
             {
                 cfg.UseSqlServer(_config.GetConnectionString("ngStoreConnectionString"));
             });
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
 
             services.AddMvc();
         }
