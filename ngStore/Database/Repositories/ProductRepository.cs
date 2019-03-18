@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ngStore.Database.Repositories
 {
-    public class ProductRepository : IBaseRepository<Product>, IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly ngStoreContext _ctx;
         private readonly ILogger<ProductRepository> _logger;
@@ -30,15 +30,14 @@ namespace ngStore.Database.Repositories
             throw new NotImplementedException();
         }
 
-        public List<Product> GetAll()
+        public IEnumerable<Product> GetAll()
         {
             try
             {
                 _logger.LogInformation("GetAll<Product> was called");
                 return _ctx.Products
                     .Include(p => p.Supplier)
-                    .OrderBy(p => p.ProductName)
-                    .ToList();
+                    .OrderBy(p => p.ProductName);
             }
             catch (Exception ex)
             {

@@ -4,16 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 namespace ngStore.Database.Repositories
 {
-    public class OrderRepository : IBaseRepository<Order>, IOrderRepository
+    public class OrderRepository : IOrderRepository
     {
         private readonly ngStoreContext _ctx;
+        private readonly ILogger<OrderRepository> _logger;
 
-        public OrderRepository(ngStoreContext ctx)
+        public OrderRepository(ngStoreContext ctx, ILogger<OrderRepository> logger)
         {
             _ctx = ctx;
+            _logger = logger;
         }
 
         public int Delete(int id)
