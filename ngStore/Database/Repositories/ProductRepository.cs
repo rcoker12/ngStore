@@ -1,7 +1,9 @@
-﻿using ngStore.Database.Entities;
+﻿using Microsoft.Extensions.Logging;
+using ngStore.Database.Entities;
 using ngStore.Database.Interfaces;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,10 +12,12 @@ namespace ngStore.Database.Repositories
     public class ProductRepository : IBaseRepository<Product>, IProductRepository
     {
         private readonly ngStoreContext _ctx;
+        private readonly ILogger<ProductRepository> _logger;
 
-        public ProductRepository(ngStoreContext ctx)
+        public ProductRepository(ngStoreContext ctx, ILogger<ProductRepository> logger)
         {
             _ctx = ctx;
+            _logger = logger;
         }
 
         public int Delete(int id)
@@ -28,7 +32,19 @@ namespace ngStore.Database.Repositories
 
         public List<Product> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                _logger.LogInformation("GetAll<Product> was called");
+                return _ctx.Products
+                    .Include(p => p.Supplier)
+                    .OrderBy(p => p.ProductName)
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get all products: {ex}");
+                return null;
+            }
         }
 
         public void Save(Product entity)

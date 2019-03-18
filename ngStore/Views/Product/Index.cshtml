@@ -1,0 +1,27 @@
+﻿@model List<Product>
+
+    <h1>Products</h1>
+    <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-md-3">
+                <div class="border bg-light rounded p-1 m-1">
+                    <h5>@p.ProductName</h5>
+                    <ul>
+                        <li>Price: $@p.UnitPrice</li>
+                        <li>Package: @p.Package</li>
+                        <li>Supplier: @p.Supplier.CompanyName</li>
+                        @if (p.IsDiscontinued)
+                        {
+                            <li class="text-danger">Discontinued</li>
+                        }
+                    </ul>
+                    @if (!p.IsDiscontinued)
+                    {
+                        <button id="buyButton" class="btn btn-success">Buy</button>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
