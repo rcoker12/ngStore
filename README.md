@@ -1,4 +1,5 @@
 # ngStore
+A full featured shopping site using Angular 2, DotNet Core, EF Core, Identity and Bootstrap
 
 ## Setting up the database
 1. In the config.json file edit server ngStoreConnectionString to use your server
