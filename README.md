@@ -16,7 +16,7 @@ Password = `P@ssw0d`
 ## Getting JWT token
 1. Go to Postman
 2. Create a POST request
-3. URL" `http://localhost:4200/account/CreateToken`
+3. URL: `http://localhost:4200/account/CreateToken`
 4. Body raw JSON
       `{
 	       "userName": "admin@ngStore.com",
