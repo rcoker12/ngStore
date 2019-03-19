@@ -34,7 +34,7 @@ namespace ngStore.Database.Repositories
             throw new NotImplementedException();
         }
 
-        public void Save(Supplier entity)
+        public int Save(Supplier entity)
         {
             throw new NotImplementedException();
         }

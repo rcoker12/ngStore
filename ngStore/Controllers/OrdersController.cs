@@ -58,5 +58,27 @@ namespace ngStore.Controllers
                 return BadRequest("Failed to get order");
             }
         }
+
+        [HttpPost]
+        public IActionResult Post(Order order)
+        {
+            try
+            {
+                if (order != null)
+                {
+                    var result = _orderRepository.Save(order);
+                    if (result != 0)
+                    {
+                        return Created($"/api/orders/{order.Id}", order);
+                    }
+                }
+                return BadRequest("Failed to save order");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save order: {ex}");
+                return BadRequest("Failed to save order");
+            }
+        }
     }
 }

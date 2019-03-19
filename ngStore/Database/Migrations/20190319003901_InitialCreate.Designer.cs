@@ -10,7 +10,7 @@ using ngStore.Database;
 namespace ngStore.Migrations
 {
     [DbContext(typeof(ngStoreContext))]
-    [Migration("20190318215850_InitialCreate")]
+    [Migration("20190319003901_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

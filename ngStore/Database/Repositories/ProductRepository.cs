@@ -46,7 +46,7 @@ namespace ngStore.Database.Repositories
             }
         }
 
-        public void Save(Product entity)
+        public int Save(Product entity)
         {
             throw new NotImplementedException();
         }

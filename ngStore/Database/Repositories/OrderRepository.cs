@@ -22,7 +22,14 @@ namespace ngStore.Database.Repositories
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = 0;
+            var o = _ctx.Orders.Find(id);
+            if (o != null)
+            {
+                _ctx.Orders.Remove(o);
+                result = _ctx.SaveChanges();
+            }
+            return result;
         }
 
         public Order Get(int id)
@@ -60,9 +67,35 @@ namespace ngStore.Database.Repositories
             }
         }
 
-        public void Save(Order entity)
+        public int Save(Order order)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (order.Id == 0)
+                {
+                    _ctx.Add(order);
+                }
+                else
+                {
+                    var o = _ctx.Orders.Find(order.Id);
+                    if (o != null)
+                    {
+                        o.Id = order.Id;
+                        o.CustomerId = order.CustomerId;
+                        o.OrderDate = order.OrderDate;
+                        o.OrderNumber = order.OrderNumber;
+                        o.TotalAmount = order.TotalAmount;
+                        o.OrderItems = order.OrderItems;
+                    }
+                }
+                _ctx.SaveChanges();
+                return order.Id;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save order: {ex}");
+                return 0;
+            }
         }
     }
 }

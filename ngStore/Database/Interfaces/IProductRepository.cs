@@ -8,6 +8,6 @@ namespace ngStore.Database.Interfaces
         int Delete(int id);
         Product Get(int id);
         IEnumerable<Product> GetAll();
-        void Save(Product entity);
+        int Save(Product entity);
     }
 }
