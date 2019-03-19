@@ -1,5 +1,16 @@
 {
   "ConnectionStrings": {
     "ngStoreConnectionString": "server=HP2014;Database=ngStore;Integrated Security=true;MultipleActiveResultSets=true;"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning"
+    }
+  },
+  "Tokens": {
+    "Key": "825e7efc-a103-4603-ad3c-27a566126a73",
+    "Issuer": "localhost",
+    "Audience": "users"
   }
 }

@@ -13,20 +13,25 @@ namespace ngStore.Database
         private readonly ngStoreContext _ctx;
         private readonly IHostingEnvironment _hosting;
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public ngStoreSeeder(ngStoreContext context, IHostingEnvironment hosting, UserManager<User> userManager)
+        public ngStoreSeeder(ngStoreContext context, IHostingEnvironment hosting, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             _ctx = context;
             _hosting = hosting;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task SeedAsync()
         {
             _ctx.Database.EnsureCreated();
 
+            //  Seed roles
+            await SeedRolesAsync();
+            
             //  Seed admin user
-            User user = await _userManager.FindByEmailAsync("admin@ngStore.com");
+            var user = await _userManager.FindByEmailAsync("admin@ngStore.com");
             if (user == null)
             {
                 user = new User()
@@ -43,8 +48,44 @@ namespace ngStore.Database
                 {
                     throw new InvalidOperationException("Could not create user in seeder");
                 }
+
+                await _userManager.AddToRoleAsync(user, "admin");
+            }
+        }
+
+        private async Task SeedRolesAsync()
+        {
+            var adminRole = await _roleManager.FindByNameAsync("admin");
+            if (adminRole == null)
+            {
+                adminRole = new IdentityRole()
+                {
+                    Name = "admin",
+                    NormalizedName = "Admin"
+                };
+
+                var result = await _roleManager.CreateAsync(adminRole);
+                if (result != IdentityResult.Success)
+                {
+                    throw new InvalidOperationException("Could not create admin role in seeder");
+                }
             }
 
+            var userRole = await _roleManager.FindByNameAsync("user");
+            if (userRole == null)
+            {
+                userRole = new IdentityRole()
+                {
+                    Name = "user",
+                    NormalizedName = "User"
+                };
+
+                var result = await _roleManager.CreateAsync(userRole);
+                if (result != IdentityResult.Success)
+                {
+                    throw new InvalidOperationException("Could not create user role in seeder");
+                }
+            }
         }
     }
 }
