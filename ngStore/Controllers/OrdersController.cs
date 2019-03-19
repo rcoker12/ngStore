@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ngStore.Database.Entities;
@@ -22,12 +23,14 @@ namespace ngStore.Controllers
         private readonly IOrderRepository _orderRepository;
         private readonly ILogger<OrdersController> _logger;
         private readonly IMapper _mapper;
+        private readonly UserManager<User> _userManager;
 
-        public OrdersController(IOrderRepository orderRepository, ILogger<OrdersController> logger, IMapper mapper)
+        public OrdersController(IOrderRepository orderRepository, ILogger<OrdersController> logger, IMapper mapper, UserManager<User> userManager)
         {
             _orderRepository = orderRepository;
             _logger = logger;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -67,11 +70,13 @@ namespace ngStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody]OrderViewModel model)
+        public async Task<IActionResult> Post([FromBody]OrderViewModel model)
         {
             try
             {
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 var order = _mapper.Map<OrderViewModel, Order>(model);
+                order.User = user;
 
                 if (ModelState.IsValid)
                 {
