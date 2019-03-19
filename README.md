@@ -23,3 +23,4 @@ Password = `P@ssw0d`
 	       "password": "P@ssw0rd"
        }`
 5. User BEARER, space and the token returned to test the API
+
