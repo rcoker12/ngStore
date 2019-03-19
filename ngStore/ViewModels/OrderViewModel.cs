@@ -17,5 +17,7 @@ namespace ngStore.ViewModels
         public int CustomerId { get; set; }
         [Required]
         public decimal TotalAmount { get; set; }
+
+        public ICollection<OrderItemViewModel> OrderItems { get; set; }
     }
 }

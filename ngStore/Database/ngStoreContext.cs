@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ngStore.Database.Entities;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ngStore.Database
 {
-    public class ngStoreContext : DbContext
+    public class ngStoreContext : IdentityDbContext<User>
     {
         public ngStoreContext(DbContextOptions<ngStoreContext> options) : base(options)
         {

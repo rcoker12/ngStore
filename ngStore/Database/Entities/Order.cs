@@ -13,5 +13,6 @@ namespace ngStore.Database.Entities
         public int CustomerId { get; set; }
         public decimal TotalAmount { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
+        public User User { get; set; }
     }
 }

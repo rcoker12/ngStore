@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -33,6 +34,9 @@ namespace ngStore
             {
                 cfg.UseSqlServer(_config.GetConnectionString("ngStoreConnectionString"));
             });
+
+            services.AddAutoMapper();
+
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();

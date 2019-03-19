@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ngStore.Database.Entities;
@@ -17,11 +18,13 @@ namespace ngStore.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ILogger<OrdersController> _logger;
+        private readonly IMapper _mapper;
 
-        public OrdersController(IOrderRepository orderRepository, ILogger<OrdersController> logger)
+        public OrdersController(IOrderRepository orderRepository, ILogger<OrdersController> logger, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -29,7 +32,7 @@ namespace ngStore.Controllers
         {
             try
             {
-                return Ok(_orderRepository.GetAll());
+                return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(_orderRepository.GetAll()));
             }
             catch (Exception ex)
             {
@@ -46,7 +49,7 @@ namespace ngStore.Controllers
                 var order = _orderRepository.Get(id);
                 if (order != null)
                 {
-                    return Ok(order);
+                    return Ok(_mapper.Map<Order, OrderViewModel>(order));
                 }
                 else
                 {
@@ -65,29 +68,14 @@ namespace ngStore.Controllers
         {
             try
             {
-                var order = new Order()
-                {
-                    Id = model.Id,
-                    OrderDate = model.OrderDate,
-                    OrderNumber = model.OrderNumber,
-                    TotalAmount = model.TotalAmount,
-                    CustomerId = model.CustomerId
-                };
+                var order = _mapper.Map<OrderViewModel, Order>(model);
 
                 if (ModelState.IsValid)
                 {
                     var result = _orderRepository.Save(order);
                     if (result != 0)
                     {
-                        var vm = new OrderViewModel()
-                        {
-                            Id = order.Id,
-                            OrderDate = order.OrderDate,
-                            OrderNumber = order.OrderNumber,
-                            TotalAmount = order.TotalAmount,
-                            CustomerId = order.CustomerId
-                        };
-                        return Created($"/api/orders/{vm.Id}", vm);
+                        return Created($"/api/orders/{order.Id}", _mapper.Map<Order, OrderViewModel>(order));
                     }
                     {
                         return BadRequest(ModelState);
