@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ngStore.Database.Entities;
 using ngStore.Database.Interfaces;
+using ngStore.ViewModels;
 
 namespace ngStore.Controllers
 {
@@ -60,19 +61,42 @@ namespace ngStore.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Order order)
+        public IActionResult Post([FromBody]OrderViewModel model)
         {
             try
             {
-                if (order != null)
+                var order = new Order()
+                {
+                    Id = model.Id,
+                    OrderDate = model.OrderDate,
+                    OrderNumber = model.OrderNumber,
+                    TotalAmount = model.TotalAmount,
+                    CustomerId = model.CustomerId
+                };
+
+                if (ModelState.IsValid)
                 {
                     var result = _orderRepository.Save(order);
                     if (result != 0)
                     {
-                        return Created($"/api/orders/{order.Id}", order);
+                        var vm = new OrderViewModel()
+                        {
+                            Id = order.Id,
+                            OrderDate = order.OrderDate,
+                            OrderNumber = order.OrderNumber,
+                            TotalAmount = order.TotalAmount,
+                            CustomerId = order.CustomerId
+                        };
+                        return Created($"/api/orders/{vm.Id}", vm);
+                    }
+                    {
+                        return BadRequest(ModelState);
                     }
                 }
-                return BadRequest("Failed to save order");
+                else
+                {
+                    return BadRequest(ModelState);
+                }
             }
             catch (Exception ex)
             {
