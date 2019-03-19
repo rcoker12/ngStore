@@ -22,5 +22,5 @@ Password = `P@ssw0d`
 	       "userName": "admin@ngStore.com",
 	       "password": "P@ssw0rd"
        }`
-5. User BEARER, space and the token returned to test the API
+5. User "Bearer", space and the token returned to test the API
 
