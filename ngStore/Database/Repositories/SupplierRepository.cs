@@ -29,7 +29,7 @@ namespace ngStore.Database.Repositories
             throw new NotImplementedException();
         }
 
-        public List<Supplier> GetAll()
+        public IEnumerable<Supplier> GetAll()
         {
             throw new NotImplementedException();
         }

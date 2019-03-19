@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace ngStore.Database.Repositories
@@ -26,12 +27,37 @@ namespace ngStore.Database.Repositories
 
         public Order Get(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _logger.LogInformation("Get<Order> was called");
+                return _ctx.Orders
+                    .Include(o => o.OrderItems)
+                    .ThenInclude(i => i.Product)
+                    .Where(o => o.Id == id)
+                    .FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get order: {ex}");
+                return null;
+            }
         }
 
-        public List<Order> GetAll()
+        public IEnumerable<Order> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                _logger.LogInformation("GetAll<Order> was called");
+                return _ctx.Orders
+                    .Include(i => i.OrderItems)
+                    .ThenInclude(p => p.Product)
+                    .OrderBy(o => o.OrderDate);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get all orders: {ex}");
+                return null;
+            }
         }
 
         public void Save(Order entity)

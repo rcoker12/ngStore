@@ -7,7 +7,7 @@ namespace ngStore.Database.Interfaces
     {
         int Delete(int id);
         Customer Get(int id);
-        List<Customer> GetAll();
+        IEnumerable<Customer> GetAll();
         void Save(Customer entity);
     }
 }

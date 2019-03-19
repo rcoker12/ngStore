@@ -11,6 +11,8 @@ using ngStore.Database.Repositories;
 namespace ngStore.Controllers
 {
     [Route("api/[Controller]")]
+    [ApiController]
+    [Produces("application/json")]
     public class ProductsController : Controller
     {
         private readonly IProductRepository _productRepository;
@@ -23,17 +25,16 @@ namespace ngStore.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public IActionResult Get()
         {
-            var results = _productRepository.GetAll();
             try
             {
-                return _productRepository.GetAll();
+                return Ok(_productRepository.GetAll());
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Failed to get products: {ex}");
-                return null;
+                return BadRequest("Failed to get products");
             }
         }
     }
