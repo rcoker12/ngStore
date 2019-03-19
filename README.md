@@ -13,3 +13,13 @@ A full featured shopping site and CMS using Angular 2, DotNet Core, EF Core, Ide
 ## Login as admin user
 User = `admin@ngStore.com`
 Password = `P@ssw0d`
+## Getting JWT token
+1. Go to Postman
+2. Create a POST request
+   a. URL" `http://localhost:4200/account/CreateToken`
+   b. Body raw JSON
+      `{
+	       "userName": "admin@ngStore.com",
+	       "password": "P@ssw0rd"
+       }`
+   c. User BEARER <space> and the token retuned to test the API
