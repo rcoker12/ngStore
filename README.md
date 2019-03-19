@@ -1,5 +1,5 @@
 # ngStore
-A full featured shopping site and CMS using Angular 2, DotNet Core, EF Core, Identity JWT, Restful API and Bootstrap
+A full featured shopping site and CMS using Angular 2, DotNet Core, EF Core, Identity JWT, Restful API and Bootstrap. This could be a start for a more complete eCommerce site. It includes products, orders, order items, suppliers and customers. There is a large set of sample data included.
 
 ## Setting up the database
 1. In the config.json file edit server ngStoreConnectionString to use your server
