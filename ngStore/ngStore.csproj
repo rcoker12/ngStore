@@ -6,6 +6,23 @@
     <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
 
+    <ItemGroup>
+      <Content Include="ngStoreClient\app\app-routing.module.ts" />
+      <Content Include="ngStoreClient\app\app.component.ts" />
+      <Content Include="ngStoreClient\app\app.module.ts" />
+      <Content Include="ngStoreClient\assets\.gitkeep" />
+      <Content Include="ngStoreClient\browserslist" />
+      <Content Include="ngStoreClient\environments\environment.prod.ts" />
+      <Content Include="ngStoreClient\environments\environment.ts" />
+      <Content Include="ngStoreClient\favicon.ico" />
+      <Content Include="ngStoreClient\index.html" />
+      <Content Include="ngStoreClient\karma.conf.js" />
+      <Content Include="ngStoreClient\main.ts" />
+      <Content Include="ngStoreClient\polyfills.ts" />
+      <Content Include="ngStoreClient\styles.css" />
+      <Content Include="ngStoreClient\test.ts" />
+    </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
@@ -22,7 +39,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\ngStoreClient\" />
+    <Folder Include="ngStoreClient\" />
   </ItemGroup>
 
 </Project>

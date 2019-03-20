@@ -37,7 +37,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "wwwroot/ngStoreClientd/ist",
+            "outputPath": "wwwroot/ngStoreClient/dist",
             "index": "ngStoreClient/index.html",
             "main": "ngStoreClient/main.ts",
             "polyfills": "ngStoreClient/polyfills.ts",

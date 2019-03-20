@@ -18,14 +18,14 @@ namespace ngStore.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Produces("application/json")]
-    public class OrdersController : Controller
+    public class OrdersApiController : Controller
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly ILogger<OrdersController> _logger;
+        private readonly ILogger<OrdersApiController> _logger;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
 
-        public OrdersController(IOrderRepository orderRepository, ILogger<OrdersController> logger, IMapper mapper, UserManager<User> userManager)
+        public OrdersApiController(IOrderRepository orderRepository, ILogger<OrdersApiController> logger, IMapper mapper, UserManager<User> userManager)
         {
             _orderRepository = orderRepository;
             _logger = logger;

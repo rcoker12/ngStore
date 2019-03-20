@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ngStore.Database.Entities;
@@ -12,13 +13,12 @@ namespace ngStore.Controllers
 {
     [Route("api/[Controller]")]
     [ApiController]
-    [Produces("application/json")]
-    public class ProductsController : Controller
+    public class ProductsApiController : Controller
     {
         private readonly IProductRepository _productRepository;
-        private readonly ILogger<ProductsController> _logger;
+        private readonly ILogger<ProductsApiController> _logger;
 
-        public ProductsController(IProductRepository productRepository, ILogger<ProductsController> logger)
+        public ProductsApiController(IProductRepository productRepository, ILogger<ProductsApiController> logger)
         {
             _productRepository = productRepository;
             _logger = logger;
