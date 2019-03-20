@@ -7,7 +7,6 @@
   </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="ngStoreClient\app\app-routing.module.ts" />
       <Content Include="ngStoreClient\app\app.component.ts" />
       <Content Include="ngStoreClient\app\app.module.ts" />
       <Content Include="ngStoreClient\assets\.gitkeep" />
@@ -39,7 +38,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\js\" />
-    <Folder Include="ngStoreClient\" />
   </ItemGroup>
 
 </Project>
