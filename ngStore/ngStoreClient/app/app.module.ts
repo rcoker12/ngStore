@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
+import { HttpClientModule } from "@angular/common/http";
 
-import { AppComponent } from './app.component';
+import { AppComponent } from "./app.component";
 import { ProductList } from "./product/productList.component";
+import { ProductService } from "./services/productService";
 
 @NgModule({
   declarations: [
@@ -11,10 +13,12 @@ import { ProductList } from "./product/productList.component";
       ProductList
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
     providers: [
-        { provide: APP_BASE_HREF, useValue: '/ClientApp' }
+        { provide: APP_BASE_HREF, useValue: '/ngStoreClient' },
+        ProductService
     ],
     bootstrap: [AppComponent]
 })

@@ -55,7 +55,7 @@ namespace ngStore.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Products", "Home");
+                        return RedirectToAction("Index", "Product");
                     }
                 }
             }

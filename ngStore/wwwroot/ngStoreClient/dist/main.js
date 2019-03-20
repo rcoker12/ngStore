@@ -79,8 +79,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./ngStoreClient/app/app.component.ts");
-/* harmony import */ var _product_productList_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./product/productList.component */ "./ngStoreClient/app/product/productList.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./ngStoreClient/app/app.component.ts");
+/* harmony import */ var _product_productList_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./product/productList.component */ "./ngStoreClient/app/product/productList.component.ts");
+/* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/productService */ "./ngStoreClient/app/services/productService.ts");
+
+
 
 
 
@@ -93,16 +97,18 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
-                _product_productList_component__WEBPACK_IMPORTED_MODULE_5__["ProductList"]
+                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
+                _product_productList_component__WEBPACK_IMPORTED_MODULE_6__["ProductList"]
             ],
             imports: [
-                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"]
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"]
             ],
             providers: [
-                { provide: _angular_common__WEBPACK_IMPORTED_MODULE_3__["APP_BASE_HREF"], useValue: '/ClientApp' }
+                { provide: _angular_common__WEBPACK_IMPORTED_MODULE_3__["APP_BASE_HREF"], useValue: '/ngStoreClient' },
+                _services_productService__WEBPACK_IMPORTED_MODULE_7__["ProductService"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -119,7 +125,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n\r\n    <div *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <h3>{{ p.title }} - {{ p.price | currency: \"USD\": \"symbol\"}}</h3>\r\n        </div>\r\n    </div>\r\n\r\n</div>"
+module.exports = "<div class=\"row\">\r\n\r\n    <div *ngFor=\"let p of products\">\r\n        <div class=\"card bg-light p-1 m-1\">\r\n            <h3>{{ p.productName }} - {{ p.unitPrice | currency: \"USD\": \"symbol\"}}</h3>\r\n        </div>\r\n    </div>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -135,32 +141,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductList", function() { return ProductList; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/productService */ "./ngStoreClient/app/services/productService.ts");
+
 
 
 var ProductList = /** @class */ (function () {
-    function ProductList() {
-        this.products = [
-            {
-                "title": "First product",
-                "price": 19.99
-            },
-            {
-                "title": "Second product",
-                "price": 9.99
-            },
-            {
-                "title": "Third product",
-                "price": 29.99
-            }
-        ];
+    function ProductList(dataService) {
+        this.dataService = dataService;
+        this.products = [];
     }
+    ProductList.prototype.ngOnInit = function () {
+        var _this = this;
+        this.dataService.getProducts()
+            .subscribe(function (success) {
+            if (success) {
+                _this.products = _this.dataService.products;
+            }
+        });
+    };
     ProductList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "product-list",
             template: __webpack_require__(/*! ./productList.component.html */ "./ngStoreClient/app/product/productList.component.html")
-        })
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_productService__WEBPACK_IMPORTED_MODULE_2__["ProductService"]])
     ], ProductList);
     return ProductList;
+}());
+
+
+
+/***/ }),
+
+/***/ "./ngStoreClient/app/services/productService.ts":
+/*!******************************************************!*\
+  !*** ./ngStoreClient/app/services/productService.ts ***!
+  \******************************************************/
+/*! exports provided: ProductService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductService", function() { return ProductService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
+
+
+var ProductService = /** @class */ (function () {
+    function ProductService(http) {
+        this.http = http;
+        this.products = [];
+    }
+    ProductService.prototype.getProducts = function () {
+        var _this = this;
+        return this.http.get("/api/products")
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (data) {
+            _this.products = data;
+            return true;
+        }));
+    };
+    ProductService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], ProductService);
+    return ProductService;
 }());
 
 

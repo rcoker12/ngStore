@@ -11,7 +11,7 @@ using ngStore.Database.Repositories;
 
 namespace ngStore.Controllers
 {
-    [Route("api/[Controller]")]
+    [Route("api/products")]
     [ApiController]
     public class ProductsApiController : Controller
     {

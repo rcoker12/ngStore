@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <None Remove="ngStoreClient\app\product\productList.component.ts" />
+      <None Remove="ngStoreClient\app\services\productService.ts" />
     </ItemGroup>
 
     <ItemGroup>
@@ -46,6 +47,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ngStoreClient\app\product\productList.component.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\services\productService.ts" />
   </ItemGroup>
 
 </Project>

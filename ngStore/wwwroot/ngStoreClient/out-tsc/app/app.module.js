@@ -2,20 +2,26 @@ import * as tslib_1 from "tslib";
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
-import { AppComponent } from './app.component';
+import { HttpClientModule } from "@angular/common/http";
+import { AppComponent } from "./app.component";
+import { ProductList } from "./product/productList.component";
+import { ProductService } from "./services/productService";
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = tslib_1.__decorate([
         NgModule({
             declarations: [
-                AppComponent
+                AppComponent,
+                ProductList
             ],
             imports: [
-                BrowserModule
+                BrowserModule,
+                HttpClientModule
             ],
             providers: [
-                { provide: APP_BASE_HREF, useValue: '/ClientApp' }
+                { provide: APP_BASE_HREF, useValue: '/ngStoreClient' },
+                ProductService
             ],
             bootstrap: [AppComponent]
         })
