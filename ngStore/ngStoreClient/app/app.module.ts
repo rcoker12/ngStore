@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
+import { ProductList } from "./product/productList.component";
 
 @NgModule({
   declarations: [
-    AppComponent
+      AppComponent,
+      ProductList
   ],
   imports: [
     BrowserModule

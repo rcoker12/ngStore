@@ -7,6 +7,10 @@
   </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="ngStoreClient\app\product\productList.component.ts" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Content Include="ngStoreClient\app\app.component.ts" />
       <Content Include="ngStoreClient\app\app.module.ts" />
       <Content Include="ngStoreClient\assets\.gitkeep" />
@@ -38,6 +42,10 @@
   <ItemGroup>
     <Folder Include="wwwroot\img\" />
     <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ngStoreClient\app\product\productList.component.ts" />
   </ItemGroup>
 
 </Project>

@@ -25,8 +25,7 @@ namespace ngStore.Controllers
         [Authorize]
         public IActionResult Index()
         {
-            var results = _productRepository.GetAll();
-            return View(results);
+            return View();
         }
     }
 }
