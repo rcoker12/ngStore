@@ -7,15 +7,21 @@ import { AppComponent } from "./app.component";
 import { ProductList } from "./product/productList.component";
 import { ProductService } from "./services/productService";
 
+import { YesNoBooleanPipe } from './shared/yesno.pipe';
+
 @NgModule({
   declarations: [
       AppComponent,
-      ProductList
+      ProductList,
+      YesNoBooleanPipe
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule
-  ],
+        BrowserModule,
+        HttpClientModule
+    ],
+    exports: [
+        YesNoBooleanPipe
+    ],  
     providers: [
         { provide: APP_BASE_HREF, useValue: '/ngStoreClient' },
         ProductService

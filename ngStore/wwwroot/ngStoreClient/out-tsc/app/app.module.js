@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { ProductList } from "./product/productList.component";
 import { ProductService } from "./services/productService";
+import { YesNoBooleanPipe } from './shared/yesno.pipe';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -13,11 +14,15 @@ var AppModule = /** @class */ (function () {
         NgModule({
             declarations: [
                 AppComponent,
-                ProductList
+                ProductList,
+                YesNoBooleanPipe
             ],
             imports: [
                 BrowserModule,
                 HttpClientModule
+            ],
+            exports: [
+                YesNoBooleanPipe
             ],
             providers: [
                 { provide: APP_BASE_HREF, useValue: '/ngStoreClient' },

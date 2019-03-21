@@ -14,7 +14,7 @@ using ngStore.ViewModels;
 
 namespace ngStore.Controllers
 {
-    [Route("api/[Controller]")]
+    [Route("api/orders")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Produces("application/json")]

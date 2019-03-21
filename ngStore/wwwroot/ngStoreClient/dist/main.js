@@ -83,6 +83,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./ngStoreClient/app/app.component.ts");
 /* harmony import */ var _product_productList_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./product/productList.component */ "./ngStoreClient/app/product/productList.component.ts");
 /* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./services/productService */ "./ngStoreClient/app/services/productService.ts");
+/* harmony import */ var _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./shared/yesno.pipe */ "./ngStoreClient/app/shared/yesno.pipe.ts");
+
 
 
 
@@ -98,11 +100,15 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-                _product_productList_component__WEBPACK_IMPORTED_MODULE_6__["ProductList"]
+                _product_productList_component__WEBPACK_IMPORTED_MODULE_6__["ProductList"],
+                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_8__["YesNoBooleanPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"]
+            ],
+            exports: [
+                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_8__["YesNoBooleanPipe"]
             ],
             providers: [
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_3__["APP_BASE_HREF"], useValue: '/ngStoreClient' },
@@ -125,7 +131,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col-12\">\r\n            <div class=\"table-responsive\">\r\n                <table class=\"table table-striped\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th scope=\"col\"> </th>\r\n                            <th scope=\"col\">Product</th>\r\n                            <th scope=\"col\">Package</th>\r\n                            <th scope=\"col\">Supplier</th>\r\n                            <th scope=\"col\">Available</th>\r\n                            <th scope=\"col\" class=\"text-center\">Quantity</th>\r\n                            <th scope=\"col\" class=\"text-right\">Price</th>\r\n                            <th> </th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let p of products\"> \r\n                            <td><img src=\"https://dummyimage.com/50x50/55595c/fff\" /> </td>\r\n                            <td>{{p.productName}}</td>\r\n                            <td>{{p.package}}</td>\r\n                            <td>{{p.supplier.companyName}}</td>\r\n                            <td>{{p.Discontinued}}</td>\r\n                            <td><input class=\"form-control\" type=\"text\" value=\"1\" /></td>\r\n                            <td>{{p.unitPrice | currency:\"USD\":\"symbol\"}}</td>\r\n                            <td class=\"text-right\"><button class=\"btn btn-sm btn-success\">Buy</button> </td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"container\">\r\n    <div class=\"row\">\r\n        <!--<div class=\"col-12\">-->\r\n            <div class=\"table-responsive-md\">\r\n                <table class=\"table table-striped\">\r\n                    <thead>\r\n                        <tr>\r\n                            <th scope=\"col\"></th>\r\n                            <th scope=\"col\">Product</th>\r\n                            <th scope=\"col\">Package</th>\r\n                            <th scope=\"col\">Supplier</th>\r\n                            <th scope=\"col\">Discontinued</th>\r\n                            <th scope=\"col\" class=\"text-center\">Quantity</th>\r\n                            <th scope=\"col\" class=\"text-right\">Price</th>\r\n                            <th scope=\"col\"></th>\r\n                        </tr>\r\n                    </thead>\r\n                    <tbody>\r\n                        <tr *ngFor=\"let p of products\"> \r\n                            <td><img src=\"https://dummyimage.com/50x50/55595c/fff\" /> </td>\r\n                            <td>{{p.productName}}</td>\r\n                            <td>{{p.package}}</td>\r\n                            <td>{{p.supplier.companyName}}</td>\r\n                            <td>{{p.Discontinued | yesnoBoolean}}</td>\r\n                            <td><input class=\"form-control\" type=\"text\" value=\"1\" /></td>\r\n                            <td>{{p.unitPrice | currency:\"USD\":\"symbol\"}}</td>\r\n                            <td class=\"text-right\"><button class=\"btn btn-sm btn-success\" [disabled]=\"p.Discontinued\">Buy</button> </td>\r\n                        </tr>\r\n                    </tbody>\r\n                </table>\r\n            </div>\r\n        <!--</div>-->\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -162,7 +168,7 @@ var ProductList = /** @class */ (function () {
     ProductList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "product-list",
-            template: __webpack_require__(/*! ./productList.component.html */ "./ngStoreClient/app/product/productList.component.html")
+            template: __webpack_require__(/*! ./productList.component.html */ "./ngStoreClient/app/product/productList.component.html"),
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_productService__WEBPACK_IMPORTED_MODULE_2__["ProductService"]])
     ], ProductList);
@@ -209,6 +215,37 @@ var ProductService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], ProductService);
     return ProductService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./ngStoreClient/app/shared/yesno.pipe.ts":
+/*!************************************************!*\
+  !*** ./ngStoreClient/app/shared/yesno.pipe.ts ***!
+  \************************************************/
+/*! exports provided: YesNoBooleanPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "YesNoBooleanPipe", function() { return YesNoBooleanPipe; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var YesNoBooleanPipe = /** @class */ (function () {
+    function YesNoBooleanPipe() {
+    }
+    YesNoBooleanPipe.prototype.transform = function (value) {
+        return value == true ? 'Yes' : 'No';
+    };
+    ;
+    YesNoBooleanPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({ name: 'yesnoBoolean' })
+    ], YesNoBooleanPipe);
+    return YesNoBooleanPipe;
 }());
 
 

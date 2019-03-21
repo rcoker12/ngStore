@@ -1,18 +1,18 @@
 ﻿<div class="container">
     <div class="row">
-        <div class="col-12">
-            <div class="table-responsive">
+        <!--<div class="col-12">-->
+            <div class="table-responsive-md">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col"> </th>
+                            <th scope="col"></th>
                             <th scope="col">Product</th>
                             <th scope="col">Package</th>
                             <th scope="col">Supplier</th>
-                            <th scope="col">Available</th>
+                            <th scope="col">Discontinued</th>
                             <th scope="col" class="text-center">Quantity</th>
                             <th scope="col" class="text-right">Price</th>
-                            <th> </th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,14 +21,14 @@
                             <td>{{p.productName}}</td>
                             <td>{{p.package}}</td>
                             <td>{{p.supplier.companyName}}</td>
-                            <td>{{p.Discontinued}}</td>
+                            <td>{{p.Discontinued | yesnoBoolean}}</td>
                             <td><input class="form-control" type="text" value="1" /></td>
                             <td>{{p.unitPrice | currency:"USD":"symbol"}}</td>
-                            <td class="text-right"><button class="btn btn-sm btn-success">Buy</button> </td>
+                            <td class="text-right"><button class="btn btn-sm btn-success" [disabled]="p.Discontinued">Buy</button> </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
+        <!--</div>-->
     </div>
 </div>

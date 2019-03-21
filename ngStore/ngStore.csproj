@@ -7,9 +7,12 @@
   </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="ngStoreClient\app\order\order.ts" />
+      <None Remove="ngStoreClient\app\order\orderItem.ts" />
       <None Remove="ngStoreClient\app\product\product.ts" />
       <None Remove="ngStoreClient\app\product\productList.component.ts" />
       <None Remove="ngStoreClient\app\services\productService.ts" />
+      <None Remove="ngStoreClient\app\shared\yesno.pipe.ts" />
       <None Remove="ngStoreClient\app\supplier\supplier.ts" />
     </ItemGroup>
 
@@ -48,9 +51,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ngStoreClient\app\order\order.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\order\orderItem.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\product.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\productList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\productService.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\shared\yesno.pipe.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\supplier\supplier.ts" />
   </ItemGroup>
 

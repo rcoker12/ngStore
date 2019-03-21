@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from "@angular/core";
+﻿import { Component, OnInit, AfterViewInit } from "@angular/core";
 
 import { Product } from './product';
 import { ProductService } from '../services/productService';
@@ -6,7 +6,7 @@ import { ProductService } from '../services/productService';
 @Component({
     selector: "product-list",
     templateUrl: "productList.component.html",
-    styleUrls: []
+    styleUrls: [],
 })
 export class ProductList implements OnInit {
     public products: Product[] = [];
