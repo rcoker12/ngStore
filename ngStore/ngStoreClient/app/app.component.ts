@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'ngStore-root',
+  selector: 'the-store',
   templateUrl: "./app.component.html",
   styles: []
 })

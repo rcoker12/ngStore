@@ -6,7 +6,7 @@ var AppComponent = /** @class */ (function () {
     }
     AppComponent = tslib_1.__decorate([
         Component({
-            selector: 'ngStore-root',
+            selector: 'the-store',
             templateUrl: "./app.component.html",
             styles: []
         })

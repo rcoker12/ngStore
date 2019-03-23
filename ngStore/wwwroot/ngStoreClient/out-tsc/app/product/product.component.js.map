@@ -1,0 +1,1 @@
+{"version":3,"file":"product.component.js","sourceRoot":"","sources":["../../../../../ngStoreClient/app/product/product.component.ts"],"names":[],"mappings":";AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,eAAe,CAAC;AAO1C;IAAA;IACA,CAAC;IADY,OAAO;QALnB,SAAS,CAAC;YACP,QAAQ,EAAE,WAAW;YACrB,WAAW,EAAE,wBAAwB;YACrC,SAAS,EAAE,EAAE;SAChB,CAAC;OACW,OAAO,CACnB;IAAD,cAAC;CAAA,AADD,IACC;SADY,OAAO"}
