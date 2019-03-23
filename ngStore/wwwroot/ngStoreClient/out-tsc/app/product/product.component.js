@@ -5,7 +5,7 @@ var ProductRoot = /** @class */ (function () {
     }
     ProductRoot = tslib_1.__decorate([
         Component({
-            selector: "product-root",
+            selector: "",
             templateUrl: "product.component.html",
             styleUrls: []
         })

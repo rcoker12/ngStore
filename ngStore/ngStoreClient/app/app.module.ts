@@ -7,19 +7,22 @@ import { RouterModule } from "@angular/router";
 
 import { AppComponent } from "./app.component";
 import { ProductRoot } from "./product/product.component";
+import { CartRoot } from "./cart/cart.component";
 import { ProductList } from "./product/productList.component";
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
 let routes = [
-    { path: "product", component: ProductRoot }
+    { path: "product", component: ProductRoot },
+    { path: "cart", component: CartRoot }
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
         ProductRoot,
+        CartRoot,
         ProductList,
         YesNoBooleanPipe
     ],
