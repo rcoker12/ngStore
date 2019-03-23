@@ -13,7 +13,7 @@ import { OrderService } from "./services/orderService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 var routes = [
     { path: "Product", component: ProductRoot },
-    { path: "cart", component: CartRoot }
+    { path: "Cart", component: CartRoot }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {

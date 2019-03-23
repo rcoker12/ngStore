@@ -8,11 +8,13 @@
 
     <ItemGroup>
       <None Remove="ngStoreClient\app\cart\cart.component.ts" />
+      <None Remove="ngStoreClient\app\cart\cartList.component.ts" />
       <None Remove="ngStoreClient\app\order\order.ts" />
       <None Remove="ngStoreClient\app\order\orderItem.ts" />
       <None Remove="ngStoreClient\app\product\product.component.ts" />
       <None Remove="ngStoreClient\app\product\product.ts" />
       <None Remove="ngStoreClient\app\product\productList.component.ts" />
+      <None Remove="ngStoreClient\app\services\loginService.ts" />
       <None Remove="ngStoreClient\app\services\orderService.ts" />
       <None Remove="ngStoreClient\app\services\productService.ts" />
       <None Remove="ngStoreClient\app\shared\yesno.pipe.ts" />
@@ -54,11 +56,13 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ngStoreClient\app\cart\cart.component.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\cart\cartList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\order.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\orderItem.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\product.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\product.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\productList.component.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\services\loginService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\orderService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\productService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\shared\yesno.pipe.ts" />

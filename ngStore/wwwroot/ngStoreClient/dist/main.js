@@ -84,9 +84,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _product_product_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./product/product.component */ "./ngStoreClient/app/product/product.component.ts");
 /* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cart/cart.component */ "./ngStoreClient/app/cart/cart.component.ts");
 /* harmony import */ var _product_productList_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product/productList.component */ "./ngStoreClient/app/product/productList.component.ts");
-/* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./services/productService */ "./ngStoreClient/app/services/productService.ts");
-/* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/orderService */ "./ngStoreClient/app/services/orderService.ts");
-/* harmony import */ var _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./shared/yesno.pipe */ "./ngStoreClient/app/shared/yesno.pipe.ts");
+/* harmony import */ var _cart_cartList_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./cart/cartList.component */ "./ngStoreClient/app/cart/cartList.component.ts");
+/* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/productService */ "./ngStoreClient/app/services/productService.ts");
+/* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/orderService */ "./ngStoreClient/app/services/orderService.ts");
+/* harmony import */ var _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/yesno.pipe */ "./ngStoreClient/app/shared/yesno.pipe.ts");
+
 
 
 
@@ -114,7 +116,8 @@ var AppModule = /** @class */ (function () {
                 _product_product_component__WEBPACK_IMPORTED_MODULE_7__["ProductRoot"],
                 _cart_cart_component__WEBPACK_IMPORTED_MODULE_8__["CartRoot"],
                 _product_productList_component__WEBPACK_IMPORTED_MODULE_9__["ProductList"],
-                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_12__["YesNoBooleanPipe"]
+                _cart_cartList_component__WEBPACK_IMPORTED_MODULE_10__["CartList"],
+                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_13__["YesNoBooleanPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -123,12 +126,12 @@ var AppModule = /** @class */ (function () {
             ],
             exports: [
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"],
-                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_12__["YesNoBooleanPipe"]
+                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_13__["YesNoBooleanPipe"]
             ],
             providers: [
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_3__["APP_BASE_HREF"], useValue: '/ngStoreClient' },
-                _services_productService__WEBPACK_IMPORTED_MODULE_10__["ProductService"],
-                _services_orderService__WEBPACK_IMPORTED_MODULE_11__["OrderService"]
+                _services_productService__WEBPACK_IMPORTED_MODULE_11__["ProductService"],
+                _services_orderService__WEBPACK_IMPORTED_MODULE_12__["OrderService"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
@@ -147,7 +150,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title }}</h3>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title }}</h3>\r\n    </div>\r\n</div>\r\n\r\n<cart-list></cart-list>\r\n"
 
 /***/ }),
 
@@ -176,6 +179,47 @@ var CartRoot = /** @class */ (function () {
         })
     ], CartRoot);
     return CartRoot;
+}());
+
+
+
+/***/ }),
+
+/***/ "./ngStoreClient/app/cart/cartList.component.html":
+/*!********************************************************!*\
+  !*** ./ngStoreClient/app/cart/cartList.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\r\n<button class=\"btn btn-success\">Checkout</button>\r\n"
+
+/***/ }),
+
+/***/ "./ngStoreClient/app/cart/cartList.component.ts":
+/*!******************************************************!*\
+  !*** ./ngStoreClient/app/cart/cartList.component.ts ***!
+  \******************************************************/
+/*! exports provided: CartList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartList", function() { return CartList; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var CartList = /** @class */ (function () {
+    function CartList() {
+    }
+    CartList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "cart-list",
+            template: __webpack_require__(/*! ./cartList.component.html */ "./ngStoreClient/app/cart/cartList.component.html")
+        })
+    ], CartList);
+    return CartList;
 }());
 
 
