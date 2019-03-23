@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./ngStoreClient/$$_lazy_route_resource lazy recur
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\r\n<product-root></product-root>\r\n\r\n"
+module.exports = "<router-outlet></router-outlet>\r\n\r\n\r\n"
 
 /***/ }),
 
@@ -50,7 +50,6 @@ __webpack_require__.r(__webpack_exports__);
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'Products';
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -102,8 +101,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    { path: "product", component: _product_product_component__WEBPACK_IMPORTED_MODULE_7__["ProductRoot"] },
-    { path: "cart", component: _cart_cart_component__WEBPACK_IMPORTED_MODULE_8__["CartRoot"] }
+    { path: "Product", component: _product_product_component__WEBPACK_IMPORTED_MODULE_7__["ProductRoot"] },
+    { path: "Cart", component: _cart_cart_component__WEBPACK_IMPORTED_MODULE_8__["CartRoot"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -120,12 +119,10 @@ var AppModule = /** @class */ (function () {
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes, {
-                    useHash: true,
-                    enableTracing: false // for Debugging of the Routes
-                })
+                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes)
             ],
             exports: [
+                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"],
                 _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_12__["YesNoBooleanPipe"]
             ],
             providers: [
@@ -150,7 +147,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<cart-root></cart-root>\r\n<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title }}</h3>\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-9\">\r\n        <h3>{{ title }}</h3>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -170,6 +167,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var CartRoot = /** @class */ (function () {
     function CartRoot() {
+        this.title = "Cart";
     }
     CartRoot = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -253,6 +251,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ProductRoot = /** @class */ (function () {
     function ProductRoot() {
+        this.title = "Products";
     }
     ProductRoot = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

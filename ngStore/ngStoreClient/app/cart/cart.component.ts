@@ -6,6 +6,7 @@
     styleUrls: []
 })
 export class CartRoot {
+    title = "Cart"
 }
 
 

@@ -14,8 +14,8 @@ import { OrderService } from "./services/orderService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
 let routes = [
-    { path: "product", component: ProductRoot },
-    { path: "cart", component: CartRoot }
+    { path: "Product", component: ProductRoot },
+    { path: "Cart", component: CartRoot }
 ];
 
 @NgModule({
@@ -29,12 +29,10 @@ let routes = [
     imports: [
         BrowserModule,
         HttpClientModule,
-        RouterModule.forRoot(routes, {
-            useHash: true,
-            enableTracing: false // for Debugging of the Routes
-        })
+        RouterModule.forRoot(routes)
     ],
     exports: [
+        RouterModule,
         YesNoBooleanPipe
     ],  
     providers: [

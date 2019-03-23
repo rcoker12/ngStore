@@ -12,7 +12,7 @@ import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 var routes = [
-    { path: "product", component: ProductRoot },
+    { path: "Product", component: ProductRoot },
     { path: "cart", component: CartRoot }
 ];
 var AppModule = /** @class */ (function () {
@@ -30,12 +30,10 @@ var AppModule = /** @class */ (function () {
             imports: [
                 BrowserModule,
                 HttpClientModule,
-                RouterModule.forRoot(routes, {
-                    useHash: true,
-                    enableTracing: false // for Debugging of the Routes
-                })
+                RouterModule.forRoot(routes)
             ],
             exports: [
+                RouterModule,
                 YesNoBooleanPipe
             ],
             providers: [
