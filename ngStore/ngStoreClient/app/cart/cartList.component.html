@@ -1,2 +1,2 @@
-﻿
-<button class="btn btn-success">Checkout</button>
+﻿<button class="btn btn-success" *ngIf="orderService.order.orderItems.length > 0" (click)="onCheckout()">Checkout</button>
+

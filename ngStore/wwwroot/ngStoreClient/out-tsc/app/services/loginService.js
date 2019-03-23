@@ -7,7 +7,7 @@ var LoginService = /** @class */ (function () {
     }
     Object.defineProperty(LoginService.prototype, "loginRequired", {
         get: function () {
-            return this.token.length == 0 || this.tokenExpiration > new Date();
+            return this.token.length == 0 || this.tokenExpiration < new Date();
         },
         enumerable: true,
         configurable: true

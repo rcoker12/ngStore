@@ -8,6 +8,7 @@ import { AppComponent } from "./app.component";
 import { ProductRoot } from "./product/product.component";
 import { CartRoot } from "./cart/cart.component";
 import { ProductList } from "./product/productList.component";
+import { CartList } from "./cart/cartList.component";
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
@@ -25,6 +26,7 @@ var AppModule = /** @class */ (function () {
                 ProductRoot,
                 CartRoot,
                 ProductList,
+                CartList,
                 YesNoBooleanPipe
             ],
             imports: [

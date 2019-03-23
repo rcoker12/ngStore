@@ -87,7 +87,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _cart_cartList_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./cart/cartList.component */ "./ngStoreClient/app/cart/cartList.component.ts");
 /* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/productService */ "./ngStoreClient/app/services/productService.ts");
 /* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/orderService */ "./ngStoreClient/app/services/orderService.ts");
-/* harmony import */ var _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./shared/yesno.pipe */ "./ngStoreClient/app/shared/yesno.pipe.ts");
+/* harmony import */ var _services_loginService__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/loginService */ "./ngStoreClient/app/services/loginService.ts");
+/* harmony import */ var _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./shared/yesno.pipe */ "./ngStoreClient/app/shared/yesno.pipe.ts");
+
 
 
 
@@ -117,7 +119,7 @@ var AppModule = /** @class */ (function () {
                 _cart_cart_component__WEBPACK_IMPORTED_MODULE_8__["CartRoot"],
                 _product_productList_component__WEBPACK_IMPORTED_MODULE_9__["ProductList"],
                 _cart_cartList_component__WEBPACK_IMPORTED_MODULE_10__["CartList"],
-                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_13__["YesNoBooleanPipe"]
+                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_14__["YesNoBooleanPipe"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -126,12 +128,13 @@ var AppModule = /** @class */ (function () {
             ],
             exports: [
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"],
-                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_13__["YesNoBooleanPipe"]
+                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_14__["YesNoBooleanPipe"]
             ],
             providers: [
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_3__["APP_BASE_HREF"], useValue: '/ngStoreClient' },
                 _services_productService__WEBPACK_IMPORTED_MODULE_11__["ProductService"],
-                _services_orderService__WEBPACK_IMPORTED_MODULE_12__["OrderService"]
+                _services_orderService__WEBPACK_IMPORTED_MODULE_12__["OrderService"],
+                _services_loginService__WEBPACK_IMPORTED_MODULE_13__["LoginService"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
         })
@@ -192,7 +195,7 @@ var CartRoot = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<button class=\"btn btn-success\">Checkout</button>\r\n"
+module.exports = "<button class=\"btn btn-success\" *ngIf=\"orderService.order.orderItems.length > 0\" (click)=\"onCheckout()\">Checkout</button>\r\n\r\n"
 
 /***/ }),
 
@@ -208,16 +211,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartList", function() { return CartList; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_loginService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/loginService */ "./ngStoreClient/app/services/loginService.ts");
+/* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/orderService */ "./ngStoreClient/app/services/orderService.ts");
+
+
+
 
 
 var CartList = /** @class */ (function () {
-    function CartList() {
+    function CartList(loginService, orderService, router) {
+        this.loginService = loginService;
+        this.orderService = orderService;
+        this.router = router;
     }
+    CartList.prototype.onCheckout = function () {
+        if (this.loginService.loginRequired) {
+            // Force Login
+            this.router.navigate(["login"]);
+        }
+        else {
+            // Go to checkout
+            this.router.navigate(["checkout"]);
+        }
+    };
     CartList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "cart-list",
             template: __webpack_require__(/*! ./cartList.component.html */ "./ngStoreClient/app/cart/cartList.component.html")
-        })
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_loginService__WEBPACK_IMPORTED_MODULE_3__["LoginService"], _services_orderService__WEBPACK_IMPORTED_MODULE_4__["OrderService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], CartList);
     return CartList;
 }());
@@ -374,6 +397,42 @@ var ProductList = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_productService__WEBPACK_IMPORTED_MODULE_2__["ProductService"], _services_orderService__WEBPACK_IMPORTED_MODULE_3__["OrderService"]])
     ], ProductList);
     return ProductList;
+}());
+
+
+
+/***/ }),
+
+/***/ "./ngStoreClient/app/services/loginService.ts":
+/*!****************************************************!*\
+  !*** ./ngStoreClient/app/services/loginService.ts ***!
+  \****************************************************/
+/*! exports provided: LoginService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginService", function() { return LoginService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var LoginService = /** @class */ (function () {
+    function LoginService() {
+        this.token = "";
+        this.tokenExpiration = new Date();
+    }
+    Object.defineProperty(LoginService.prototype, "loginRequired", {
+        get: function () {
+            return this.token.length == 0 || this.tokenExpiration > new Date();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    LoginService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+    ], LoginService);
+    return LoginService;
 }());
 
 

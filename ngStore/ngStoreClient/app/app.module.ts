@@ -12,6 +12,7 @@ import { ProductList } from "./product/productList.component";
 import { CartList } from "./cart/cartList.component";
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
+import { LoginService } from "./services/loginService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
 let routes = [
@@ -40,7 +41,8 @@ let routes = [
     providers: [
         { provide: APP_BASE_HREF, useValue: '/ngStoreClient' },
         ProductService,
-        OrderService
+        OrderService,
+        LoginService
     ],
     bootstrap: [AppComponent]
 })
