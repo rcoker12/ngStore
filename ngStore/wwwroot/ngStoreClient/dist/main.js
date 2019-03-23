@@ -194,6 +194,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/productService */ "./ngStoreClient/app/services/productService.ts");
 /* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/orderService */ "./ngStoreClient/app/services/orderService.ts");
+/* harmony import */ var _order_order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../order/order */ "./ngStoreClient/app/order/order.ts");
+
 
 
 
@@ -203,6 +205,7 @@ var ProductList = /** @class */ (function () {
         this.productService = productService;
         this.orderService = orderService;
         this.products = [];
+        this.order = new _order_order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
     }
     ProductList.prototype.ngOnInit = function () {
         var _this = this;
@@ -214,7 +217,13 @@ var ProductList = /** @class */ (function () {
         });
     };
     ProductList.prototype.addProduct = function (product, quantity) {
-        this.orderService.addToOrder(product, quantity);
+        var item = this.order.orderItems.find(function (i) { return i.product.id == product.id; });
+        if (item) {
+            item.quantity++;
+        }
+        else {
+            this.orderService.addToOrder(product, quantity);
+        }
     };
     ProductList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
