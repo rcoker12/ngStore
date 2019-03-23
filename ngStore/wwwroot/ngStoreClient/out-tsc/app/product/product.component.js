@@ -1,16 +1,16 @@
 import * as tslib_1 from "tslib";
 import { Component } from "@angular/core";
-var Product = /** @class */ (function () {
-    function Product() {
+var ProductRoot = /** @class */ (function () {
+    function ProductRoot() {
     }
-    Product = tslib_1.__decorate([
+    ProductRoot = tslib_1.__decorate([
         Component({
-            selector: "the-store",
+            selector: "product-root",
             templateUrl: "product.component.html",
             styleUrls: []
         })
-    ], Product);
-    return Product;
+    ], ProductRoot);
+    return ProductRoot;
 }());
-export { Product };
+export { ProductRoot };
 //# sourceMappingURL=product.component.js.map

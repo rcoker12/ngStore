@@ -5,13 +5,13 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
-import { Product } from "./product/product.component";
+import { ProductRoot } from "./product/product.component";
 import { ProductList } from "./product/productList.component";
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 var routes = [
-    { path: "product", component: Product }
+    { path: "product", component: ProductRoot }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -20,7 +20,7 @@ var AppModule = /** @class */ (function () {
         NgModule({
             declarations: [
                 AppComponent,
-                Product,
+                ProductRoot,
                 ProductList,
                 YesNoBooleanPipe
             ],
