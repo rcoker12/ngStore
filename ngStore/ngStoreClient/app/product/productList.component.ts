@@ -2,6 +2,7 @@
 
 import { Product } from './product';
 import { ProductService } from '../services/productService';
+import { OrderService } from '../services/orderService';
 
 @Component({
     selector: "product-list",
@@ -9,18 +10,23 @@ import { ProductService } from '../services/productService';
     styleUrls: [],
 })
 export class ProductList implements OnInit {
+
     public products: Product[] = [];
 
-    constructor(private dataService: ProductService) {
+    constructor(private productService: ProductService, private orderService: OrderService) {
     }
 
     ngOnInit() {
-        this.dataService.getProducts()
+        this.productService.getProducts()
             .subscribe(success => {
                 if (success) {
-                    this.products = this.dataService.products;
+                    this.products = this.productService.products;
                 }
             });
 
+    }
+
+    addProduct(product: Product, quantity: number) {
+        this.orderService.addToOrder(product, quantity);
     }
 }

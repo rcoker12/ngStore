@@ -1,6 +1,5 @@
 ﻿<div class="container">
     <div class="row">
-        <!--<div class="col-12">-->
             <div class="table-responsive-md">
                 <table class="table table-striped">
                     <thead>
@@ -21,10 +20,10 @@
                             <td>{{p.productName}}</td>
                             <td>{{p.package}}</td>
                             <td>{{p.supplier.companyName}}</td>
-                            <td>{{p.Discontinued | yesnoBoolean}}</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
+                            <td>{{p.discontinued | yesnoBoolean}}</td>
+                            <td><input id="quantity" class="form-control" type="text" value="1" /></td>
                             <td>{{p.unitPrice | currency:"USD":"symbol"}}</td>
-                            <td class="text-right"><button class="btn btn-sm btn-success" [disabled]="p.Discontinued">Buy</button> </td>
+                            <td class="text-right"><button class="btn btn-sm btn-success" [disabled]="p.Discontinued" (click)="addProduct(p, 1)">Buy</button> </td>
                         </tr>
                     </tbody>
                 </table>

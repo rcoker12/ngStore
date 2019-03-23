@@ -1,10 +1,10 @@
 ﻿import { Product } from '../product/product';
 import { Order } from '../order/order';
 
-export interface OrderItem {
+export class OrderItem {
     id: number;
     order: Order;
-    productId: Product;
+    product: Product;
     unitPrice: number;
     quantity: number;
 }

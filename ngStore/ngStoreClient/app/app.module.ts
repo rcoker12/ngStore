@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AppComponent } from "./app.component";
 import { ProductList } from "./product/productList.component";
 import { ProductService } from "./services/productService";
+import { OrderService } from "./services/orderService";
 
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
@@ -24,7 +25,8 @@ import { YesNoBooleanPipe } from './shared/yesno.pipe';
     ],  
     providers: [
         { provide: APP_BASE_HREF, useValue: '/ngStoreClient' },
-        ProductService
+        ProductService,
+        OrderService
     ],
     bootstrap: [AppComponent]
 })
