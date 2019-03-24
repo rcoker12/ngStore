@@ -2,14 +2,27 @@
 import { Order } from '../order/order';
 import { Product } from '../product/product';
 import { OrderItem } from '../order/orderItem';
-import { CartService } from "./cartService";
+import { BehaviorSubject } from 'rxjs';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class OrderService {
 
-    public order: Order = new Order();
+    private order: Order;
+    public subject: BehaviorSubject<Order>;
 
-    constructor(public cartService: CartService ) {
+    constructor() {
+        if (this.order === undefined) {
+            this.order = new Order();
+            this.subject = new BehaviorSubject(this.order);
+            this.subject.asObservable();
+            console.log("new order: " + this.order)
+        }
+    }
+
+    public getOrder(): Order {
+        return this.order;
     }
 
     addToOrder(product: Product, quantity: number) {
@@ -19,6 +32,7 @@ export class OrderService {
         item.unitPrice = product.unitPrice;
         item.quantity = quantity;
         this.order.orderItems.push(item);
-        this.cartService.addToCart(this.order, item);
+        this.subject.next(this.order);
+        console.log(this.order);
     }
 }

@@ -198,7 +198,7 @@ var CartRoot = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"cartService.order.orderItems.length > 0\">\r\n    <div>#/Items: {{ cartService.order.orderItems.length }}</div>\r\n    <div>Subtotal: {{ cartService.order.subtotal | currency:\"USD\":\"symbol\" }}</div>\r\n    <table class=\"table table-condensed table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <td>Product</td>\r\n                <td>Package</td>\r\n                <td>#</td>\r\n                <td>$</td>\r\n                <td>Total</td>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let o of cartService.order.orderItems\">\r\n                <td>{{ o.product.productName }}</td>\r\n                <td>{{ o.product.package }}</td>\r\n                <td>{{ o.quantity }}</td>\r\n                <td>{{ o.unitPrice | currency:\"USD\":\"symbol\" }}</td>\r\n                <td>{{ (o.unitPrice * o.quantity) | currency:\"USD\":\"symbol\" }}</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <button class=\"btn btn-success\" (click)=\"onCheckout()\">Checkout</button>\r\n</div>\r\n<div *ngIf=\"cartService.order.orderItems.length == 0\">\r\n    <div>You cart is empty</div>\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"order.orderItems.length > 0\">\r\n    <div>#/Items: {{ order.orderItems.length }}</div>\r\n    <div>Subtotal: {{ order.subtotal | currency:\"USD\":\"symbol\" }}</div>\r\n    <table class=\"table table-condensed table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <td>Product</td>\r\n                <td>Package</td>\r\n                <td>#</td>\r\n                <td>$</td>\r\n                <td>Total</td>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let o of order.orderItems\">\r\n                <td>{{ o.product.productName }}</td>\r\n                <td>{{ o.product.package }}</td>\r\n                <td>{{ o.quantity }}</td>\r\n                <td>{{ o.unitPrice | currency:\"USD\":\"symbol\" }}</td>\r\n                <td>{{ (o.unitPrice * o.quantity) | currency:\"USD\":\"symbol\" }}</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <button class=\"btn btn-success\" (click)=\"onCheckout()\">Checkout</button>\r\n</div>\r\n<div *ngIf=\"order.orderItems.length == 0\">\r\n    <div>You cart is empty</div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -216,23 +216,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_loginService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/loginService */ "./ngStoreClient/app/services/loginService.ts");
-/* harmony import */ var _services_cartService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/cartService */ "./ngStoreClient/app/services/cartService.ts");
-/* harmony import */ var _order_order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../order/order */ "./ngStoreClient/app/order/order.ts");
-
+/* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/orderService */ "./ngStoreClient/app/services/orderService.ts");
 
 
 
 
 
 var CartList = /** @class */ (function () {
-    function CartList(loginService, cartService, router) {
+    function CartList(loginService, orderService, router) {
         this.loginService = loginService;
-        this.cartService = cartService;
+        this.orderService = orderService;
         this.router = router;
-        this.order = new _order_order__WEBPACK_IMPORTED_MODULE_5__["Order"]();
-        this.order = cartService.order;
-        console.log(this.order);
     }
+    CartList.prototype.ngOnInit = function () {
+        this.getOrder();
+    };
     CartList.prototype.onCheckout = function () {
         if (this.loginService.loginRequired) {
             // Force Login
@@ -243,12 +241,18 @@ var CartList = /** @class */ (function () {
             this.router.navigate(["checkout"]);
         }
     };
+    CartList.prototype.getOrder = function () {
+        var _this = this;
+        this.orderService.subject.subscribe(function (o) { return _this.order = o; });
+        console.log(this.orderService.subject.value);
+        //this.order = this.orderService.getOrder();
+    };
     CartList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "cart-list",
             template: __webpack_require__(/*! ./cartList.component.html */ "./ngStoreClient/app/cart/cartList.component.html")
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_loginService__WEBPACK_IMPORTED_MODULE_3__["LoginService"], _services_cartService__WEBPACK_IMPORTED_MODULE_4__["CartService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_loginService__WEBPACK_IMPORTED_MODULE_3__["LoginService"], _services_orderService__WEBPACK_IMPORTED_MODULE_4__["OrderService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], CartList);
     return CartList;
 }());
@@ -426,21 +430,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartService", function() { return CartService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _order_order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../order/order */ "./ngStoreClient/app/order/order.ts");
+/* harmony import */ var _orderService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./orderService */ "./ngStoreClient/app/services/orderService.ts");
 
 
 
 var CartService = /** @class */ (function () {
-    function CartService() {
-        this.order = new _order_order__WEBPACK_IMPORTED_MODULE_2__["Order"]();
+    function CartService(orderService) {
+        this.orderService = orderService;
+        this.getOrder();
     }
-    CartService.prototype.addToCart = function (order, orderItem) {
-        this.order = order;
-        this.order.orderItems.push(orderItem);
-        console.log(this.order);
+    CartService.prototype.getOrder = function () {
+        var _this = this;
+        this.orderService.subject.subscribe(function (o) { return _this.order = o; });
     };
     CartService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_orderService__WEBPACK_IMPORTED_MODULE_2__["OrderService"]])
     ], CartService);
     return CartService;
 }());
@@ -499,17 +504,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _order_order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../order/order */ "./ngStoreClient/app/order/order.ts");
 /* harmony import */ var _order_orderItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../order/orderItem */ "./ngStoreClient/app/order/orderItem.ts");
-/* harmony import */ var _cartService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cartService */ "./ngStoreClient/app/services/cartService.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 
 
 
 
 
 var OrderService = /** @class */ (function () {
-    function OrderService(cartService) {
-        this.cartService = cartService;
-        this.order = new _order_order__WEBPACK_IMPORTED_MODULE_2__["Order"]();
+    function OrderService() {
+        if (this.order === undefined) {
+            this.order = new _order_order__WEBPACK_IMPORTED_MODULE_2__["Order"]();
+            this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](this.order);
+            this.subject.asObservable();
+            console.log("new order: " + this.order);
+        }
     }
+    OrderService.prototype.getOrder = function () {
+        return this.order;
+    };
     OrderService.prototype.addToOrder = function (product, quantity) {
         var item = new _order_orderItem__WEBPACK_IMPORTED_MODULE_3__["OrderItem"]();
         item.product = product;
@@ -517,11 +529,14 @@ var OrderService = /** @class */ (function () {
         item.unitPrice = product.unitPrice;
         item.quantity = quantity;
         this.order.orderItems.push(item);
-        this.cartService.addToCart(this.order, item);
+        this.subject.next(this.order);
+        console.log(this.order);
     };
     OrderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_cartService__WEBPACK_IMPORTED_MODULE_4__["CartService"]])
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root',
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], OrderService);
     return OrderService;
 }());

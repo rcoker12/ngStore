@@ -1,8 +1,9 @@
-﻿import { Component } from "@angular/core";
+﻿import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { LoginService } from "../services/loginService";
 import { CartService } from "../services/cartService";
+import { OrderService } from '../services/orderService';
 import { Order } from '../order/order';
 
 @Component({
@@ -10,14 +11,17 @@ import { Order } from '../order/order';
     templateUrl: "cartList.component.html",
     styleUrls: []
 })
-export class CartList {
+export class CartList implements OnInit {
 
-    public order: Order = new Order();
+    public order: Order;
 
-    constructor(public loginService: LoginService, public cartService: CartService, private router: Router) {
-        this.order = cartService.order;
-        console.log(this.order);
+    constructor(public loginService: LoginService, public orderService: OrderService, private router: Router) {
     }
+
+    ngOnInit() {
+        this.getOrder();
+    }
+
 
     onCheckout() {
         if (this.loginService.loginRequired) {
@@ -27,5 +31,11 @@ export class CartList {
             // Go to checkout
             this.router.navigate(["checkout"]);
         }
+    }
+
+    getOrder() {
+        this.orderService.subject.subscribe(o => this.order = o);
+        console.log(this.orderService.subject.value);
+        //this.order = this.orderService.getOrder();
     }
 }

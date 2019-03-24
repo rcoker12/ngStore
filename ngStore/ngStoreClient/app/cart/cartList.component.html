@@ -1,6 +1,6 @@
-﻿<div *ngIf="cartService.order.orderItems.length > 0">
-    <div>#/Items: {{ cartService.order.orderItems.length }}</div>
-    <div>Subtotal: {{ cartService.order.subtotal | currency:"USD":"symbol" }}</div>
+﻿<div *ngIf="order.orderItems.length > 0">
+    <div>#/Items: {{ order.orderItems.length }}</div>
+    <div>Subtotal: {{ order.subtotal | currency:"USD":"symbol" }}</div>
     <table class="table table-condensed table-hover">
         <thead>
             <tr>
@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let o of cartService.order.orderItems">
+            <tr *ngFor="let o of order.orderItems">
                 <td>{{ o.product.productName }}</td>
                 <td>{{ o.product.package }}</td>
                 <td>{{ o.quantity }}</td>
@@ -23,6 +23,6 @@
     </table>
     <button class="btn btn-success" (click)="onCheckout()">Checkout</button>
 </div>
-<div *ngIf="cartService.order.orderItems.length == 0">
+<div *ngIf="order.orderItems.length == 0">
     <div>You cart is empty</div>
 </div>

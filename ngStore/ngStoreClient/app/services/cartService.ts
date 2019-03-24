@@ -1,15 +1,17 @@
 ﻿import { Injectable } from "@angular/core";
 import { Order } from '../order/order';
-import { OrderItem } from '../order/orderItem';
+import { OrderService } from './orderService';
 
 @Injectable()
 export class CartService {
 
-    public order: Order = new Order();
+    public order: Order;
 
-    addToCart(order: Order, orderItem: OrderItem) {
-        this.order = order;
-        this.order.orderItems.push(orderItem);
-        console.log(this.order);
+    constructor(public orderService: OrderService) {
+        this.getOrder();
+    }
+
+    getOrder() {
+        this.orderService.subject.subscribe(o => this.order = o);
     }
 }
