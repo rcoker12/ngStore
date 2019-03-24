@@ -5,13 +5,8 @@ import { OrderService } from './orderService';
 @Injectable()
 export class CartService {
 
-    public order: Order;
+    public order: Order = new Order();
 
     constructor(public orderService: OrderService) {
-        this.getOrder();
-    }
-
-    getOrder() {
-        this.orderService.subject.subscribe(o => this.order = o);
     }
 }

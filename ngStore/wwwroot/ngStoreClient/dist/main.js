@@ -229,7 +229,7 @@ var CartList = /** @class */ (function () {
         this.router = router;
     }
     CartList.prototype.ngOnInit = function () {
-        this.getOrder();
+        this.order = this.orderService.order;
     };
     CartList.prototype.onCheckout = function () {
         if (this.loginService.loginRequired) {
@@ -240,12 +240,6 @@ var CartList = /** @class */ (function () {
             // Go to checkout
             this.router.navigate(["checkout"]);
         }
-    };
-    CartList.prototype.getOrder = function () {
-        var _this = this;
-        this.orderService.subject.subscribe(function (o) { return _this.order = o; });
-        console.log(this.orderService.subject.value);
-        //this.order = this.orderService.getOrder();
     };
     CartList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -430,22 +424,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartService", function() { return CartService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _orderService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./orderService */ "./ngStoreClient/app/services/orderService.ts");
+/* harmony import */ var _order_order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../order/order */ "./ngStoreClient/app/order/order.ts");
+/* harmony import */ var _orderService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./orderService */ "./ngStoreClient/app/services/orderService.ts");
+
 
 
 
 var CartService = /** @class */ (function () {
     function CartService(orderService) {
         this.orderService = orderService;
-        this.getOrder();
+        this.order = new _order_order__WEBPACK_IMPORTED_MODULE_2__["Order"]();
     }
-    CartService.prototype.getOrder = function () {
-        var _this = this;
-        this.orderService.subject.subscribe(function (o) { return _this.order = o; });
-    };
     CartService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_orderService__WEBPACK_IMPORTED_MODULE_2__["OrderService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_orderService__WEBPACK_IMPORTED_MODULE_3__["OrderService"]])
     ], CartService);
     return CartService;
 }());
@@ -504,24 +496,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _order_order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../order/order */ "./ngStoreClient/app/order/order.ts");
 /* harmony import */ var _order_orderItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../order/orderItem */ "./ngStoreClient/app/order/orderItem.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-
 
 
 
 
 var OrderService = /** @class */ (function () {
     function OrderService() {
-        if (this.order === undefined) {
-            this.order = new _order_order__WEBPACK_IMPORTED_MODULE_2__["Order"]();
-            this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_4__["BehaviorSubject"](this.order);
-            this.subject.asObservable();
-            console.log("new order: " + this.order);
-        }
+        this.order = new _order_order__WEBPACK_IMPORTED_MODULE_2__["Order"]();
     }
-    OrderService.prototype.getOrder = function () {
-        return this.order;
-    };
     OrderService.prototype.addToOrder = function (product, quantity) {
         var item = new _order_orderItem__WEBPACK_IMPORTED_MODULE_3__["OrderItem"]();
         item.product = product;
@@ -529,7 +511,6 @@ var OrderService = /** @class */ (function () {
         item.unitPrice = product.unitPrice;
         item.quantity = quantity;
         this.order.orderItems.push(item);
-        this.subject.next(this.order);
         console.log(this.order);
     };
     OrderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

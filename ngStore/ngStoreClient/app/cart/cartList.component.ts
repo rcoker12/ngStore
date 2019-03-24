@@ -19,7 +19,7 @@ export class CartList implements OnInit {
     }
 
     ngOnInit() {
-        this.getOrder();
+        this.order = this.orderService.order;
     }
 
 
@@ -31,11 +31,5 @@ export class CartList implements OnInit {
             // Go to checkout
             this.router.navigate(["checkout"]);
         }
-    }
-
-    getOrder() {
-        this.orderService.subject.subscribe(o => this.order = o);
-        console.log(this.orderService.subject.value);
-        //this.order = this.orderService.getOrder();
     }
 }
