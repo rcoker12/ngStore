@@ -13,6 +13,7 @@ var OrderService = /** @class */ (function () {
         item.unitPrice = product.unitPrice;
         item.quantity = quantity;
         this.order.orderItems.push(item);
+        console.log(this.order);
     };
     OrderService = tslib_1.__decorate([
         Injectable()

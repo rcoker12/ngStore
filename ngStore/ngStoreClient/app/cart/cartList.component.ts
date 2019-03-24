@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 
 import { LoginService } from "../services/loginService";
 import { OrderService } from "../services/orderService";
+import { Order } from '../order/order';
 
 @Component({
     selector: "cart-list",
@@ -11,7 +12,12 @@ import { OrderService } from "../services/orderService";
 })
 export class CartList {
 
-    constructor(public loginService: LoginService, public orderService: OrderService, private router: Router) { }
+    public order: Order;
+
+    constructor(public loginService: LoginService, public orderService: OrderService, private router: Router) {
+        this.order = orderService.order;
+        console.log(orderService.order);
+    }
 
     onCheckout() {
         if (this.loginService.loginRequired) {

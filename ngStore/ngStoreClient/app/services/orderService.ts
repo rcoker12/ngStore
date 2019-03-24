@@ -9,7 +9,6 @@ export class OrderService {
     public order: Order = new Order();
 
     addToOrder(product: Product, quantity: number) {
-
         var item: OrderItem = new OrderItem();
         item.product = product;
         item.order = this.order;

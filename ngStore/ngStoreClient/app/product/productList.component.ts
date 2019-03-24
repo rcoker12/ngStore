@@ -14,7 +14,6 @@ import { OrderItem } from '../order/orderItem';
 export class ProductList implements OnInit {
 
     public products: Product[] = [];
-    public order: Order = new Order();
 
     constructor(private productService: ProductService, private orderService: OrderService) {
     }
@@ -30,15 +29,6 @@ export class ProductList implements OnInit {
     }
 
     addProduct(product: Product, quantity: number) {
-
-        let item: OrderItem = this.order.orderItems.find(i => i.product.id == product.id);
-
-        if (item) {
-
-            item.quantity++;
-
-        } else {
-            this.orderService.addToOrder(product, quantity);
-        }
+        this.orderService.addToOrder(product, quantity);
     }
 }

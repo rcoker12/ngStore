@@ -39,7 +39,7 @@ let routes = [
         YesNoBooleanPipe
     ],  
     providers: [
-        { provide: APP_BASE_HREF, useValue: '/ngStoreClient' },
+        { provide: APP_BASE_HREF, useValue: '/' },
         ProductService,
         OrderService,
         LoginService

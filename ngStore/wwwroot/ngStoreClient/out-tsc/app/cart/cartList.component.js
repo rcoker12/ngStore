@@ -4,13 +4,13 @@ import { Router } from "@angular/router";
 import { LoginService } from "../services/loginService";
 import { OrderService } from "../services/orderService";
 var CartList = /** @class */ (function () {
-    function CartList(login, order, router) {
-        this.login = login;
-        this.order = order;
+    function CartList(loginService, orderService, router) {
+        this.loginService = loginService;
+        this.orderService = orderService;
         this.router = router;
     }
     CartList.prototype.onCheckout = function () {
-        if (this.login.loginRequired) {
+        if (this.loginService.loginRequired) {
             // Force Login
             this.router.navigate(["login"]);
         }

@@ -11,6 +11,7 @@ import { ProductList } from "./product/productList.component";
 import { CartList } from "./cart/cartList.component";
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
+import { LoginService } from "./services/loginService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 var routes = [
     { path: "Product", component: ProductRoot },
@@ -39,9 +40,10 @@ var AppModule = /** @class */ (function () {
                 YesNoBooleanPipe
             ],
             providers: [
-                { provide: APP_BASE_HREF, useValue: '/ngStoreClient' },
+                { provide: APP_BASE_HREF, useValue: '/' },
                 ProductService,
-                OrderService
+                OrderService,
+                LoginService
             ],
             bootstrap: [AppComponent]
         })

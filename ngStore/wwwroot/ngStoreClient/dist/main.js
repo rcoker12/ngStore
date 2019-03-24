@@ -131,7 +131,7 @@ var AppModule = /** @class */ (function () {
                 _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_14__["YesNoBooleanPipe"]
             ],
             providers: [
-                { provide: _angular_common__WEBPACK_IMPORTED_MODULE_3__["APP_BASE_HREF"], useValue: '/ngStoreClient' },
+                { provide: _angular_common__WEBPACK_IMPORTED_MODULE_3__["APP_BASE_HREF"], useValue: '/' },
                 _services_productService__WEBPACK_IMPORTED_MODULE_11__["ProductService"],
                 _services_orderService__WEBPACK_IMPORTED_MODULE_12__["OrderService"],
                 _services_loginService__WEBPACK_IMPORTED_MODULE_13__["LoginService"]
@@ -195,7 +195,7 @@ var CartRoot = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<button class=\"btn btn-success\" *ngIf=\"orderService.order.orderItems.length > 0\" (click)=\"onCheckout()\">Checkout</button>\r\n\r\n"
+module.exports = "<div *ngIf=\"orderService.order.orderItems.length > 0\">\r\n    <div>#/Items: {{ orderService.order.orderItems.length }}</div>\r\n    <div>Subtotal: {{ orderService.order.subtotal | currency:\"USD\":\"symbol\" }}</div>\r\n    <table class=\"table table-condensed table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <td>Product</td>\r\n                <td>Package</td>\r\n                <td>#</td>\r\n                <td>$</td>\r\n                <td>Total</td>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let o of orderService.order.orderItems\">\r\n                <td>{{ o.product.productName }}</td>\r\n                <td>{{ o.product.package }}</td>\r\n                <td>{{ o.quantity }}</td>\r\n                <td>{{ o.unitPrice | currency:\"USD\":\"symbol\" }}</td>\r\n                <td>{{ (o.unitPrice * o.quantity) | currency:\"USD\":\"symbol\" }}</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <button class=\"btn btn-success\" (click)=\"onCheckout()\">Checkout</button>\r\n</div>\r\n<div *ngIf=\"orderService.order.orderItems.length == 0\">\r\n    <div>You cart is empty</div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -224,6 +224,8 @@ var CartList = /** @class */ (function () {
         this.loginService = loginService;
         this.orderService = orderService;
         this.router = router;
+        this.order = orderService.order;
+        console.log(orderService.order);
     }
     CartList.prototype.onCheckout = function () {
         if (this.loginService.loginRequired) {
@@ -261,9 +263,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Order", function() { return Order; });
 var Order = /** @class */ (function () {
     function Order() {
-        this["orderDate"] = new Date();
-        this["orderItems"] = new Array();
+        this.orderDate = new Date();
+        this.orderItems = new Array();
     }
+    Object.defineProperty(Order.prototype, "subtotal", {
+        get: function () {
+            var sum = 0;
+            for (var i = 0; i < this.orderItems.length; i++) {
+                sum += this.orderItems[i].unitPrice * this.orderItems[i].quantity;
+            }
+            return sum;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ;
     return Order;
 }());
 
@@ -358,8 +372,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/productService */ "./ngStoreClient/app/services/productService.ts");
 /* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/orderService */ "./ngStoreClient/app/services/orderService.ts");
-/* harmony import */ var _order_order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../order/order */ "./ngStoreClient/app/order/order.ts");
-
 
 
 
@@ -369,7 +381,6 @@ var ProductList = /** @class */ (function () {
         this.productService = productService;
         this.orderService = orderService;
         this.products = [];
-        this.order = new _order_order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
     }
     ProductList.prototype.ngOnInit = function () {
         var _this = this;
@@ -381,13 +392,7 @@ var ProductList = /** @class */ (function () {
         });
     };
     ProductList.prototype.addProduct = function (product, quantity) {
-        var item = this.order.orderItems.find(function (i) { return i.product.id == product.id; });
-        if (item) {
-            item.quantity++;
-        }
-        else {
-            this.orderService.addToOrder(product, quantity);
-        }
+        this.orderService.addToOrder(product, quantity);
     };
     ProductList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -424,7 +429,7 @@ var LoginService = /** @class */ (function () {
     }
     Object.defineProperty(LoginService.prototype, "loginRequired", {
         get: function () {
-            return this.token.length == 0 || this.tokenExpiration > new Date();
+            return this.token.length == 0 || this.tokenExpiration < new Date();
         },
         enumerable: true,
         configurable: true
