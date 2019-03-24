@@ -5,8 +5,7 @@ import { OrderService } from './orderService';
 @Injectable()
 export class CartService {
 
-    public order: Order = new Order();
-
     constructor(public orderService: OrderService) {
+        console.log("Creating cart service");
     }
 }

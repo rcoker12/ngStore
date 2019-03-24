@@ -198,7 +198,7 @@ var CartRoot = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"order.orderItems.length > 0\">\r\n    <div>#/Items: {{ order.orderItems.length }}</div>\r\n    <div>Subtotal: {{ order.subtotal | currency:\"USD\":\"symbol\" }}</div>\r\n    <table class=\"table table-condensed table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <td>Product</td>\r\n                <td>Package</td>\r\n                <td>#</td>\r\n                <td>$</td>\r\n                <td>Total</td>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let o of order.orderItems\">\r\n                <td>{{ o.product.productName }}</td>\r\n                <td>{{ o.product.package }}</td>\r\n                <td>{{ o.quantity }}</td>\r\n                <td>{{ o.unitPrice | currency:\"USD\":\"symbol\" }}</td>\r\n                <td>{{ (o.unitPrice * o.quantity) | currency:\"USD\":\"symbol\" }}</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <button class=\"btn btn-success\" (click)=\"onCheckout()\">Checkout</button>\r\n</div>\r\n<div *ngIf=\"order.orderItems.length == 0\">\r\n    <div>You cart is empty</div>\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"orderService.order.orderItems.length > 0\">\r\n    <div>#/Items: {{ orderService.order.orderItems.length }}</div>\r\n    <div>Subtotal: {{ orderService.order.subtotal | currency:\"USD\":\"symbol\" }}</div>\r\n    <table class=\"table table-condensed table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <td>Product</td>\r\n                <td>Package</td>\r\n                <td>#</td>\r\n                <td>$</td>\r\n                <td>Total</td>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let o of orderService.order.orderItems\">\r\n                <td>{{ o.product.productName }}</td>\r\n                <td>{{ o.product.package }}</td>\r\n                <td>{{ o.quantity }}</td>\r\n                <td>{{ o.unitPrice | currency:\"USD\":\"symbol\" }}</td>\r\n                <td>{{ (o.unitPrice * o.quantity) | currency:\"USD\":\"symbol\" }}</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <button class=\"btn btn-success\" (click)=\"onCheckout()\">Checkout</button>\r\n</div>\r\n<div *ngIf=\"orderService.order.orderItems.length == 0\">\r\n    <div>You cart is empty</div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -229,7 +229,6 @@ var CartList = /** @class */ (function () {
         this.router = router;
     }
     CartList.prototype.ngOnInit = function () {
-        this.order = this.orderService.order;
     };
     CartList.prototype.onCheckout = function () {
         if (this.loginService.loginRequired) {
@@ -424,20 +423,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CartService", function() { return CartService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _order_order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../order/order */ "./ngStoreClient/app/order/order.ts");
-/* harmony import */ var _orderService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./orderService */ "./ngStoreClient/app/services/orderService.ts");
-
+/* harmony import */ var _orderService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./orderService */ "./ngStoreClient/app/services/orderService.ts");
 
 
 
 var CartService = /** @class */ (function () {
     function CartService(orderService) {
         this.orderService = orderService;
-        this.order = new _order_order__WEBPACK_IMPORTED_MODULE_2__["Order"]();
+        console.log("Creating cart service");
     }
     CartService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_orderService__WEBPACK_IMPORTED_MODULE_3__["OrderService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_orderService__WEBPACK_IMPORTED_MODULE_2__["OrderService"]])
     ], CartService);
     return CartService;
 }());
@@ -503,6 +500,7 @@ __webpack_require__.r(__webpack_exports__);
 var OrderService = /** @class */ (function () {
     function OrderService() {
         this.order = new _order_order__WEBPACK_IMPORTED_MODULE_2__["Order"]();
+        console.log("Creating order service");
     }
     OrderService.prototype.addToOrder = function (product, quantity) {
         var item = new _order_orderItem__WEBPACK_IMPORTED_MODULE_3__["OrderItem"]();
