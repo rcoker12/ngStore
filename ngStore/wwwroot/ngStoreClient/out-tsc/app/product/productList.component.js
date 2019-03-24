@@ -3,7 +3,6 @@ import { Component } from "@angular/core";
 import { ProductService } from '../services/productService';
 import { OrderService } from '../services/orderService';
 var ProductList = /** @class */ (function () {
-    //public order: Order = new Order();
     function ProductList(productService, orderService) {
         this.productService = productService;
         this.orderService = orderService;
@@ -19,7 +18,6 @@ var ProductList = /** @class */ (function () {
         });
     };
     ProductList.prototype.addProduct = function (product, quantity) {
-        console.log(product);
         this.orderService.addToOrder(product, quantity);
     };
     ProductList = tslib_1.__decorate([

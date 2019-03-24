@@ -13,6 +13,7 @@ import { CartList } from "./cart/cartList.component";
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
 import { LoginService } from "./services/loginService";
+import { CartService } from "./services/cartService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
 let routes = [
@@ -42,7 +43,8 @@ let routes = [
         { provide: APP_BASE_HREF, useValue: '/' },
         ProductService,
         OrderService,
-        LoginService
+        LoginService,
+        CartService
     ],
     bootstrap: [AppComponent]
 })

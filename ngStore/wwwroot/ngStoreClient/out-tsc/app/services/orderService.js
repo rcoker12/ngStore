@@ -2,8 +2,10 @@ import * as tslib_1 from "tslib";
 import { Injectable } from "@angular/core";
 import { Order } from '../order/order';
 import { OrderItem } from '../order/orderItem';
+import { CartService } from "./cartService";
 var OrderService = /** @class */ (function () {
-    function OrderService() {
+    function OrderService(cartService) {
+        this.cartService = cartService;
         this.order = new Order();
     }
     OrderService.prototype.addToOrder = function (product, quantity) {
@@ -13,10 +15,11 @@ var OrderService = /** @class */ (function () {
         item.unitPrice = product.unitPrice;
         item.quantity = quantity;
         this.order.orderItems.push(item);
-        console.log(this.order);
+        this.cartService.addToCart(this.order, item);
     };
     OrderService = tslib_1.__decorate([
-        Injectable()
+        Injectable(),
+        tslib_1.__metadata("design:paramtypes", [CartService])
     ], OrderService);
     return OrderService;
 }());

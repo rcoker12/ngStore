@@ -2,12 +2,14 @@ import * as tslib_1 from "tslib";
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { LoginService } from "../services/loginService";
-import { OrderService } from "../services/orderService";
+import { CartService } from "../services/cartService";
+import { Order } from '../order/order';
 var CartList = /** @class */ (function () {
-    function CartList(loginService, orderService, router) {
+    function CartList(loginService, cartService, router) {
         this.loginService = loginService;
-        this.orderService = orderService;
+        this.cartService = cartService;
         this.router = router;
+        this.order = new Order();
     }
     CartList.prototype.onCheckout = function () {
         if (this.loginService.loginRequired) {
@@ -25,7 +27,7 @@ var CartList = /** @class */ (function () {
             templateUrl: "cartList.component.html",
             styleUrls: []
         }),
-        tslib_1.__metadata("design:paramtypes", [LoginService, OrderService, Router])
+        tslib_1.__metadata("design:paramtypes", [LoginService, CartService, Router])
     ], CartList);
     return CartList;
 }());

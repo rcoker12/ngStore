@@ -12,6 +12,7 @@ import { CartList } from "./cart/cartList.component";
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
 import { LoginService } from "./services/loginService";
+import { CartService } from "./services/cartService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 var routes = [
     { path: "Product", component: ProductRoot },
@@ -43,7 +44,8 @@ var AppModule = /** @class */ (function () {
                 { provide: APP_BASE_HREF, useValue: '/' },
                 ProductService,
                 OrderService,
-                LoginService
+                LoginService,
+                CartService
             ],
             bootstrap: [AppComponent]
         })
