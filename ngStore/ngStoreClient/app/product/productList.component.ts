@@ -3,8 +3,6 @@
 import { Product } from './product';
 import { ProductService } from '../services/productService';
 import { OrderService } from '../services/orderService';
-import { Order } from '../order/order';
-import { OrderItem } from '../order/orderItem';
 
 @Component({
     selector: "product-list",

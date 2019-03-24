@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 
 import { LoginService } from "../services/loginService";
 import { OrderService } from '../services/orderService';
-import { Order } from '../order/order';
 
 @Component({
     selector: "cart-list",
