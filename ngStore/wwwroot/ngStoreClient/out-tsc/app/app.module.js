@@ -14,6 +14,7 @@ import { OrderService } from "./services/orderService";
 import { LoginService } from "./services/loginService";
 import { CartService } from "./services/cartService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
+import { Login } from './login/login.component';
 var routes = [
     { path: "Product", component: ProductRoot },
     { path: "Cart", component: CartRoot }
@@ -29,7 +30,8 @@ var AppModule = /** @class */ (function () {
                 CartRoot,
                 ProductList,
                 CartList,
-                YesNoBooleanPipe
+                YesNoBooleanPipe,
+                Login
             ],
             imports: [
                 BrowserModule,

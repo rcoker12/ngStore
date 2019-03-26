@@ -8,4 +8,7 @@ export class LoginService {
     public get loginRequired(): boolean {
         return this.token.length == 0 || this.tokenExpiration < new Date();
     }
+
+    public login(creds) {
+    }
 }

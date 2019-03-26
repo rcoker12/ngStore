@@ -90,6 +90,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_loginService__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/loginService */ "./ngStoreClient/app/services/loginService.ts");
 /* harmony import */ var _services_cartService__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/cartService */ "./ngStoreClient/app/services/cartService.ts");
 /* harmony import */ var _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/yesno.pipe */ "./ngStoreClient/app/shared/yesno.pipe.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./login/login.component */ "./ngStoreClient/app/login/login.component.ts");
+
 
 
 
@@ -121,7 +123,8 @@ var AppModule = /** @class */ (function () {
                 _cart_cart_component__WEBPACK_IMPORTED_MODULE_8__["CartRoot"],
                 _product_productList_component__WEBPACK_IMPORTED_MODULE_9__["ProductList"],
                 _cart_cartList_component__WEBPACK_IMPORTED_MODULE_10__["CartList"],
-                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_15__["YesNoBooleanPipe"]
+                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_15__["YesNoBooleanPipe"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_16__["Login"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -250,6 +253,74 @@ var CartList = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_loginService__WEBPACK_IMPORTED_MODULE_3__["LoginService"], _services_orderService__WEBPACK_IMPORTED_MODULE_4__["OrderService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], CartList);
     return CartList;
+}());
+
+
+
+/***/ }),
+
+/***/ "./ngStoreClient/app/login/login.component.html":
+/*!******************************************************!*\
+  !*** ./ngStoreClient/app/login/login.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-4 offset-md-4\">\r\n        <!--<div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>-->\r\n        <!--<form (submit)=\"onLogin()\" #theForm=\"ngForm\" novalidate>\r\n            <div class=\"form-group\">\r\n                <label for=\"username\">Username</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"creds.username\" #username=\"ngModel\" required />\r\n                <div class=\"text-danger\" *ngIf=\"username.touched && username.invalid && username.errors.required\">Username is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"password\">Password</label>\r\n                <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"creds.password\" required #password=\"ngModel\" />\r\n                <div class=\"text-danger\" *ngIf=\"password.touched && password.invalid && password.errors.required\">Password is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" [disabled]=\"theForm.invalid\" />\r\n                <a routerLink=\"/\" class=\"btn btn-default\">Cancel</a>\r\n            </div>\r\n        </form>-->\r\n    </div>\r\n</div>\r\n"
+
+/***/ }),
+
+/***/ "./ngStoreClient/app/login/login.component.ts":
+/*!****************************************************!*\
+  !*** ./ngStoreClient/app/login/login.component.ts ***!
+  \****************************************************/
+/*! exports provided: Login */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Login", function() { return Login; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_loginService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/loginService */ "./ngStoreClient/app/services/loginService.ts");
+/* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/orderService */ "./ngStoreClient/app/services/orderService.ts");
+
+
+
+
+
+var Login = /** @class */ (function () {
+    function Login(loginService, orderService, router) {
+        this.loginService = loginService;
+        this.orderService = orderService;
+        this.router = router;
+        this.errorMessage = "";
+        this.credentials = {
+            username: "",
+            password: ""
+        };
+    }
+    Login.prototype.onLogin = function () {
+        this.loginService.login(this.credentials);
+        //.subscribe(success => {
+        //    if (success) {
+        //        if (this.orderService.order.orderItems.length == 0) {
+        //            this.router.navigate([""]);
+        //        } else {
+        //            this.router.navigate(["checkout"]);
+        //        }
+        //    }
+        //}, err => this.errorMessage = "Failed to login");
+    };
+    Login = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: "login",
+            template: __webpack_require__(/*! ./login.component.html */ "./ngStoreClient/app/login/login.component.html")
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_loginService__WEBPACK_IMPORTED_MODULE_3__["LoginService"], _services_orderService__WEBPACK_IMPORTED_MODULE_4__["OrderService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], Login);
+    return Login;
 }());
 
 
@@ -471,6 +542,8 @@ var LoginService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    LoginService.prototype.login = function (creds) {
+    };
     LoginService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
     ], LoginService);

@@ -11,7 +11,6 @@ using ngStore.Database.Repositories;
 
 namespace ngStore.Controllers
 {
-    [Authorize]
     public class CartController : Controller
     {
         private readonly IOrderRepository _orderRepository;

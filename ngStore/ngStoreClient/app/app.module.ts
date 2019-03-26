@@ -15,6 +15,7 @@ import { OrderService } from "./services/orderService";
 import { LoginService } from "./services/loginService";
 import { CartService } from "./services/cartService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
+import { Login } from './login/login.component';
 
 let routes = [
     { path: "Product", component: ProductRoot },
@@ -28,7 +29,8 @@ let routes = [
         CartRoot,
         ProductList,
         CartList,
-        YesNoBooleanPipe
+        YesNoBooleanPipe,
+        Login
     ],
     imports: [
         BrowserModule,

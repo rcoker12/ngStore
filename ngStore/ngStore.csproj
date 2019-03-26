@@ -9,6 +9,7 @@
     <ItemGroup>
       <None Remove="ngStoreClient\app\cart\cart.component.ts" />
       <None Remove="ngStoreClient\app\cart\cartList.component.ts" />
+      <None Remove="ngStoreClient\app\login\login.component.ts" />
       <None Remove="ngStoreClient\app\order\order.ts" />
       <None Remove="ngStoreClient\app\order\orderItem.ts" />
       <None Remove="ngStoreClient\app\product\product.component.ts" />
@@ -58,6 +59,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="ngStoreClient\app\cart\cart.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\cart\cartList.component.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\login\login.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\order.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\orderItem.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\product.component.ts" />
