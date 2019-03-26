@@ -25,7 +25,7 @@ export class CartList implements OnInit {
     onCheckout() {
         if (this.loginService.loginRequired) {
             // Force Login
-            this.router.navigate(["login"]);
+            this.router.navigate(["Login"]);
         } else {
             // Go to checkout
             this.router.navigate(["checkout"]);

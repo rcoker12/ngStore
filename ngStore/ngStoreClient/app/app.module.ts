@@ -9,8 +9,10 @@ import { FormsModule } from "@angular/forms";
 import { AppComponent } from "./app.component";
 import { ProductRoot } from "./product/product.component";
 import { CartRoot } from "./cart/cart.component";
+import { CheckoutRoot } from "./checkout/checkout.component";
 import { ProductList } from "./product/productList.component";
 import { CartList } from "./cart/cartList.component";
+import { CheckoutList } from "./checkout/checkoutList.component";
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
 import { LoginService } from "./services/loginService";
@@ -20,7 +22,9 @@ import { Login } from './login/login.component';
 
 let routes = [
     { path: "Product", component: ProductRoot },
-    { path: "Cart", component: CartRoot }
+    { path: "Cart", component: CartRoot },
+    { path: "Checkout", component: CheckoutRoot },
+    { path: "Login", component: Login }
 ];
 
 @NgModule({
@@ -31,7 +35,9 @@ let routes = [
         ProductList,
         CartList,
         YesNoBooleanPipe,
-        Login
+        Login,
+        CheckoutRoot,
+        CheckoutList
     ],
     imports: [
         BrowserModule,

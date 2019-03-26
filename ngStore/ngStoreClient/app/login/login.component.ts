@@ -12,21 +12,21 @@ export class Login {
     constructor(private loginService: LoginService, private orderService: OrderService, private router: Router) { }
 
     errorMessage: string = "";
-    public credentials = {
+    public creds = {
         username: "",
         password: ""
     };
 
     onLogin() {
-        this.loginService.login(this.credentials);
-        //.subscribe(success => {
-        //    if (success) {
-        //        if (this.orderService.order.orderItems.length == 0) {
-        //            this.router.navigate([""]);
-        //        } else {
-        //            this.router.navigate(["checkout"]);
-        //        }
-        //    }
-        //}, err => this.errorMessage = "Failed to login");
+        this.loginService.login(this.creds)
+            .subscribe(success => {
+                if (success) {
+                    if (this.orderService.order.orderItems.length == 0) {
+                        this.router.navigate([""]);
+                    } else {
+                        this.router.navigate(["Checkout"]);
+                    }
+                }
+            }, err => this.errorMessage = "Failed to login");
     }
 }
