@@ -12,6 +12,8 @@ var LoginService = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    LoginService.prototype.login = function (creds) {
+    };
     LoginService = tslib_1.__decorate([
         Injectable()
     ], LoginService);

@@ -4,6 +4,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from "@angular/common/http";
 
 import { RouterModule } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { ProductRoot } from "./product/product.component";
@@ -35,7 +36,8 @@ let routes = [
     imports: [
         BrowserModule,
         HttpClientModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        FormsModule
     ],
     exports: [
         RouterModule,

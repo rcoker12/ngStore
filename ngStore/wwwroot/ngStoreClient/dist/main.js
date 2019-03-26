@@ -80,17 +80,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./app.component */ "./ngStoreClient/app/app.component.ts");
-/* harmony import */ var _product_product_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./product/product.component */ "./ngStoreClient/app/product/product.component.ts");
-/* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./cart/cart.component */ "./ngStoreClient/app/cart/cart.component.ts");
-/* harmony import */ var _product_productList_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./product/productList.component */ "./ngStoreClient/app/product/productList.component.ts");
-/* harmony import */ var _cart_cartList_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./cart/cartList.component */ "./ngStoreClient/app/cart/cartList.component.ts");
-/* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/productService */ "./ngStoreClient/app/services/productService.ts");
-/* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/orderService */ "./ngStoreClient/app/services/orderService.ts");
-/* harmony import */ var _services_loginService__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/loginService */ "./ngStoreClient/app/services/loginService.ts");
-/* harmony import */ var _services_cartService__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/cartService */ "./ngStoreClient/app/services/cartService.ts");
-/* harmony import */ var _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./shared/yesno.pipe */ "./ngStoreClient/app/shared/yesno.pipe.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./login/login.component */ "./ngStoreClient/app/login/login.component.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app.component */ "./ngStoreClient/app/app.component.ts");
+/* harmony import */ var _product_product_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./product/product.component */ "./ngStoreClient/app/product/product.component.ts");
+/* harmony import */ var _cart_cart_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./cart/cart.component */ "./ngStoreClient/app/cart/cart.component.ts");
+/* harmony import */ var _product_productList_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./product/productList.component */ "./ngStoreClient/app/product/productList.component.ts");
+/* harmony import */ var _cart_cartList_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./cart/cartList.component */ "./ngStoreClient/app/cart/cartList.component.ts");
+/* harmony import */ var _services_productService__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./services/productService */ "./ngStoreClient/app/services/productService.ts");
+/* harmony import */ var _services_orderService__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./services/orderService */ "./ngStoreClient/app/services/orderService.ts");
+/* harmony import */ var _services_loginService__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/loginService */ "./ngStoreClient/app/services/loginService.ts");
+/* harmony import */ var _services_cartService__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./services/cartService */ "./ngStoreClient/app/services/cartService.ts");
+/* harmony import */ var _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./shared/yesno.pipe */ "./ngStoreClient/app/shared/yesno.pipe.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./login/login.component */ "./ngStoreClient/app/login/login.component.ts");
+
 
 
 
@@ -109,8 +111,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [
-    { path: "Product", component: _product_product_component__WEBPACK_IMPORTED_MODULE_7__["ProductRoot"] },
-    { path: "Cart", component: _cart_cart_component__WEBPACK_IMPORTED_MODULE_8__["CartRoot"] }
+    { path: "Product", component: _product_product_component__WEBPACK_IMPORTED_MODULE_8__["ProductRoot"] },
+    { path: "Cart", component: _cart_cart_component__WEBPACK_IMPORTED_MODULE_9__["CartRoot"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -118,31 +120,32 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"],
-                _product_product_component__WEBPACK_IMPORTED_MODULE_7__["ProductRoot"],
-                _cart_cart_component__WEBPACK_IMPORTED_MODULE_8__["CartRoot"],
-                _product_productList_component__WEBPACK_IMPORTED_MODULE_9__["ProductList"],
-                _cart_cartList_component__WEBPACK_IMPORTED_MODULE_10__["CartList"],
-                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_15__["YesNoBooleanPipe"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_16__["Login"]
+                _app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"],
+                _product_product_component__WEBPACK_IMPORTED_MODULE_8__["ProductRoot"],
+                _cart_cart_component__WEBPACK_IMPORTED_MODULE_9__["CartRoot"],
+                _product_productList_component__WEBPACK_IMPORTED_MODULE_10__["ProductList"],
+                _cart_cartList_component__WEBPACK_IMPORTED_MODULE_11__["CartList"],
+                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_16__["YesNoBooleanPipe"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_17__["Login"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes)
+                _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"].forRoot(routes),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"]
             ],
             exports: [
                 _angular_router__WEBPACK_IMPORTED_MODULE_5__["RouterModule"],
-                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_15__["YesNoBooleanPipe"]
+                _shared_yesno_pipe__WEBPACK_IMPORTED_MODULE_16__["YesNoBooleanPipe"]
             ],
             providers: [
                 { provide: _angular_common__WEBPACK_IMPORTED_MODULE_3__["APP_BASE_HREF"], useValue: '/' },
-                _services_productService__WEBPACK_IMPORTED_MODULE_11__["ProductService"],
-                _services_orderService__WEBPACK_IMPORTED_MODULE_12__["OrderService"],
-                _services_loginService__WEBPACK_IMPORTED_MODULE_13__["LoginService"],
-                _services_cartService__WEBPACK_IMPORTED_MODULE_14__["CartService"]
+                _services_productService__WEBPACK_IMPORTED_MODULE_12__["ProductService"],
+                _services_orderService__WEBPACK_IMPORTED_MODULE_13__["OrderService"],
+                _services_loginService__WEBPACK_IMPORTED_MODULE_14__["LoginService"],
+                _services_cartService__WEBPACK_IMPORTED_MODULE_15__["CartService"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -266,7 +269,7 @@ var CartList = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-4 offset-md-4\">\r\n        <!--<div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>-->\r\n        <!--<form (submit)=\"onLogin()\" #theForm=\"ngForm\" novalidate>\r\n            <div class=\"form-group\">\r\n                <label for=\"username\">Username</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"creds.username\" #username=\"ngModel\" required />\r\n                <div class=\"text-danger\" *ngIf=\"username.touched && username.invalid && username.errors.required\">Username is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"password\">Password</label>\r\n                <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"creds.password\" required #password=\"ngModel\" />\r\n                <div class=\"text-danger\" *ngIf=\"password.touched && password.invalid && password.errors.required\">Password is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" [disabled]=\"theForm.invalid\" />\r\n                <a routerLink=\"/\" class=\"btn btn-default\">Cancel</a>\r\n            </div>\r\n        </form>-->\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-md-4 offset-md-4\">\r\n        <div *ngIf=\"errorMessage\" class=\"alert alert-warning\">{{ errorMessage }}</div>\r\n        <form (submit)=\"onLogin()\" #theForm=\"ngForm\" novalidate>\r\n            <div class=\"form-group\">\r\n                <label for=\"username\">Username</label>\r\n                <input type=\"text\" class=\"form-control\" name=\"username\" [(ngModel)]=\"creds.username\" #username=\"ngModel\" required />\r\n                <div class=\"text-danger\" *ngIf=\"username.touched && username.invalid && username.errors.required\">Username is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label for=\"password\">Password</label>\r\n                <input type=\"password\" class=\"form-control\" name=\"password\" [(ngModel)]=\"creds.password\" required #password=\"ngModel\" />\r\n                <div class=\"text-danger\" *ngIf=\"password.touched && password.invalid && password.errors.required\">Password is required!</div>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <input type=\"submit\" class=\"btn btn-success\" value=\"Login\" [disabled]=\"theForm.invalid\" />\r\n                <a routerLink=\"/\" class=\"btn btn-default\">Cancel</a>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
