@@ -28,7 +28,7 @@ export class CartList implements OnInit {
             this.router.navigate(["Login"]);
         } else {
             // Go to checkout
-            this.router.navigate(["checkout"]);
+            this.router.navigate(["Checkout"]);
         }
     }
 }
