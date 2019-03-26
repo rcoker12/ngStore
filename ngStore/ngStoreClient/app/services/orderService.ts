@@ -9,7 +9,6 @@ export class OrderService {
     public order: Order = new Order();
 
     constructor() {
-        console.log("Creating order service");
     }
 
     addToOrder(product: Product, quantity: number) {
