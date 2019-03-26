@@ -3,9 +3,7 @@ import { Order } from '../order/order';
 import { Product } from '../product/product';
 import { OrderItem } from '../order/orderItem';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class OrderService {
 
     public order: Order = new Order();
