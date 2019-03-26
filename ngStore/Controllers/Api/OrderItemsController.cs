@@ -12,19 +12,19 @@ using ngStore.Database.Entities;
 using ngStore.Database.Interfaces;
 using ngStore.ViewModels;
 
-namespace ngStore.Controllers
+namespace ngStore.Controllers.Api
 {
     [Route("/api/orders/{orderid}/items")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Produces("application/json")]
-    public class OrderItemsApiController : ControllerBase
+    public class OrderItemsController : ControllerBase
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly ILogger<OrdersApiController> _logger;
+        private readonly ILogger<OrderItemsController> _logger;
         private readonly IMapper _mapper;
 
-        public OrderItemsApiController(IOrderRepository orderRepository, ILogger<OrdersApiController> logger, IMapper mapper)
+        public OrderItemsController(IOrderRepository orderRepository, ILogger<OrderItemsController> logger, IMapper mapper)
         {
             _orderRepository = orderRepository;
             _logger = logger;

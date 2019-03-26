@@ -9,16 +9,16 @@ using ngStore.Database.Entities;
 using ngStore.Database.Interfaces;
 using ngStore.Database.Repositories;
 
-namespace ngStore.Controllers
+namespace ngStore.Controllers.Api
 {
     [Route("api/products")]
     [ApiController]
-    public class ProductsApiController : Controller
+    public class ProductsController : Controller
     {
         private readonly IProductRepository _productRepository;
-        private readonly ILogger<ProductsApiController> _logger;
+        private readonly ILogger<ProductsController> _logger;
 
-        public ProductsApiController(IProductRepository productRepository, ILogger<ProductsApiController> logger)
+        public ProductsController(IProductRepository productRepository, ILogger<ProductsController> logger)
         {
             _productRepository = productRepository;
             _logger = logger;
