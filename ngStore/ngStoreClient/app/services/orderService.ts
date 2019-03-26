@@ -15,10 +15,9 @@ export class OrderService {
     addToOrder(product: Product, quantity: number) {
         var item: OrderItem = new OrderItem();
         item.product = product;
-        item.order = this.order;
         item.unitPrice = product.unitPrice;
         item.quantity = quantity;
         this.order.orderItems.push(item);
-        console.log(this.order);
+        localStorage.setItem('order', JSON.stringify(this.order));
     }
 }

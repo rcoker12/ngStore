@@ -198,7 +198,7 @@ var CartRoot = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"orderService.order.orderItems.length > 0\">\r\n    <div>#/Items: {{ orderService.order.orderItems.length }}</div>\r\n    <div>Subtotal: {{ orderService.order.subtotal | currency:\"USD\":\"symbol\" }}</div>\r\n    <table class=\"table table-condensed table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <td>Product</td>\r\n                <td>Package</td>\r\n                <td>#</td>\r\n                <td>$</td>\r\n                <td>Total</td>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let o of orderService.order.orderItems\">\r\n                <td>{{ o.product.productName }}</td>\r\n                <td>{{ o.product.package }}</td>\r\n                <td>{{ o.quantity }}</td>\r\n                <td>{{ o.unitPrice | currency:\"USD\":\"symbol\" }}</td>\r\n                <td>{{ (o.unitPrice * o.quantity) | currency:\"USD\":\"symbol\" }}</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <button class=\"btn btn-success\" (click)=\"onCheckout()\">Checkout</button>\r\n</div>\r\n<div *ngIf=\"orderService.order.orderItems.length == 0\">\r\n    <div>You cart is empty</div>\r\n</div>\r\n"
+module.exports = "<div *ngIf=\"order.orderItems.length > 0\">\r\n    <div>#/Items: {{ order.orderItems.length }}</div>\r\n    <div>Subtotal: {{ order.subtotal | currency:\"USD\":\"symbol\" }}</div>\r\n    <table class=\"table table-condensed table-hover\">\r\n        <thead>\r\n            <tr>\r\n                <td>Product</td>\r\n                <td>Package</td>\r\n                <td>#</td>\r\n                <td>$</td>\r\n                <td>Total</td>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let o of order.orderItems\">\r\n                <td>{{ o.product.productName }}</td>\r\n                <td>{{ o.product.package }}</td>\r\n                <td>{{ o.quantity }}</td>\r\n                <td>{{ o.unitPrice | currency:\"USD\":\"symbol\" }}</td>\r\n                <td>{{ (o.unitPrice * o.quantity) | currency:\"USD\":\"symbol\" }}</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <button class=\"btn btn-success\" (click)=\"onCheckout()\">Checkout</button>\r\n</div>\r\n<div *ngIf=\"order.orderItems.length == 0\">\r\n    <div>You cart is empty</div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -229,6 +229,8 @@ var CartList = /** @class */ (function () {
         this.router = router;
     }
     CartList.prototype.ngOnInit = function () {
+        var o = localStorage.getItem('order');
+        this.order = JSON.parse(o);
     };
     CartList.prototype.onCheckout = function () {
         if (this.loginService.loginRequired) {
@@ -505,11 +507,10 @@ var OrderService = /** @class */ (function () {
     OrderService.prototype.addToOrder = function (product, quantity) {
         var item = new _order_orderItem__WEBPACK_IMPORTED_MODULE_3__["OrderItem"]();
         item.product = product;
-        item.order = this.order;
         item.unitPrice = product.unitPrice;
         item.quantity = quantity;
         this.order.orderItems.push(item);
-        console.log(this.order);
+        localStorage.setItem('order', JSON.stringify(this.order));
     };
     OrderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

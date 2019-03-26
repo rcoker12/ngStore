@@ -10,7 +10,8 @@ var CartList = /** @class */ (function () {
         this.router = router;
     }
     CartList.prototype.ngOnInit = function () {
-        this.getOrder();
+        var o = localStorage.getItem('order');
+        this.order = JSON.parse(o);
     };
     CartList.prototype.onCheckout = function () {
         if (this.loginService.loginRequired) {
@@ -21,12 +22,6 @@ var CartList = /** @class */ (function () {
             // Go to checkout
             this.router.navigate(["checkout"]);
         }
-    };
-    CartList.prototype.getOrder = function () {
-        var _this = this;
-        this.orderService.subject.subscribe(function (o) { return _this.order = o; });
-        console.log(this.orderService.subject.value);
-        //this.order = this.orderService.getOrder();
     };
     CartList = tslib_1.__decorate([
         Component({
