@@ -1,22 +1,39 @@
-﻿import { Injectable } from "@angular/core";
+﻿import { Injectable, OnInit } from "@angular/core";
 import { Order } from '../order/order';
 import { Product } from '../product/product';
 import { OrderItem } from '../order/orderItem';
 
 @Injectable()
-export class OrderService {
+export class OrderService implements OnInit {
 
-    public order: Order = new Order();
+    public order: Order;
 
     constructor() {
+        var o = localStorage.getItem('order');
+        this.order = JSON.parse(o);
+        if (this.order === null) {
+            this.order = new Order();
+        }
+        console.log(this.order);
+    }
+
+    ngOnInit() {
     }
 
     addToOrder(product: Product, quantity: number) {
-        var item: OrderItem = new OrderItem();
-        item.product = product;
-        item.unitPrice = product.unitPrice;
-        item.quantity = quantity;
-        this.order.orderItems.push(item);
+        let item: OrderItem = this.order.orderItems.find(i => i.product.id == product.id);
+
+        if (item) {
+
+            item.quantity++;
+
+        } else {
+            item = new OrderItem();
+            item.product = product;
+            item.unitPrice = product.unitPrice;
+            item.quantity = quantity;
+            this.order.orderItems.push(item);
+        }
         localStorage.setItem('order', JSON.stringify(this.order));
     }
 }

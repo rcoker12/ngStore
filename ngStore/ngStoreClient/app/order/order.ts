@@ -8,7 +8,4 @@ export class Order {
     totalAmount: number;
     subTotal: number;
     orderItems: Array<OrderItem> = new Array <OrderItem>();
-
-    constructor() {
-    }
 }
