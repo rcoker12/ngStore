@@ -1,1 +1,36 @@
-﻿
+﻿<div class="row">
+    <div class="col-md-8">
+        <table class="table table-hover">
+            <tr *ngFor="let o of order.orderItems">
+                <td>{{ o.product.productName }}</td>
+                <td>{{ o.product.package }}</td>
+                <td>{{ o.quantity }}</td>
+                <td>{{ o.unitPrice | currency:"USD":"symbol" }}</td>
+                <td>{{ (o.unitPrice * o.quantity) | currency:"USD":"symbol" }}</td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-light p-2">
+            <table class="table table-condensed borderless">
+                <tr>
+                    <td class="text-right">Subtotal:</td>
+                    <td class="text-right">{{ order.subtotal|currency:'USD':"symbol" }}</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Shipping:</td>
+                    <td class="text-right">$ 0.00</td>
+                </tr>
+                <tr>
+                    <td class="text-right">Total:</td>
+                    <td class="text-right">{{ order.subtotal|currency:'USD':"symbol" }}</td>
+                </tr>
+            </table>
+            <div style="text-align: right">
+                <button class="btn btn-success" (click)="onCheckout()" style="margin-right: 5px">Complete Purchase</button>
+                <a routerLink="/" class="btn btn-info">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+
