@@ -16,6 +16,16 @@ export class CheckoutList implements OnInit {
     ngOnInit() {
         var o = localStorage.getItem('order');
         this.order = JSON.parse(o);
+        this.getSubtotal();
         console.log(this.order);
     }
+
+    //  After creating order from JSON, functions on Order cannot be found, so we have to do it here
+    getSubtotal() {
+        var sum = 0;
+        for (var i = 0; i < this.order.orderItems.length; i++) {
+            sum += this.order.orderItems[i].unitPrice * this.order.orderItems[i].quantity;
+        }
+        this.order.subTotal = sum;
+    };
 }

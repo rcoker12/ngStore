@@ -15,7 +15,7 @@
             <table class="table table-condensed borderless">
                 <tr>
                     <td class="text-right">Subtotal:</td>
-                    <td class="text-right">{{ order.subtotal|currency:'USD':"symbol" }}</td>
+                    <td class="text-right">{{ order.subTotal|currency:'USD':"symbol" }}</td>
                 </tr>
                 <tr>
                     <td class="text-right">Shipping:</td>
@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td class="text-right">Total:</td>
-                    <td class="text-right">{{ order.subtotal|currency:'USD':"symbol" }}</td>
+                    <td class="text-right">{{ order.subTotal|currency:'USD':"symbol" }}</td>
                 </tr>
             </table>
             <div style="text-align: right">
