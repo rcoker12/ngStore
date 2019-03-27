@@ -1,5 +1,8 @@
 ﻿import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+
 import { Order } from '../order/order';
+import { CartService } from '../services/cartService';
 
 @Component({
     selector: "checkout-list",
@@ -9,8 +12,9 @@ import { Order } from '../order/order';
 export class CheckoutList implements OnInit {
 
     public order: Order;
+    errorMessage: string = "";
 
-    constructor() {
+    constructor(private cartService: CartService, private router: Router) {
     }
 
     ngOnInit() {
@@ -28,4 +32,13 @@ export class CheckoutList implements OnInit {
         }
         this.order.subTotal = sum;
     };
+
+    onCheckout() {
+        this.cartService.checkout()
+            .subscribe(success => {
+                if (success) {
+                    this.router.navigate(["/"]);
+                }
+            }, err => this.errorMessage = "Failed to save order");
+    }
 }

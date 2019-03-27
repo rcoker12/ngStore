@@ -14,7 +14,7 @@ export class CartList implements OnInit {
 
     public order: Order;
 
-    constructor(private loginService: LoginService, private orderService: OrderService, private router: Router) {
+    constructor(private loginService: LoginService, private router: Router) {
     }
 
     ngOnInit() {

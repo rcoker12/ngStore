@@ -1,10 +1,10 @@
-﻿import { Injectable, OnInit } from "@angular/core";
+﻿import { Injectable } from "@angular/core";
 import { Order } from '../order/order';
 import { Product } from '../product/product';
 import { OrderItem } from '../order/orderItem';
 
 @Injectable()
-export class OrderService implements OnInit {
+export class OrderService {
 
     public order: Order;
 
@@ -15,9 +15,6 @@ export class OrderService implements OnInit {
             this.order = new Order();
         }
         console.log(this.order);
-    }
-
-    ngOnInit() {
     }
 
     addToOrder(product: Product, quantity: number) {
