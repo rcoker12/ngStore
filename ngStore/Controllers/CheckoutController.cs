@@ -11,12 +11,14 @@ using ngStore.Database.Repositories;
 
 namespace ngStore.Controllers
 {
-    public class CheckoutController : Controller
+    public class CartController : Controller
     {
-        private readonly ILogger<CheckoutController> _logger;
+        private readonly IOrderRepository _orderRepository;
+        private readonly ILogger<CartController> _logger;
 
-        public CheckoutController(ILogger<CheckoutController> logger)
+        public CartController(IOrderRepository orderRepository, ILogger<CartController> logger)
         {
+            _orderRepository = orderRepository;
             _logger = logger;
         }
 

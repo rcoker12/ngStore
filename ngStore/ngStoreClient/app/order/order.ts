@@ -13,6 +13,7 @@ export class Order {
         for (var i = 0; i < this.orderItems.length; i++) {
             sum += this.orderItems[i].unitPrice * this.orderItems[i].quantity;
         }
+        console.log("subtotal: " + sum);
         return sum;
     };
 }
