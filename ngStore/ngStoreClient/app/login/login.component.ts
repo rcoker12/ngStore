@@ -2,7 +2,6 @@
 import { Router } from "@angular/router";
 
 import { LoginService } from '../services/loginService';
-import { OrderService } from '../services/orderService';
 import { Order } from '../order/order';
 
 @Component({
@@ -10,7 +9,7 @@ import { Order } from '../order/order';
     templateUrl: "login.component.html"
 })
 export class Login implements OnInit {
-    constructor(private loginService: LoginService, private orderService: OrderService, private router: Router) { }
+    constructor(private loginService: LoginService, private router: Router) { }
 
     public order: Order;
     title: string;
