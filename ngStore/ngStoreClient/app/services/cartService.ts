@@ -9,7 +9,6 @@ export class CartService {
 
     public order: Order;
     private token: string = "";
-    private tokenExpiration: Date = new Date();
 
     constructor(private http: HttpClient) {
 
@@ -26,10 +25,7 @@ export class CartService {
     }
 
     public checkout() {
-        //if (!this.order.orderNumber) {
-        //    this.order.orderNumber = this.order.orderDate.getFullYear().toString() + this.order.orderDate.getTime().toString();
-        //}
-
+        console.log(this.order);
         return this.http.post("/api/orders", this.order, {
                 headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
             })

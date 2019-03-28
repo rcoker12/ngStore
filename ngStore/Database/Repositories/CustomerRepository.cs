@@ -34,9 +34,32 @@ namespace ngStore.Database.Repositories
             throw new NotImplementedException();
         }
 
-        public int Save(Customer entity)
+        public int Save(Customer customer)
         {
-            throw new NotImplementedException();
+            if (customer.Id == 0)
+            {
+                _ctx.Add(customer);
+            }
+            else
+            {
+                var c = _ctx.Customers.Find(customer.Id);
+                if (c != null)
+                {
+                    c.FirstName = customer.FirstName;
+                    c.LastName = customer.LastName;
+                    c.City = customer.City;
+                    c.Country = customer.Country;
+                    c.Phone = customer.Phone;
+                }
+
+            }
+            return _ctx.SaveChanges();
+        }
+
+        public Customer GetCustomerByName(string firstName, string lastName)
+        {
+            var customer = _ctx.Customers.Where(c => c.FirstName == firstName && c.LastName == lastName).FirstOrDefault();
+            return customer;
         }
     }
 }

@@ -21,13 +21,15 @@ namespace ngStore.Controllers.Api
     public class OrdersController : Controller
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly ICustomerRepository _customerRepository;
         private readonly ILogger<OrdersController> _logger;
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
 
-        public OrdersController(IOrderRepository orderRepository, ILogger<OrdersController> logger, IMapper mapper, UserManager<User> userManager)
+        public OrdersController(IOrderRepository orderRepository, ICustomerRepository customerRepository, ILogger<OrdersController> logger, IMapper mapper, UserManager<User> userManager)
         {
             _orderRepository = orderRepository;
+            _customerRepository = customerRepository;
             _logger = logger;
             _mapper = mapper;
             _userManager = userManager;
@@ -76,7 +78,19 @@ namespace ngStore.Controllers.Api
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 var order = _mapper.Map<OrderViewModel, Order>(model);
+                var customer = _customerRepository.GetCustomerByName(user.FirstName, user.LastName);
                 order.User = user;
+                order.CustomerId = customer.Id;
+                order.OrderNumber = _orderRepository.GetNextOrderNumber();
+
+                foreach (var orderItem in order.OrderItems)
+                {
+                    orderItem.OrderId = order.Id;
+                    orderItem.Order = order;
+                    var total = orderItem.Quantity * orderItem.UnitPrice;
+                    orderItem.Product = null;
+                    order.TotalAmount += total;
+                }
 
                 if (ModelState.IsValid)
                 {

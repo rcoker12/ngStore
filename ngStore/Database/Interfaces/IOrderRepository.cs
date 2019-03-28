@@ -9,5 +9,6 @@ namespace ngStore.Database.Interfaces
         Order Get(int id);
         IEnumerable<Order> GetAll();
         int Save(Order entity);
+        string GetNextOrderNumber();
     }
 }

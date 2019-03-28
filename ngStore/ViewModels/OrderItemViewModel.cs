@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ngStore.Database.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace ngStore.ViewModels
         [Required]
         public int OrderId { get; set; }
         [Required]
-        public int ProductId { get; set; }
+        public Product Product { get; set; }
         [Required]
         public decimal UnitPrice { get; set; }
         [Required]

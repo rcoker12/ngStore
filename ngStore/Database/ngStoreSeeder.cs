@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using ngStore.Database.Entities;
+using ngStore.Database.Interfaces;
+using ngStore.Database.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +16,15 @@ namespace ngStore.Database
         private readonly IHostingEnvironment _hosting;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ICustomerRepository _customerRepository;
 
-        public ngStoreSeeder(ngStoreContext context, IHostingEnvironment hosting, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
+        public ngStoreSeeder(ngStoreContext context, IHostingEnvironment hosting, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, ICustomerRepository customerRepository)
         {
             _ctx = context;
             _hosting = hosting;
             _userManager = userManager;
             _roleManager = roleManager;
+            _customerRepository = customerRepository;
         }
 
         public async Task SeedAsync()
@@ -48,8 +52,22 @@ namespace ngStore.Database
                 {
                     throw new InvalidOperationException("Could not create user in seeder");
                 }
-
                 await _userManager.AddToRoleAsync(user, "admin");
+            }
+            
+            //  Seed user as customer
+            var customer = _customerRepository.GetCustomerByName(user.FirstName, user.LastName);
+            if (customer == null)
+            {
+                customer = new Customer()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    City = "Chicago",
+                    Country = "USA",
+                    Phone = "312-564-9511"
+                };
+                _customerRepository.Save(customer);
             }
         }
 

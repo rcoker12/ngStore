@@ -67,6 +67,14 @@ namespace ngStore.Database.Repositories
             }
         }
 
+        public string GetNextOrderNumber()
+        {
+            var orders = _ctx.Orders.OrderByDescending(o => o.OrderNumber);
+            var max = orders.FirstOrDefault().OrderNumber;
+            var orderNumber = Convert.ToInt64(max) + 1;
+            return orderNumber.ToString();
+        }
+
         public int Save(Order order)
         {
             try
