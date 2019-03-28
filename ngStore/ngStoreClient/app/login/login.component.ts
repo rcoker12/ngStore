@@ -13,6 +13,7 @@ export class Login implements OnInit {
     constructor(private loginService: LoginService, private orderService: OrderService, private router: Router) { }
 
     public order: Order;
+    title: string;
     errorMessage: string = "";
     public creds = {
         username: "",
@@ -22,6 +23,7 @@ export class Login implements OnInit {
     ngOnInit() {
         var o = localStorage.getItem('order');
         this.order = JSON.parse(o);
+        this.title = "Login";
     }
 
     onLogin() {

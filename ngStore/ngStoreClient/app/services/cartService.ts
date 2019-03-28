@@ -17,21 +17,20 @@ export class CartService {
         if (this.order === null) {
             this.order = new Order();
         }
-        console.log(this.order);
 
         var t = localStorage.getItem('token');
         this.token = JSON.parse(t);
-        console.log(this.token);
     }
 
     public checkout() {
-        console.log(this.order);
         return this.http.post("/api/orders", this.order, {
                 headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
             })
             .pipe(
                 map(response => {
                     this.order = new Order();
+                    console.log(this.order);
+                    localStorage.setItem('order', JSON.stringify(this.order));
                     return true;
                 }));
         
