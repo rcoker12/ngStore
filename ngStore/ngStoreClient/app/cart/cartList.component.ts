@@ -26,7 +26,17 @@ export class CartList implements OnInit {
         this.token = JSON.parse(t);
         var te = localStorage.getItem('tokenExpiration');
         this.tokenExpiration = JSON.parse(te);
+        this.getSubtotal();
     }
+
+    //  After creating order from JSON, functions on Order cannot be found, so we have to do it here
+    getSubtotal() {
+        var sum = 0;
+        for (var i = 0; i < this.order.orderItems.length; i++) {
+            sum += this.order.orderItems[i].unitPrice * this.order.orderItems[i].quantity;
+        }
+        this.order.subTotal = sum;
+    };
 
     public get loginRequired(): boolean {
         if (this.token == null || this.tokenExpiration == null) {

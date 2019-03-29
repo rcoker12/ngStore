@@ -1,24 +1,24 @@
 ﻿<div *ngIf="order.orderItems.length > 0">
     <div>#/Items: {{ order.orderItems.length }}</div>
-    <div>Subtotal: {{ order.subtotal | currency:"USD":"symbol" }}</div>
+    <div>Subtotal: {{ order.subTotal | currency:"USD":"symbol" }}</div>
     <table class="table table-condensed table-hover">
         <thead>
-            <tr>
-                <td>Product</td>
-                <td>Package</td>
-                <td>#</td>
-                <td>$</td>
-                <td>Total</td>
-            </tr>
+        <tr>
+            <td>Product</td>
+            <td>Package</td>
+            <td>#</td>
+            <td>$</td>
+            <td>Total</td>
+        </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let o of order.orderItems">
-                <td>{{ o.product.productName }}</td>
-                <td>{{ o.product.package }}</td>
-                <td>{{ o.quantity }}</td>
-                <td>{{ o.unitPrice | currency:"USD":"symbol" }}</td>
-                <td>{{ (o.unitPrice * o.quantity) | currency:"USD":"symbol" }}</td>
-            </tr>
+        <tr *ngFor="let o of order.orderItems">
+            <td>{{ o.product.productName }}</td>
+            <td>{{ o.product.package }}</td>
+            <td>{{ o.quantity }}</td>
+            <td>{{ o.unitPrice | currency:"USD":"symbol" }}</td>
+            <td>{{ (o.unitPrice * o.quantity) | currency:"USD":"symbol" }}</td>
+        </tr>
         </tbody>
     </table>
     <button class="btn btn-success" (click)="onCheckout()">Checkout</button>
