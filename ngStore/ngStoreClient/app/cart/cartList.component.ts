@@ -13,6 +13,8 @@ import { Order } from '../order/order';
 export class CartList implements OnInit {
 
     public order: Order;
+    private token;
+    private tokenExpiration;
 
     constructor(private loginService: LoginService, private router: Router) {
     }
@@ -20,10 +22,22 @@ export class CartList implements OnInit {
     ngOnInit() {
         var o = localStorage.getItem('order');
         this.order = JSON.parse(o);
+        var t = localStorage.getItem('token');
+        this.token = JSON.parse(t);
+        var te = localStorage.getItem('tokenExpiration');
+        this.tokenExpiration = JSON.parse(te);
+    }
+
+    public get loginRequired(): boolean {
+        if (this.token == null || this.tokenExpiration == null) {
+            return true;
+        } else {
+            return this.token.length == 0 || this.tokenExpiration < new Date();
+        }
     }
 
     onCheckout() {
-        if (this.loginService.loginRequired) {
+        if (this.loginRequired) {
             // Force Login
             this.router.navigate(["Login"]);
         } else {

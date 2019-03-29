@@ -37,7 +37,7 @@ export class CheckoutList implements OnInit {
         this.cartService.checkout()
             .subscribe(success => {
                 if (success) {
-                    this.router.navigate(["/"]);
+                    this.router.navigate(["/Product"]);
                 }
             }, err => this.errorMessage = "Failed to save order");
     }

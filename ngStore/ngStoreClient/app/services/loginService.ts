@@ -6,15 +6,11 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class LoginService {
 
-    private token: string = "";
-    private tokenExpiration: Date = new Date();
+    private token;
+    private tokenExpiration;
 
     constructor(private http: HttpClient) {
 
-    }
-
-    public get loginRequired(): boolean {
-        return this.token.length == 0 || this.tokenExpiration < new Date();
     }
 
     public login(creds): Observable<boolean> {
@@ -25,6 +21,7 @@ export class LoginService {
                     this.token = tokenInfo.token;
                     this.tokenExpiration = tokenInfo.expiration;
                     localStorage.setItem('token', JSON.stringify(this.token));
+                    localStorage.setItem('tokenExpiration', JSON.stringify(this.tokenExpiration));
                     return true;
                 }));
     }
