@@ -53,8 +53,23 @@ namespace ngStore.Database
                     throw new InvalidOperationException("Could not create user in seeder");
                 }
                 await _userManager.AddToRoleAsync(user, "admin");
+                await _userManager.AddToRoleAsync(user, "user");
             }
-            
+            else
+            {
+                bool inRole = await _userManager.IsInRoleAsync(user, "admin");
+                if (!inRole)
+                {
+                    await _userManager.AddToRoleAsync(user, "admin");
+                }
+
+                inRole = await _userManager.IsInRoleAsync(user, "user");
+                if (!inRole)
+                {
+                    await _userManager.AddToRoleAsync(user, "user");
+                }
+            }
+
             //  Seed user as customer
             var customer = _customerRepository.GetCustomerByName(user.FirstName, user.LastName);
             if (customer == null)

@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "CMS";
+    Layout = ViewBag.Layout;
+}
+@section Scripts {
+}
+
+<the-store></the-store>
+<cms-root></cms-root>
+
+<p>
+    The CMS allows you to do the following administrative tasks:
+</p>
+<ol>
+    <li>Add, edit and delete products. Note: you cannot delete a product if there are orders using that product. You must edit or delete the orders first.</li>
+    <li>Add, edit and delete customers. Note: you cannot delete a customer if there are orders by that customer. You must edit or delete the orders first.</li>
+    <li>Add, edit and delete suppliers. Note: you cannot delete a supplier if there are products using that supplier. You must edit or delete the products first.</li>
+</ol>

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { HttpClientModule } from "@angular/common/http";
-
 import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 
@@ -10,6 +9,7 @@ import { AppComponent } from "./app.component";
 import { ProductRoot } from "./product/product.component";
 import { CartRoot } from "./cart/cart.component";
 import { CheckoutRoot } from "./checkout/checkout.component";
+import { CmsRoot } from "./cms/cms.component";
 import { ProductList } from "./product/productList.component";
 import { CartList } from "./cart/cartList.component";
 import { CheckoutList } from "./checkout/checkoutList.component";
@@ -24,7 +24,8 @@ let routes = [
     { path: "Product", component: ProductRoot },
     { path: "Cart", component: CartRoot },
     { path: "Checkout", component: CheckoutRoot },
-    { path: "Login", component: Login }
+    { path: "Login", component: Login },
+    { path: "Cms", component: CmsRoot }
 ];
 
 @NgModule({
@@ -37,7 +38,8 @@ let routes = [
         YesNoBooleanPipe,
         Login,
         CheckoutRoot,
-        CheckoutList
+        CheckoutList,
+        CmsRoot
     ],
     imports: [
         BrowserModule,
