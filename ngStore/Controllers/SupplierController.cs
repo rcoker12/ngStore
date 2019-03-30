@@ -11,7 +11,7 @@ using ngStore.Database.Repositories;
 
 namespace ngStore.Controllers
 {
-    public class SupplierController : Controller
+    public class SupplierController : BaseController
     {
         private readonly ISupplierRepository _supplierRepository;
         private readonly ILogger<SupplierController> _logger;
@@ -24,6 +24,7 @@ namespace ngStore.Controllers
 
         public IActionResult Index()
         {
+            SetLayout();
             return View();
         }
     }

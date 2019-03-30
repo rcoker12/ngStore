@@ -1,0 +1,31 @@
+﻿<div class="container">
+    <div class="row">
+            <div class="table-responsive-md">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Country</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Fax</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let s of suppliers">
+                            <td>{{s.companyName}}</td>
+                            <td>{{s.contactName}}</td>
+                            <td>{{s.contactTitle}}</td>
+                            <td>{{s.city}}</td>
+                            <td>{{s.country}}</td>
+                            <td>{{s.phone}}</td>
+                            <td>{{s.fax}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <!--</div>-->
+    </div>
+</div>

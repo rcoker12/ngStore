@@ -6,28 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ngStore.Controllers
 {
-    public class CmsController : Controller
+    public class CmsController : BaseController
     {
         public IActionResult Index()
         {
+            //  Identity user not set until the controller default constructor is called
             SetLayout();
             return View();
-        }
-
-        // Method for setting the layout
-        protected void SetLayout()
-        {
-            // For CMS users
-            if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
-            {
-                ViewBag.Layout = "~/Views/Shared/_CmsLayout.cshtml";
-                return;
-            }
-            else
-            {
-                ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
-                return;
-            }
         }
     }
 }

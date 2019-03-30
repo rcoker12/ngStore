@@ -16,10 +16,13 @@ import { Login } from './login/login.component';
 import { ProductList } from "./product/productList.component";
 import { CartList } from "./cart/cartList.component";
 import { CheckoutList } from "./checkout/checkoutList.component";
+import { SupplierList } from "./supplier/supplierList.component";
+
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
 import { LoginService } from "./services/loginService";
 import { CartService } from "./services/cartService";
+import { SupplierService } from "./services/supplierService";
 
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
@@ -38,13 +41,14 @@ let routes = [
         ProductRoot,
         CartRoot,
         CheckoutRoot,
-        ProductList,
         CmsRoot,
         SupplierRoot,
+        ProductList,
         CartList,
-        YesNoBooleanPipe,
-        Login,
         CheckoutList,
+        SupplierList,
+        YesNoBooleanPipe,
+        Login
     ],
     imports: [
         BrowserModule,
@@ -61,7 +65,8 @@ let routes = [
         ProductService,
         OrderService,
         LoginService,
-        CartService
+        CartService,
+        SupplierService
     ],
     bootstrap: [AppComponent]
 })
