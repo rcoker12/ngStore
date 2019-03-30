@@ -6,7 +6,7 @@
     styleUrls: []
 })
 export class CmsRoot {
-    title = "CMS"
+    title = "Content Management System (CMS)"
 }
 
 

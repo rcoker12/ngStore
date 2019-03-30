@@ -79,4 +79,10 @@
     <TypeScriptCompile Include="ngStoreClient\app\supplier\supplier.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\img\underconstruction.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
