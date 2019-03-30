@@ -23,6 +23,7 @@
       <None Remove="ngStoreClient\app\services\orderService.ts" />
       <None Remove="ngStoreClient\app\services\productService.ts" />
       <None Remove="ngStoreClient\app\shared\yesno.pipe.ts" />
+      <None Remove="ngStoreClient\app\supplier\supplier.component.ts" />
       <None Remove="ngStoreClient\app\supplier\supplier.ts" />
     </ItemGroup>
 
@@ -76,6 +77,7 @@
     <TypeScriptCompile Include="ngStoreClient\app\services\orderService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\productService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\shared\yesno.pipe.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\supplier\supplier.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\supplier\supplier.ts" />
   </ItemGroup>
 

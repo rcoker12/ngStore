@@ -22,14 +22,24 @@ namespace ngStore.Database.Repositories
 
         public int Delete(int id)
         {
-            var result = 0;
-            var o = _ctx.Orders.Find(id);
-            if (o != null)
+            try
             {
-                _ctx.Orders.Remove(o);
-                result = _ctx.SaveChanges();
+                _logger.LogInformation("Delete<Order> was called");
+                var result = 0;
+                var o = _ctx.Orders.Find(id);
+                if (o != null)
+                {
+                    _ctx.Orders.Remove(o);
+                    result = _ctx.SaveChanges();
+                }
+                return result;
             }
-            return result;
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete order: {ex}");
+                return 0;
+            }
+
         }
 
         public Order Get(int id)
