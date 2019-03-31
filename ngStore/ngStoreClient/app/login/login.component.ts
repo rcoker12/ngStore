@@ -5,7 +5,7 @@ import { LoginService } from '../services/loginService';
 import { Order } from '../order/order';
 
 @Component({
-    selector: "login",
+    selector: "login-root",
     templateUrl: "login.component.html"
 })
 export class Login implements OnInit {

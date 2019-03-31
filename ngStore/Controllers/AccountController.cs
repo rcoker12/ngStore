@@ -30,8 +30,7 @@ namespace ngStore.Controllers
             _config = config;
         }
 
-        [Route("Login")]
-        public IActionResult Login()
+        public IActionResult Index()
         {
             if (this.User.Identity.IsAuthenticated)
             {
@@ -56,7 +55,7 @@ namespace ngStore.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Product");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }
