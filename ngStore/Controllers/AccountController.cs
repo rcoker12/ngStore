@@ -30,7 +30,7 @@ namespace ngStore.Controllers
             _config = config;
         }
 
-        public IActionResult Index()
+        public IActionResult Login()
         {
             if (this.User.Identity.IsAuthenticated)
             {
@@ -70,6 +70,12 @@ namespace ngStore.Controllers
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
         }
 
         [HttpPost]

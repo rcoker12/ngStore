@@ -32,7 +32,7 @@ let routes = [
     { path: "Checkout", component: CheckoutRoot },
     { path: "Login", component: Login },
     { path: "Supplier", component: SupplierRoot },
-    { path: "Cms", component: CmsRoot }
+    { path: "Cms", component: CmsRoot },
 ];
 
 @NgModule({
