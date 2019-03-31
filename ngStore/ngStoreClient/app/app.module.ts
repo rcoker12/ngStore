@@ -7,7 +7,6 @@ import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
 import { ProductRoot } from "./product/product.component";
-import { CartRoot } from "./cart/cart.component";
 import { CheckoutRoot } from "./checkout/checkout.component";
 import { NullRoot } from "./shared/null.component";
 import { Login } from './login/login.component';
@@ -27,7 +26,7 @@ import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
 let routes = [
     { path: "Product", component: ProductRoot },
-    { path: "Cart", component: CartRoot },
+    { path: "Cart", component: CartList },
     { path: "Checkout", component: CheckoutRoot },
     { path: "Login", component: Login },
     { path: "Account/Login", component: NullRoot },
@@ -40,7 +39,6 @@ let routes = [
     declarations: [
         AppComponent,
         ProductRoot,
-        CartRoot,
         CheckoutRoot,
         NullRoot,
         ProductList,
