@@ -11,6 +11,7 @@ import { CartRoot } from "./cart/cart.component";
 import { CheckoutRoot } from "./checkout/checkout.component";
 import { CmsRoot } from "./cms/cms.component";
 import { SupplierRoot } from "./supplier/supplier.component";
+import { NullRoot } from "./shared/null.component";
 import { Login } from './login/login.component';
 
 import { ProductList } from "./product/productList.component";
@@ -31,10 +32,10 @@ let routes = [
     { path: "Cart", component: CartRoot },
     { path: "Checkout", component: CheckoutRoot },
     { path: "Login", component: Login },
-    { path: "Account/Login", redirectTo: "" },
-    { path: "Account/Register", redirectTo: "" },
+    { path: "Account/Login", component: NullRoot },
+    { path: "Account/Register", component: NullRoot },
     { path: "Supplier", component: SupplierRoot },
-    { path: "Cms", component: CmsRoot }
+    { path: "Cms", component: NullRoot }
 ];
 
 @NgModule({
@@ -45,6 +46,7 @@ let routes = [
         CheckoutRoot,
         CmsRoot,
         SupplierRoot,
+        NullRoot,
         ProductList,
         CartList,
         CheckoutList,
