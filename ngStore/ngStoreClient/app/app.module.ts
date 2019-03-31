@@ -31,8 +31,10 @@ let routes = [
     { path: "Cart", component: CartRoot },
     { path: "Checkout", component: CheckoutRoot },
     { path: "Login", component: Login },
+    { path: "Account/Login", redirectTo: "" },
+    { path: "Account/Register", redirectTo: "" },
     { path: "Supplier", component: SupplierRoot },
-    { path: "Cms", component: CmsRoot },
+    { path: "Cms", component: CmsRoot }
 ];
 
 @NgModule({

@@ -30,6 +30,8 @@ namespace ngStore.Controllers
             _config = config;
         }
 
+        [HttpGet]
+        [Route("Account/Login")]
         public IActionResult Login()
         {
             if (this.User.Identity.IsAuthenticated)
@@ -41,6 +43,7 @@ namespace ngStore.Controllers
         }
 
         [HttpPost]
+        [Route("Account/Login")]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -73,6 +76,7 @@ namespace ngStore.Controllers
         }
 
         [HttpGet]
+        [Route("Account/Register")]
         public IActionResult Register()
         {
             return View();
