@@ -30,6 +30,7 @@ namespace ngStore.Controllers
             _config = config;
         }
 
+        [Route("Login")]
         public IActionResult Login()
         {
             if (this.User.Identity.IsAuthenticated)
