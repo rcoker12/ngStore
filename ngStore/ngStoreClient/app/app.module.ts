@@ -9,7 +9,6 @@ import { AppComponent } from "./app.component";
 import { ProductRoot } from "./product/product.component";
 import { CartRoot } from "./cart/cart.component";
 import { CheckoutRoot } from "./checkout/checkout.component";
-import { SupplierRoot } from "./supplier/supplier.component";
 import { NullRoot } from "./shared/null.component";
 import { Login } from './login/login.component';
 
@@ -33,7 +32,7 @@ let routes = [
     { path: "Login", component: Login },
     { path: "Account/Login", component: NullRoot },
     { path: "Account/Register", component: NullRoot },
-    { path: "Supplier", component: SupplierRoot },
+    { path: "Supplier", component: SupplierList },
     { path: "Cms", component: NullRoot }
 ];
 
@@ -43,7 +42,6 @@ let routes = [
         ProductRoot,
         CartRoot,
         CheckoutRoot,
-        SupplierRoot,
         NullRoot,
         ProductList,
         CartList,
