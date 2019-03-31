@@ -9,7 +9,6 @@ import { AppComponent } from "./app.component";
 import { ProductRoot } from "./product/product.component";
 import { CartRoot } from "./cart/cart.component";
 import { CheckoutRoot } from "./checkout/checkout.component";
-import { CmsRoot } from "./cms/cms.component";
 import { SupplierRoot } from "./supplier/supplier.component";
 import { NullRoot } from "./shared/null.component";
 import { Login } from './login/login.component';
@@ -44,7 +43,6 @@ let routes = [
         ProductRoot,
         CartRoot,
         CheckoutRoot,
-        CmsRoot,
         SupplierRoot,
         NullRoot,
         ProductList,

@@ -19,10 +19,11 @@
                 <span asp-validation-for="FirstName" class="text-warning"></span>
             </div>
             <div class="form-group">
-                <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                <label asp-for="LastName" class="col-sm-3 control-label">First Name</label>
                 <div class="col-sm-9">
-                    <input type="text" id="lastName" placeholder="Last Name" class="form-control" autofocus>
+                    <input asp-for="LastName" class="form-control" />
                 </div>
+                <span asp-validation-for="LastName" class="text-warning"></span>
             </div>
             <div class="form-group">
                 <label asp-for="UserName" class="col-sm-3 control-label">User Name</label>
@@ -32,40 +33,46 @@
                 <span asp-validation-for="UserName" class="text-warning"></span>
             </div>
             <div class="form-group">
-                <label for="email" class="col-sm-3 control-label">Email* </label>
+                <label asp-for="Email" class="col-sm-3 control-label">Email</label>
                 <div class="col-sm-9">
-                    <input type="email" id="email" placeholder="Email" class="form-control" name="email">
+                    <input asp-for="Email" class="form-control" />
                 </div>
+                <span asp-validation-for="Email" class="text-warning"></span>
             </div>
             <div class="form-group">
-                <label for="password" class="col-sm-3 control-label">Password*</label>
+                <label asp-for="Password" class="col-sm-3 control-label">Password</label>
                 <div class="col-sm-9">
-                    <input type="password" id="password" placeholder="Password" class="form-control">
+                    <input asp-for="Password" type="password" class="form-control" />
                 </div>
+                <span asp-validation-for="Password" class="text-warning"></span>
             </div>
             <div class="form-group">
-                <label for="password" class="col-sm-3 control-label">Confirm Password*</label>
+                <label asp-for="PasswordConfirm" class="col-sm-3 control-label">Confirm Password</label>
                 <div class="col-sm-9">
-                    <input type="password" id="password" placeholder="Password" class="form-control">
+                    <input asp-for="PasswordConfirm" type="password" class="form-control" />
                 </div>
+                <span asp-validation-for="PasswordConfirm" class="text-warning"></span>
             </div>
             <div class="form-group">
-                <label for="phoneNumber" class="col-sm-3 control-label">Phone Number</label>
+                <label asp-for="PhoneNumber" class="col-sm-3 control-label">Phone</label>
                 <div class="col-sm-9">
-                    <input type="tel" id="phoneNumber" placeholder="Phone number" class="form-control">
+                    <input asp-for="PhoneNumber" class="form-control" />
                 </div>
+                <span asp-validation-for="PhoneNumber" class="text-warning"></span>
             </div>
             <div class="form-group">
-                <label for="city" class="col-sm-3 control-label">City</label>
+                <label asp-for="City" class="col-sm-3 control-label">City</label>
                 <div class="col-sm-9">
-                    <input id="city" placeholder="City" class="form-control">
+                    <input asp-for="City" class="form-control" />
                 </div>
+                <span asp-validation-for="City" class="text-warning"></span>
             </div>
             <div class="form-group">
-                <label for="city" class="col-sm-3 control-label">Country</label>
+                <label asp-for="Country" class="col-sm-3 control-label">Country</label>
                 <div class="col-sm-9">
-                    <input id="country" placeholder="Country" class="form-control">
+                    <input asp-for="Country" class="form-control" />
                 </div>
+                <span asp-validation-for="Country" class="text-warning"></span>
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
             <div class="form-group">
