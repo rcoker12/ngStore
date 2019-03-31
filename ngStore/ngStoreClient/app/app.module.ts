@@ -29,6 +29,7 @@ let routes = [
     { path: "Login", component: Login },
     { path: "Account/Login", component: NullRoot },
     { path: "Account/Register", component: NullRoot },
+    { path: "Account/ResetPassword", component: NullRoot },
     { path: "Supplier", component: SupplierList },
     { path: "Cms", component: NullRoot }
 ];

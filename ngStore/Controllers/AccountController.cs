@@ -82,6 +82,13 @@ namespace ngStore.Controllers
             return View();
         }
 
+        [HttpGet]
+        [Route("Account/ResetPassword")]
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
         {
