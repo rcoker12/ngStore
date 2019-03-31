@@ -6,8 +6,6 @@ import { RouterModule } from "@angular/router";
 import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from "./app.component";
-import { ProductRoot } from "./product/product.component";
-import { CheckoutRoot } from "./checkout/checkout.component";
 import { NullRoot } from "./shared/null.component";
 import { Login } from './login/login.component';
 
@@ -25,9 +23,9 @@ import { SupplierService } from "./services/supplierService";
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
 let routes = [
-    { path: "Product", component: ProductRoot },
+    { path: "Product", component: ProductList },
     { path: "Cart", component: CartList },
-    { path: "Checkout", component: CheckoutRoot },
+    { path: "Checkout", component: CheckoutList },
     { path: "Login", component: Login },
     { path: "Account/Login", component: NullRoot },
     { path: "Account/Register", component: NullRoot },
@@ -38,8 +36,6 @@ let routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        ProductRoot,
-        CheckoutRoot,
         NullRoot,
         ProductList,
         CartList,
