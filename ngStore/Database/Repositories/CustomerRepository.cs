@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace ngStore.Database.Repositories
@@ -21,17 +22,56 @@ namespace ngStore.Database.Repositories
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _logger.LogInformation("Delete<Customer> was called");
+                var result = 0;
+                var s = _ctx.Customers.Find(id);
+                if (s != null)
+                {
+                    _ctx.Customers.Remove(s);
+                    result = _ctx.SaveChanges();
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete customer: {ex}");
+                return 0;
+            }
         }
 
         public Customer Get(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _logger.LogInformation("Get<Customer> was called");
+                return _ctx.Customers
+                    .Include(c => c.Orders)
+                    .Where(c => c.Id == id)
+                    .FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get customer: {ex}");
+                return null;
+            }
         }
 
         public IEnumerable<Customer> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                _logger.LogInformation("GetAll<Customer> was called");
+                return _ctx.Customers
+                    .Include(c => c.Orders)
+                    .OrderBy(c => c.LastName);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get all customers: {ex}");
+                return null;
+            }
         }
 
         public int Save(Customer customer)

@@ -20,7 +20,6 @@ namespace ngStore.ViewModels
         public string PasswordConfirm { get; set; }
         [Required]
         public string Email { get; set; }
-        public bool IsAdmin { get; set; }
         public string PhoneNumber { get; set; }
         public string City { get; set; }
         public string Country { get; set; }

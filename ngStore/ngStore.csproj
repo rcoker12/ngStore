@@ -9,12 +9,15 @@
     <ItemGroup>
       <None Remove="ngStoreClient\app\cart\cartList.component.ts" />
       <None Remove="ngStoreClient\app\checkout\checkoutList.component.ts" />
+      <None Remove="ngStoreClient\app\customer\customer.ts" />
+      <None Remove="ngStoreClient\app\customer\customerList.component.ts" />
       <None Remove="ngStoreClient\app\login\login.component.ts" />
       <None Remove="ngStoreClient\app\order\order.ts" />
       <None Remove="ngStoreClient\app\order\orderItem.ts" />
       <None Remove="ngStoreClient\app\product\product.ts" />
       <None Remove="ngStoreClient\app\product\productList.component.ts" />
       <None Remove="ngStoreClient\app\services\cartService.ts" />
+      <None Remove="ngStoreClient\app\services\customerService.ts" />
       <None Remove="ngStoreClient\app\services\loginService.ts" />
       <None Remove="ngStoreClient\app\services\orderService.ts" />
       <None Remove="ngStoreClient\app\services\productService.ts" />
@@ -61,6 +64,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="ngStoreClient\app\cart\cartList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\checkout\checkoutList.component.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\customer\customer.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\customer\customerList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\login\login.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\order.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\orderItem.ts" />
@@ -69,6 +74,7 @@
     <TypeScriptCompile Include="ngStoreClient\app\services\loginService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\cartService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\orderService.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\services\customerService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\supplierService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\productService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\shared\null.component.ts" />
