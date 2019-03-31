@@ -12,7 +12,8 @@ import { Order } from '../order/order';
 })
 export class CartList implements OnInit {
 
-    public order: Order;
+    private title: string = "Cart";
+        public order: Order;
     private token;
     private tokenExpiration;
 

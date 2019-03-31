@@ -11,6 +11,7 @@ import { CartService } from '../services/cartService';
 })
 export class CheckoutList implements OnInit {
 
+    private title: string = "Checkout";
     public order: Order;
     errorMessage: string = "";
 

@@ -1,33 +1,35 @@
-﻿<div class="container">
+﻿<h1 style="margin-top: 20px">{{ title }}</h1>
+
+<div class="container">
     <div class="row">
-            <div class="table-responsive-md">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">Product</th>
-                            <th scope="col">Package</th>
-                            <th scope="col">Supplier</th>
-                            <th scope="col">Discontinued</th>
-                            <th scope="col" class="text-center">Quantity</th>
-                            <th scope="col" class="text-right">Price</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let p of products"> 
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>{{p.productName}}</td>
-                            <td>{{p.package}}</td>
-                            <td>{{p.supplier.companyName}}</td>
-                            <td>{{p.discontinued | yesnoBoolean}}</td>
-                            <td><input id="quantity" class="form-control" type="text" value="1" /></td>
-                            <td>{{p.unitPrice | currency:"USD":"symbol"}}</td>
-                            <td class="text-right"><button class="btn btn-sm btn-success" [disabled]="p.Discontinued" (click)="addProduct(p, 1)">Buy</button> </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="table-responsive-md">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Product</th>
+                        <th scope="col">Package</th>
+                        <th scope="col">Supplier</th>
+                        <th scope="col">Discontinued</th>
+                        <th scope="col" class="text-center">Quantity</th>
+                        <th scope="col" class="text-right">Price</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of products">
+                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                        <td>{{p.productName}}</td>
+                        <td>{{p.package}}</td>
+                        <td>{{p.supplier.companyName}}</td>
+                        <td>{{p.discontinued | yesnoBoolean}}</td>
+                        <td><input id="quantity" class="form-control" type="text" value="1" /></td>
+                        <td>{{p.unitPrice | currency:"USD":"symbol"}}</td>
+                        <td class="text-right"><button class="btn btn-sm btn-success" [disabled]="p.Discontinued" (click)="addProduct(p, 1)">Buy</button> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <!--</div>-->
     </div>
 </div>

@@ -11,6 +11,7 @@ import { OrderService } from '../services/orderService';
 })
 export class ProductList implements OnInit {
 
+    private title: string = "Products";
     public products: Product[] = [];
 
     constructor(private productService: ProductService, private orderService: OrderService) {
