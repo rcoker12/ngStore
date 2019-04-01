@@ -13,6 +13,8 @@ namespace ngStore.ViewModels
         {
             CreateMap<Order, OrderViewModel>().ReverseMap();
             CreateMap<OrderItem, OrderItemViewModel>().ReverseMap();
+            CreateMap<Customer, CustomerViewModel>().ReverseMap();
+            CreateMap<Customer, RegisterViewModel>().ReverseMap();
         }
     }
 }

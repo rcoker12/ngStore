@@ -5,12 +5,14 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using ngStore.Database.Entities;
+using ngStore.Database.Interfaces;
 using ngStore.ViewModels;
 
 namespace ngStore.Controllers
@@ -21,13 +23,18 @@ namespace ngStore.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _config;
+        private readonly ICustomerRepository _customerRepository;
+        private readonly IMapper _mapper;
 
-        public AccountController(ILogger<AccountController> logger, SignInManager<User> signInManager, UserManager<User> userManager, IConfiguration config)
+        public AccountController(ILogger<AccountController> logger, SignInManager<User> signInManager, UserManager<User> userManager, IConfiguration config, 
+            ICustomerRepository customerRepository, IMapper mapper)
         {
             _logger = logger;
             _signInManager = signInManager;
             _userManager = userManager;
             _config = config;
+            _customerRepository = customerRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -80,6 +87,68 @@ namespace ngStore.Controllers
         public IActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        [Route("Account/Register")]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            try
+            {
+                //  Check passwords for equality
+                if (model.Password != model.PasswordConfirm)
+                {
+                    ModelState.AddModelError("", "Passwords do not match");
+                }
+
+                if (ModelState.IsValid)
+                {
+                    //  Create the identity user and add to user role
+                    var user = new User
+                    {
+                        Email = model.Email,
+                        EmailConfirmed = true,
+                        FirstName = model.FirstName,
+                        IsAdmin = false,
+                        LastName = model.LastName,
+                        UserName = model.UserName,
+                        PhoneNumber = model.Phone,
+                        PhoneNumberConfirmed = !string.IsNullOrEmpty(model.Phone)
+                    };
+                    user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
+
+                    //  Check that user is not already there
+                    var existingUser = await _userManager.FindByNameAsync(model.UserName);
+                    if (existingUser != null)
+                    {
+                        ModelState.AddModelError("", "User already exists");
+                    }
+
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        result = await _userManager.AddToRoleAsync(user, "user");
+                    }
+                    else
+                    {
+                        return BadRequest("Failed to save user");
+                    }
+
+                    //  Create the customer if we got this far
+                    var customer = _mapper.Map<RegisterViewModel, Customer>(model);
+                    var result2 = _customerRepository.Save(customer);
+                    if (result2 != 0)
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save customer: {ex}");
+                return BadRequest("Failed to save customer");
+            }
         }
 
         [HttpGet]
