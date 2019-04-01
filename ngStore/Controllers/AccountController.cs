@@ -122,6 +122,7 @@ namespace ngStore.Controllers
                     if (existingUser != null)
                     {
                         ModelState.AddModelError("", "User already exists");
+                        return View();
                     }
 
                     var result = await _userManager.CreateAsync(user, model.Password);
@@ -131,7 +132,12 @@ namespace ngStore.Controllers
                     }
                     else
                     {
-                        return BadRequest("Failed to save user");
+                        //  This will show things like bad password
+                        foreach (var err in result.Errors)
+                        {
+                            ModelState.AddModelError("", err.Description);
+                        }
+                        return View();
                     }
 
                     //  Create the customer if we got this far
