@@ -36,11 +36,12 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Get()
         {
             try
             {
-                return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(_orderRepository.GetAll()));
+                return Ok(_mapper.Map<IEnumerable<Order>, IEnumerable<OrderViewModel>>(_orderRepository.GetAll().OrderByDescending(o => o.OrderDate)));
             }
             catch (Exception ex)
             {
@@ -50,6 +51,7 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpGet("{id:int}")]
+        [AllowAnonymous]
         public IActionResult Get(int id)
         {
             try

@@ -1,4 +1,8 @@
 ﻿import { Injectable } from "@angular/core";
+import { Observable } from "rxjs"
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { map } from 'rxjs/operators';
+
 import { Order } from '../order/order';
 import { Product } from '../product/product';
 import { OrderItem } from '../order/orderItem';
@@ -7,14 +11,19 @@ import { OrderItem } from '../order/orderItem';
 export class OrderService {
 
     public order: Order;
+    public orders: Order[] = [];
+    private token: string = "";
 
-    constructor() {
+    constructor(private http: HttpClient) {
         var o = localStorage.getItem('order');
         this.order = JSON.parse(o);
         if (this.order === null) {
             this.order = new Order();
         }
-        console.log(this.order);
+
+        var t = localStorage.getItem('token');
+        this.token = JSON.parse(t);
+        console.log(this.token);
     }
 
     addToOrder(product: Product, quantity: number) {
@@ -32,5 +41,14 @@ export class OrderService {
             this.order.orderItems.push(item);
         }
         localStorage.setItem('order', JSON.stringify(this.order));
+    }
+
+    getOrders(): Observable<boolean> {
+        return this.http.get("/api/orders")
+            .pipe(
+                map((data: any[]) => {
+                    this.orders = data;
+                    return true;
+                }));
     }
 }

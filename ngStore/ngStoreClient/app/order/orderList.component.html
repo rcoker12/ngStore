@@ -1,0 +1,26 @@
+﻿<h1 style="margin-top: 20px">{{ title }}</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="table-responsive-md">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Order Number</th>
+                        <th scope="col">Customer ID</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let o of orders">
+                        <td>{{o.orderDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{o.orderNumber}}</td>
+                        <td>{{o.customerId}}</td>
+                        <td>{{o.totalAmount | currency:"USD":"symbol"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

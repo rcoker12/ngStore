@@ -14,6 +14,7 @@ import { CartList } from "./cart/cartList.component";
 import { CheckoutList } from "./checkout/checkoutList.component";
 import { SupplierList } from "./supplier/supplierList.component";
 import { CustomerList } from "./customer/customerList.component";
+import { OrderList } from "./order/orderList.component";
 
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
@@ -34,6 +35,7 @@ let routes = [
     { path: "Account/ResetPassword", component: NullRoot },
     { path: "Supplier", component: SupplierList },
     { path: "Customer", component: CustomerList },
+    { path: "Order", component: OrderList },
     { path: "Cms", component: NullRoot }
 ];
 
@@ -46,6 +48,7 @@ let routes = [
         CheckoutList,
         SupplierList,
         CustomerList,
+        OrderList,
         YesNoBooleanPipe,
         Login
     ],
