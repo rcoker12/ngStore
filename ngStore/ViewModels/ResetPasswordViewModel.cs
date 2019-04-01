@@ -9,8 +9,12 @@ namespace ngStore.ViewModels
     public class ResetPasswordViewModel
     {
         [Required]
-        public string Password { get; set; }
+        public string UserName { get; set; }
         [Required]
-        public string PasswordConfirm { get; set; }
+        public string CurrentPassword { get; set; }
+        [Required]
+        public string NewPassword { get; set; }
+        [Required]
+        public string NewPasswordConfirm { get; set; }
     }
 }

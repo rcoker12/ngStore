@@ -165,6 +165,45 @@ namespace ngStore.Controllers
         }
 
         [HttpPost]
+        [Route("Account/ResetPassword")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            //  Check passwords for equality
+            if (model.NewPassword != model.NewPasswordConfirm)
+            {
+                ModelState.AddModelError("", "Passwords do not match");
+            }
+
+            if (ModelState.IsValid)
+            {
+                //  Check that user is not already there
+                var user = await _userManager.FindByNameAsync(model.UserName);
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "User not found");
+                    return View();
+                }
+                else
+                {
+                    var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Login", "Account");
+                    }
+                    else
+                    {
+                        foreach (var err in result.Errors)
+                        {
+                            ModelState.AddModelError("", err.Description);
+                        }
+                    }
+                }
+
+            }
+            return View();
+        }
+
+        [HttpPost]
         public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
         {
             if (ModelState.IsValid)
