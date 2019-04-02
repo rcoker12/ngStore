@@ -14,6 +14,7 @@ import { ProductList2 } from "./product/productList2.component";
 import { CartList } from "./cart/cartList.component";
 import { CheckoutList } from "./checkout/checkoutList.component";
 import { SupplierList } from "./supplier/supplierList.component";
+import { SupplierForm } from "./supplier/supplierForm.component";
 import { CustomerList } from "./customer/customerList.component";
 import { OrderList } from "./order/orderList.component";
 import { UserList } from "./user/userList.component";
@@ -37,7 +38,8 @@ let routes = [
     { path: "Account/Login", component: NullRoot },
     { path: "Account/Register", component: NullRoot },
     { path: "Account/ResetPassword", component: NullRoot },
-    { path: "Supplier", component: SupplierList },
+    { path: "Supplier/Suppliers", component: SupplierList },
+    { path: "Supplier/:id", component: SupplierForm },
     { path: "Customer", component: CustomerList },
     { path: "Order", component: OrderList },
     { path: "User", component: UserList },
@@ -53,6 +55,7 @@ let routes = [
         CartList,
         CheckoutList,
         SupplierList,
+        SupplierForm,
         CustomerList,
         OrderList,
         UserList,

@@ -8,10 +8,20 @@ import { Supplier } from '../supplier/supplier';
 @Injectable()
 export class SupplierService {
 
+    public supplier: Supplier;
     public suppliers: Supplier[] = [];
 
     constructor(private http: HttpClient) {
 
+    }
+
+    getSupplier(supplierId: string): Observable<boolean> {
+        return this.http.get("/api/supplier/" + supplierId)
+            .pipe(
+                map((data: Supplier) => {
+                    this.supplier = data;
+                    return true;
+                }));
     }
 
     getSuppliers(): Observable<boolean> {

@@ -9,7 +9,6 @@ using ngStore.Database.Interfaces;
 
 namespace ngStore.Controllers.Api
 {
-    [Route("api/suppliers")]
     [ApiController]
     public class SuppliersController : ControllerBase
     {
@@ -23,6 +22,7 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/suppliers")]
         public IActionResult Get()
         {
             try
@@ -33,6 +33,21 @@ namespace ngStore.Controllers.Api
             {
                 _logger.LogError($"Failed to get suppliers: {ex}");
                 return BadRequest("Failed to get suppliers");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/supplier/{id}")]
+        public IActionResult Get(int id)
+        {
+            try
+            {
+                return Ok(_supplierRepository.Get(id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get supplier: {ex}");
+                return BadRequest("Failed to get supplier");
             }
         }
     }

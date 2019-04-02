@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { Supplier } from './supplier';
 import { SupplierService } from '../services/supplierService';
@@ -12,7 +13,7 @@ export class SupplierList implements OnInit {
 
     public suppliers: Supplier[] = [];
 
-    constructor(private supplierService: SupplierService) {
+    constructor(private supplierService: SupplierService, private router: Router) {
     }
 
     ngOnInit() {
@@ -23,5 +24,10 @@ export class SupplierList implements OnInit {
                 }
             });
 
+    }
+
+    editSupplier(supplier: Supplier) {
+        localStorage.setItem('supplierId', JSON.stringify(supplier.id));
+        this.router.navigate(["Supplier/" + supplier.id]);
     }
 }

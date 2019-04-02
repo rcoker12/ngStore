@@ -1,0 +1,41 @@
+﻿<h1 class="text-center" style="margin-top: 20px">{{ title }}</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="form-row">
+        <div class="col-md-4 mb-2">
+            <label for="companyName">Company Name</label>
+            <input type="text" class="form-control" name="companyName" [(ngModel)]="supplier.companyName" #companyName="ngModel" required />
+            <div class="text-danger" *ngIf="companyName.touched && companyName.invalid && companyName.errors.required">Company name is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="contactName">Contact Name</label>
+            <input type="text" class="form-control" name="contactName" [(ngModel)]="supplier.contactName" #contactName="ngModel" />
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="contactTitle">Contact Title</label>
+            <input type="text" class="form-control" name="contactTitle" [(ngModel)]="supplier.contactTitle" #contactTitle="ngModel" />
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="city">City</label>
+            <input type="text" class="form-control" name="city" [(ngModel)]="supplier.city" #city="ngModel" required />
+            <div class="text-danger" *ngIf="city.touched && city.invalid && city.errors.required">City is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" name="country" [(ngModel)]="supplier.country" #country="ngModel" required />
+            <div class="text-danger" *ngIf="country.touched && country.invalid && country.errors.required">Country is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" name="phone" [(ngModel)]="supplier.phone" #phone="ngModel" required />
+            <div class="text-danger" *ngIf="phone.touched && phone.invalid && phone.errors.required">Phone is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="fax">Fax</label>
+            <input type="text" class="form-control" name="fax" [(ngModel)]="supplier.fax" #fax="ngModel" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a routerLink="/Supplier/Suppliers" class="btn btn-light" style="margin-left: 10px">Cancel</a>
+</form>

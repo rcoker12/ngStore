@@ -24,7 +24,7 @@
                         <td>{{s.phone}}</td>
                         <td>{{s.fax}}</td>
                         <td class="badge badge-dark text-center" style="margin-top: 10px">{{s.products.length}}</td>
-                        <td class="text-right"><button class="btn btn-sm btn-success">Edit</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-success" (click)="editSupplier(s)">Edit</button></td>
                         <td class="text-right"><button class="btn btn-sm btn-danger" [disabled]="s.products.length > 0">Delete</button></td>
                     </tr>
                 </tbody>

@@ -28,6 +28,7 @@
       <None Remove="ngStoreClient\app\shared\null.component.ts" />
       <None Remove="ngStoreClient\app\shared\yesno.pipe.ts" />
       <None Remove="ngStoreClient\app\supplier\supplier.ts" />
+      <None Remove="ngStoreClient\app\supplier\supplierForm.component.ts" />
       <None Remove="ngStoreClient\app\supplier\supplierList.component.ts" />
       <None Remove="ngStoreClient\app\user\user.ts" />
       <None Remove="ngStoreClient\app\user\userList.component.ts" />
@@ -87,6 +88,7 @@
     <TypeScriptCompile Include="ngStoreClient\app\services\productService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\shared\null.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\shared\yesno.pipe.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\supplier\supplierForm.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\supplier\supplierList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\supplier\supplier.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\user\userList.component.ts" />
