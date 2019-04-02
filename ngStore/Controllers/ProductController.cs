@@ -11,7 +11,7 @@ using ngStore.Database.Repositories;
 
 namespace ngStore.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private readonly IProductRepository _productRepository;
         private readonly ILogger<ProductController> _logger;
@@ -24,6 +24,13 @@ namespace ngStore.Controllers
 
         public IActionResult Index()
         {
+            SetLayout();
+            return View();
+        }
+
+        public IActionResult CmsProduct()
+        {
+            SetLayout();
             return View();
         }
     }

@@ -10,6 +10,7 @@ import { NullRoot } from "./shared/null.component";
 import { Login } from './login/login.component';
 
 import { ProductList } from "./product/productList.component";
+import { ProductList2 } from "./product/productList2.component";
 import { CartList } from "./cart/cartList.component";
 import { CheckoutList } from "./checkout/checkoutList.component";
 import { SupplierList } from "./supplier/supplierList.component";
@@ -29,6 +30,7 @@ import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
 let routes = [
     { path: "Product", component: ProductList },
+    { path: "Product/CmsProduct", component: ProductList2 },
     { path: "Cart", component: CartList },
     { path: "Checkout", component: CheckoutList },
     { path: "Login", component: Login },
@@ -47,6 +49,7 @@ let routes = [
         AppComponent,
         NullRoot,
         ProductList,
+        ProductList2,
         CartList,
         CheckoutList,
         SupplierList,

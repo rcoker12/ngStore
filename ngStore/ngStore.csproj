@@ -17,6 +17,7 @@
       <None Remove="ngStoreClient\app\order\orderList.component.ts" />
       <None Remove="ngStoreClient\app\product\product.ts" />
       <None Remove="ngStoreClient\app\product\productList.component.ts" />
+      <None Remove="ngStoreClient\app\product\productList2.component.ts" />
       <None Remove="ngStoreClient\app\services\cartService.ts" />
       <None Remove="ngStoreClient\app\services\customerService.ts" />
       <None Remove="ngStoreClient\app\services\loginService.ts" />
@@ -75,6 +76,7 @@
     <TypeScriptCompile Include="ngStoreClient\app\order\orderItem.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\orderList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\product.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\product\productList2.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\productList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\loginService.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\services\cartService.ts" />
