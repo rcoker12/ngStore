@@ -17,7 +17,7 @@ export class SupplierService {
     getSuppliers(): Observable<boolean> {
         return this.http.get("/api/suppliers")
             .pipe(
-                map((data: any[]) => {
+                map((data: Supplier[]) => {
                     this.suppliers = data;
                     return true;
                 }));

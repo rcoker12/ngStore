@@ -1,4 +1,6 @@
-﻿export interface Supplier {
+﻿import { Product } from '../product/product';
+
+export class Supplier {
     id: number;
     companyName: string;
     contactName: string;
@@ -7,5 +9,5 @@
     country: string;
     phone: string;
     fax: string;
-    products: any[];
+    products: Array<Product> = new Array<Product>();
 }

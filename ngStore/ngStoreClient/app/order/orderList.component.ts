@@ -17,14 +17,6 @@ export class OrderList implements OnInit {
     private tokenExpiration;
 
     constructor(private orderService: OrderService, private router: Router) {
-        var t = localStorage.getItem('token');
-        this.token = JSON.parse(t);
-        var te = localStorage.getItem('tokenExpiration');
-        this.tokenExpiration = JSON.parse(te);
-
-        if (this.token == null || this.tokenExpiration == null) {
-            this.router.navigate(["Login"]);
-        }
     }
 
     ngOnInit() {

@@ -47,6 +47,9 @@
                         <li class="nav-item">
                             <a id="logOut" class="nav-link" asp-controller="Account" asp-action="Logout">Logout</a>
                         </li>
+                        <li>
+                            <a class="nav-link" style="margin-left: 20px">Welcome @User.Identity.Name!</a>
+                        </li>                     
                     }
                     else
                     {

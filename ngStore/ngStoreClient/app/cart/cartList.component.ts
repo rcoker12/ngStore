@@ -12,7 +12,7 @@ import { Order } from '../order/order';
 export class CartList implements OnInit {
 
     private title: string = "Cart";
-        public order: Order;
+    public order: Order;
     private token;
     private tokenExpiration;
 
@@ -26,7 +26,10 @@ export class CartList implements OnInit {
         this.token = JSON.parse(t);
         var te = localStorage.getItem('tokenExpiration');
         this.tokenExpiration = JSON.parse(te);
-        this.getSubtotal();
+
+        if (this.order) {
+            this.getSubtotal();
+        }
     }
 
     //  After creating order from JSON, functions on Order cannot be found, so we have to do it here
