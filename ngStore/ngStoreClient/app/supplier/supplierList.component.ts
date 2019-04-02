@@ -11,9 +11,11 @@ import { SupplierService } from '../services/supplierService';
 })
 export class SupplierList implements OnInit {
 
+    private title: string;
     public suppliers: Supplier[] = [];
 
     constructor(private supplierService: SupplierService, private router: Router) {
+        this.title = "Suppliers";
     }
 
     ngOnInit() {
@@ -24,6 +26,11 @@ export class SupplierList implements OnInit {
                 }
             });
 
+    }
+
+    addSupplier() {
+        localStorage.setItem('supplierId', "0");
+        this.router.navigate(["Supplier/0"]);
     }
 
     editSupplier(supplier: Supplier) {

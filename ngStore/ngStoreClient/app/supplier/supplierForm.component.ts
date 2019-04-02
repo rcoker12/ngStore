@@ -20,11 +20,13 @@ export class SupplierForm implements OnInit {
     }
 
     ngOnInit() {
-        this.supplierService.getSupplier(this.supplierId)
-            .subscribe(success => {
-                if (success) {
-                    this.supplier = this.supplierService.supplier;
-                }
-            });
+        if (this.supplierId != "0") {
+            this.supplierService.getSupplier(this.supplierId)
+                .subscribe(success => {
+                    if (success) {
+                        this.supplier = this.supplierService.supplier;
+                    }
+                });
+        }
     }
 }

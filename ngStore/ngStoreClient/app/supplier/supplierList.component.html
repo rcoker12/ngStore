@@ -1,4 +1,6 @@
-﻿<div class="container">
+﻿<h1 class="text-left" style="margin-top: 20px">{{ title }}</h1>
+
+<div class="container">
     <div class="row">
         <div class="table-responsive-md">
             <table class="table table-striped">
@@ -12,7 +14,7 @@
                         <th scope="col">Fax</th>
                         <th scope="col"># Prod</th>
                         <th scope="col"></th>
-                        <th class="text-right"><button class="btn btn-sm btn-primary">Add</button></th>
+                        <th class="text-right"><button class="btn btn-sm btn-primary" (click)="addSupplier()">Add</button></th>
                     </tr>
                 </thead>
                 <tbody>
