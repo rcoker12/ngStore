@@ -13,8 +13,6 @@ export class OrderList implements OnInit {
 
     private title: string = "Orders";
     public orders: Order[] = [];
-    private token;
-    private tokenExpiration;
 
     constructor(private orderService: OrderService, private router: Router) {
     }
