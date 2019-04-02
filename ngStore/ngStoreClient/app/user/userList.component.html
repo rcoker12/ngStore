@@ -1,0 +1,34 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="table-responsive-md">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">User Name</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Is Admin</th>
+                        <th scope="col"># Orders</th>
+                        <th scope="col"></th>
+                        <th class="text-right"><button class="btn btn-sm btn-primary">Add</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let u of users">
+                        <td>{{u.userName}}</td>
+                        <td>{{u.firstName}}</td>
+                        <td>{{u.lastName}}</td>
+                        <td>{{u.email}}</td>
+                        <td>{{u.phone}}</td>
+                        <td>{{u.discontinued | yesnoBoolean}}</td>
+                        <td class="badge badge-dark" style="margin-top: 10px">{{u.orders.length}}</td>
+                        <td class="text-right"><button class="btn btn-sm btn-success">Edit</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" [disabled]="u.orders.length > 0">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

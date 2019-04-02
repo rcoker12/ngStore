@@ -15,6 +15,7 @@ import { CheckoutList } from "./checkout/checkoutList.component";
 import { SupplierList } from "./supplier/supplierList.component";
 import { CustomerList } from "./customer/customerList.component";
 import { OrderList } from "./order/orderList.component";
+import { UserList } from "./user/userList.component";
 
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
@@ -22,6 +23,7 @@ import { LoginService } from "./services/loginService";
 import { CartService } from "./services/cartService";
 import { SupplierService } from "./services/supplierService";
 import { CustomerService } from "./services/customerService";
+import { UserService } from "./services/userService";
 
 import { YesNoBooleanPipe } from './shared/yesno.pipe';
 
@@ -36,6 +38,7 @@ let routes = [
     { path: "Supplier", component: SupplierList },
     { path: "Customer", component: CustomerList },
     { path: "Order", component: OrderList },
+    { path: "User", component: UserList },
     { path: "Cms", component: NullRoot }
 ];
 
@@ -49,6 +52,7 @@ let routes = [
         SupplierList,
         CustomerList,
         OrderList,
+        UserList,
         YesNoBooleanPipe,
         Login
     ],
@@ -69,6 +73,7 @@ let routes = [
         LoginService,
         CartService,
         SupplierService,
+        UserService,
         CustomerService
     ],
     bootstrap: [AppComponent]
