@@ -9,6 +9,9 @@
                         <th scope="col">City</th>
                         <th scope="col">Country</th>
                         <th scope="col">Phone</th>
+                        <th scope="col"># Orders</th>
+                        <th scope="col"></th>
+                        <th class="text-right"><button class="btn btn-sm btn-primary">Add</button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,6 +21,9 @@
                         <td>{{c.city}}</td>
                         <td>{{c.country}}</td>
                         <td>{{c.phone}}</td>
+                        <td class="badge badge-dark text-center" style="margin-top: 10px">{{c.orders.length}}</td>
+                        <td class="text-right"><button class="btn btn-sm btn-success">Edit</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" [disabled]="c.orders.length > 0">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

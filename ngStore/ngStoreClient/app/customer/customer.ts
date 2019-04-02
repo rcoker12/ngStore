@@ -1,9 +1,11 @@
-﻿export interface Customer {
+﻿import { Order } from '../order/order';
+
+export class Customer {
     id: number;
     firstName: string;
     lastName: string;
     city: string;
     country: string;
     phone: string;
-    orders: any[];
+    orders: Array<Order> = new Array<Order>();
 }
