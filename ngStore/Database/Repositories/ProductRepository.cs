@@ -22,12 +22,40 @@ namespace ngStore.Database.Repositories
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _logger.LogInformation("Delete<Product> was called");
+                var result = 0;
+                var p = _ctx.Products.Find(id);
+                if (p != null)
+                {
+                    _ctx.Products.Remove(p);
+                    result = _ctx.SaveChanges();
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete product: {ex}");
+                return 0;
+            }
         }
 
         public Product Get(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _logger.LogInformation("Get<Product> was called");
+                return _ctx.Products
+                    .Include(p => p.Supplier)
+                    .Where(p => p.Id == id)
+                    .FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get product: {ex}");
+                return null;
+            }
         }
 
         public IEnumerable<Product> GetAll()
@@ -46,9 +74,36 @@ namespace ngStore.Database.Repositories
             }
         }
 
-        public int Save(Product entity)
+        public int Save(Product product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (product.Id == 0)
+                {
+                    _ctx.Add(product);
+                }
+                else
+                {
+                    var p = _ctx.Products.Find(product.Id);
+                    if (p != null)
+                    {
+                        p.Id = product.Id;
+                        p.IsDiscontinued = product.IsDiscontinued;
+                        p.Package = product.Package;
+                        p.ProductName = product.ProductName;
+                        p.Supplier = product.Supplier;
+                        p.SupplierId = product.SupplierId;
+                        p.UnitPrice = product.UnitPrice;
+                    }
+                }
+                _ctx.SaveChanges();
+                return product.Id;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save product: {ex}");
+                return 0;
+            }
         }
     }
 }

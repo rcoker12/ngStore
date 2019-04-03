@@ -8,10 +8,10 @@
             <input type="text" class="form-control" name="productName" [(ngModel)]="product.productName" #productName="ngModel" required />
             <div class="text-danger" *ngIf="productName.touched && productName.invalid && productName.errors.required">Product name is required!</div>
         </div>
-        <div class="col-md-4 mb-2">
+        <!--<div class="col-md-4 mb-2">
             <label for="companyName">Supplier Name</label>
             <input type="text" class="form-control" name="companyName" [(ngModel)]="product.supplier.companyName" #companyName="ngModel" />
-        </div>
+        </div>-->
         <div class="col-md-4 mb-2">
             <label for="unitPrice">Unit Price</label>
             <input type="text" class="form-control" name="unitPrice" [(ngModel)]="product.unitPrice" #unitPrice="ngModel" />
@@ -24,10 +24,10 @@
         </div>
         <div class="col-md-4 mb-2">
             <label for="isDiscontinued">Discontinued</label>
-            <input type="checkbox" class="form-control" name="isDiscontinued" [(ngModel)]="product.isDiscontinued" #isDiscontinued="ngModel" />
+            <input type="checkbox" style="margin-left: 10px" name="isDiscontinued" [(ngModel)]="product.isDiscontinued" #isDiscontinued="ngModel" />
         </div>
     </div>
     <br />
     <button type="submit" class="btn btn-primary">Save</button>
-    <a routerLink="/Product/Products" class="btn btn-light" style="margin-left: 10px">Cancel</a>
+    <a routerLink="/Product/CmsProduct" class="btn btn-light" style="margin-left: 10px">Cancel</a>
 </form>

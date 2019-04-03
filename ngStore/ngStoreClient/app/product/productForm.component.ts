@@ -16,7 +16,7 @@ export class ProductForm implements OnInit {
 
     constructor(private productService: ProductService) {
         this.title = "Product";
-        this.productId = localStorage.getItem("ProductId");
+        this.productId = localStorage.getItem("productId");
     }
 
     ngOnInit() {
@@ -28,6 +28,5 @@ export class ProductForm implements OnInit {
                     }
                 });
         }
-        console.log(this.product);
     }
 }
