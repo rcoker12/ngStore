@@ -14,7 +14,7 @@
                         <th scope="col" class="text-center">Quantity</th>
                         <th scope="col" class="text-right">Price</th>
                         <th scope="col"></th>
-                        <th class="text-right"><button class="btn btn-sm btn-primary">Add</button></th>
+                        <th class="text-right"><button class="btn btn-sm btn-primary" (click)="addProduct()">Add</button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,7 +26,7 @@
                         <td>{{p.discontinued | yesnoBoolean}}</td>
                         <td><input id="quantity" class="form-control" type="text" value="1" /></td>
                         <td>{{p.unitPrice | currency:"USD":"symbol"}}</td>
-                        <td class="text-right"><button class="btn btn-sm btn-success">Edit</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-success" (click)="editProduct(p)">Edit</button></td>
                         <td class="text-right"><button class="btn btn-sm btn-danger">Delete</button></td>
                     </tr>
                 </tbody>

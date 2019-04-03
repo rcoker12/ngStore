@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ngStore.Database.Entities;
@@ -22,13 +23,20 @@ namespace ngStore.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Products()
+        {
+            ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
+            return View("Index");
+        }
+
+        public IActionResult CmsProduct()
         {
             SetLayout();
             return View();
         }
 
-        public IActionResult CmsProduct()
+        [Route("product/{id}")]
+        public IActionResult Product()
         {
             SetLayout();
             return View();

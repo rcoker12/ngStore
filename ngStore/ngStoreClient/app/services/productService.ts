@@ -8,10 +8,20 @@ import { Product } from '../product/product';
 @Injectable()
 export class ProductService {
 
+    public product: Product;
     public products: Product[] = [];
 
     constructor(private http: HttpClient) {
 
+    }
+
+    getProduct(productId: string): Observable<boolean> {
+        return this.http.get("/api/product/" + productId)
+            .pipe(
+                map((data: Product) => {
+                    this.product = data;
+                    return true;
+                }));
     }
 
     getProducts(): Observable<boolean> {

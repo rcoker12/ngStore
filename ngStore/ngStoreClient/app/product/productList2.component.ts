@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { Product } from './product';
 import { ProductService } from '../services/productService';
-import { OrderService } from '../services/orderService';
 
 @Component({
     selector: "product-list2",
@@ -14,7 +14,7 @@ export class ProductList2 implements OnInit {
     private title: string = "Products";
     public products: Product[] = [];
 
-    constructor(private productService: ProductService, private orderService: OrderService) {
+    constructor(private productService: ProductService, private router: Router) {
     }
 
     ngOnInit() {
@@ -25,5 +25,15 @@ export class ProductList2 implements OnInit {
                 }
             });
 
+    }
+
+    addProduct() {
+        localStorage.setItem('productId', "0");
+        this.router.navigate(["Product/0"]);
+    }
+
+    editProduct(product: Product) {
+        localStorage.setItem('productId', JSON.stringify(product.id));
+        this.router.navigate(["Product/" + product.id]);
     }
 }

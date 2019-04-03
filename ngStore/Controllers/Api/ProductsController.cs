@@ -11,7 +11,6 @@ using ngStore.Database.Repositories;
 
 namespace ngStore.Controllers.Api
 {
-    [Route("api/products")]
     [ApiController]
     public class ProductsController : Controller
     {
@@ -25,6 +24,7 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/products")]
         public IActionResult Get()
         {
             try
@@ -35,6 +35,21 @@ namespace ngStore.Controllers.Api
             {
                 _logger.LogError($"Failed to get products: {ex}");
                 return BadRequest("Failed to get products");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/product/{id}")]
+        public IActionResult Get(int id)
+        {
+            try
+            {
+                return Ok(_productRepository.Get(id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get product: {ex}");
+                return BadRequest("Failed to get product");
             }
         }
     }

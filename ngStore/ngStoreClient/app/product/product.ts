@@ -1,6 +1,6 @@
 ﻿import { Supplier } from '../supplier/supplier';
 
-export interface Product {
+export class Product {
     id: number;
     productName: string;
     supplier: Supplier;
