@@ -2,6 +2,7 @@
 
 import { Product } from './product';
 import { ProductService } from '../services/productService';
+import { Supplier } from '../supplier/supplier';
 
 @Component({
     selector: "product",
@@ -17,6 +18,9 @@ export class ProductForm implements OnInit {
     constructor(private productService: ProductService) {
         this.title = "Product";
         this.productId = localStorage.getItem("productId");
+
+        //  Must do this for embedded classes in product
+        this.product.supplier = new Supplier();
     }
 
     ngOnInit() {
@@ -25,6 +29,7 @@ export class ProductForm implements OnInit {
                 .subscribe(success => {
                     if (success) {
                         this.product = this.productService.product;
+                        console.log(this.product);
                     }
                 });
         }

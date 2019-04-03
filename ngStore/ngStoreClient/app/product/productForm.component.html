@@ -8,10 +8,10 @@
             <input type="text" class="form-control" name="productName" [(ngModel)]="product.productName" #productName="ngModel" required />
             <div class="text-danger" *ngIf="productName.touched && productName.invalid && productName.errors.required">Product name is required!</div>
         </div>
-        <!--<div class="col-md-4 mb-2">
+        <div class="col-md-4 mb-2">
             <label for="companyName">Supplier Name</label>
             <input type="text" class="form-control" name="companyName" [(ngModel)]="product.supplier.companyName" #companyName="ngModel" />
-        </div>-->
+        </div>
         <div class="col-md-4 mb-2">
             <label for="unitPrice">Unit Price</label>
             <input type="text" class="form-control" name="unitPrice" [(ngModel)]="product.unitPrice" #unitPrice="ngModel" />

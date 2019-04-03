@@ -23,12 +23,14 @@ namespace ngStore.Controllers
             _logger = logger;
         }
 
+        [Route("Product/Products")]
         public IActionResult Products()
         {
             ViewBag.Layout = "~/Views/Shared/_Layout.cshtml";
             return View("Index");
         }
 
+        [Route("Product/CmsProduct")]
         public IActionResult CmsProduct()
         {
             SetLayout();
