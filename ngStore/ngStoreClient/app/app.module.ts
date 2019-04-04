@@ -17,6 +17,7 @@ import { CheckoutList } from "./checkout/checkoutList.component";
 import { SupplierList } from "./supplier/supplierList.component";
 import { SupplierForm } from "./supplier/supplierForm.component";
 import { CustomerList } from "./customer/customerList.component";
+import { CustomerForm } from "./customer/customerForm.component";
 import { OrderList } from "./order/orderList.component";
 import { UserList } from "./user/userList.component";
 
@@ -42,7 +43,8 @@ let routes = [
     { path: "Account/ResetPassword", component: NullRoot },
     { path: "Supplier/Suppliers", component: SupplierList },
     { path: "Supplier/:id", component: SupplierForm },
-    { path: "Customer", component: CustomerList },
+    { path: "Customer/Customers", component: CustomerList },
+    { path: "Customer/:id", component: CustomerForm },
     { path: "Order", component: OrderList },
     { path: "User", component: UserList },
     { path: "Cms", component: NullRoot }
@@ -60,6 +62,7 @@ let routes = [
         SupplierList,
         SupplierForm,
         CustomerList,
+        CustomerForm,
         OrderList,
         UserList,
         YesNoBooleanPipe,

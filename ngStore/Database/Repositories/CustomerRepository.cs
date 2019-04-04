@@ -48,6 +48,8 @@ namespace ngStore.Database.Repositories
                 _logger.LogInformation("Get<Customer> was called");
                 return _ctx.Customers
                     .Include(c => c.Orders)
+                    .ThenInclude(o => o.OrderItems)
+                    .ThenInclude(p => p.Product)
                     .Where(c => c.Id == id)
                     .FirstOrDefault();
             }

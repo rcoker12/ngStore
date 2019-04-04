@@ -27,7 +27,7 @@ export class ProductService {
     getProducts(): Observable<boolean> {
         return this.http.get("/api/products")
             .pipe(
-                map((data: any[]) => {
+                map((data: Product[]) => {
                     this.products = data;
                     return true;
                 }));

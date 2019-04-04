@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { Customer } from './customer';
 import { CustomerService } from '../services/customerService';
@@ -10,9 +11,11 @@ import { CustomerService } from '../services/customerService';
 })
 export class CustomerList implements OnInit {
 
+    private title: string;
     public customers: Customer[] = [];
 
-    constructor(private customerService: CustomerService) {
+    constructor(private customerService: CustomerService, private router: Router) {
+        this.title = "Customers";
     }
 
     ngOnInit() {
@@ -23,5 +26,15 @@ export class CustomerList implements OnInit {
                 }
             });
 
+    }
+
+    addCustomer() {
+        localStorage.setItem('customerId', "0");
+        this.router.navigate(["Customer/0"]);
+    }
+
+    editCustomer(customer: Customer) {
+        localStorage.setItem('customerId', JSON.stringify(customer.id));
+        this.router.navigate(["Customer/" + customer.id]);
     }
 }

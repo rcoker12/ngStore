@@ -12,7 +12,6 @@ using ngStore.ViewModels;
 
 namespace ngStore.Controllers.Api
 {
-    [Route("api/customers")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
@@ -28,6 +27,7 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/customers")]
         public IActionResult Get()
         {
             try
@@ -41,7 +41,23 @@ namespace ngStore.Controllers.Api
             }
         }
 
+        [HttpGet]
+        [Route("api/customer/{id}")]
+        public IActionResult Get(int id)
+        {
+            try
+            {
+                return Ok(_customerRepository.Get(id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get customer: {ex}");
+                return BadRequest("Failed to get customer");
+            }
+        }
+
         [HttpPost]
+        [Route("api/customers")]
         public IActionResult Post([FromBody]CustomerViewModel model)
         {
             try

@@ -22,7 +22,7 @@
             <input type="text" class="form-control" name="package" [(ngModel)]="product.package" #package="ngModel" required />
             <div class="text-danger" *ngIf="package.touched && package.invalid && package.errors.required">Package is required!</div>
         </div>
-        <div class="col-md-4 mb-2">
+        <div class="col-md-4 mb-2" style="margin-top: 35px">
             <label for="isDiscontinued">Discontinued</label>
             <input type="checkbox" style="margin-left: 10px" name="isDiscontinued" [(ngModel)]="product.isDiscontinued" #isDiscontinued="ngModel" />
         </div>

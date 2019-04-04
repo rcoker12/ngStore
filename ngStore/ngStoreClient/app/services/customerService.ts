@@ -8,16 +8,26 @@ import { Customer } from '../customer/customer';
 @Injectable()
 export class CustomerService {
 
+    public customer: Customer;
     public customers: Customer[] = [];
 
     constructor(private http: HttpClient) {
 
     }
 
+    getCustomer(customerId: string): Observable<boolean> {
+        return this.http.get("/api/customer/" + customerId)
+            .pipe(
+                map((data: Customer) => {
+                    this.customer = data;
+                    return true;
+                }));
+    }
+
     getCustomers(): Observable<boolean> {
         return this.http.get("/api/customers")
             .pipe(
-                map((data: any[]) => {
+                map((data: Customer[]) => {
                     this.customers = data;
                     return true;
                 }));

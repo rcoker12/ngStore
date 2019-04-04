@@ -27,5 +27,12 @@ namespace ngStore.Controllers
             SetLayout();
             return View();
         }
+
+        [Route("customer/{id}")]
+        public IActionResult Customer()
+        {
+            SetLayout();
+            return View();
+        }
     }
 }

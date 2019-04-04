@@ -46,7 +46,7 @@ export class OrderService {
     getOrders(): Observable<boolean> {
         return this.http.get("/api/orders")
             .pipe(
-                map((data: any[]) => {
+                map((data: Order[]) => {
                     this.orders = data;
                     return true;
                 }));

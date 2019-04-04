@@ -10,6 +10,7 @@
       <None Remove="ngStoreClient\app\cart\cartList.component.ts" />
       <None Remove="ngStoreClient\app\checkout\checkoutList.component.ts" />
       <None Remove="ngStoreClient\app\customer\customer.ts" />
+      <None Remove="ngStoreClient\app\customer\customerForm.component.ts" />
       <None Remove="ngStoreClient\app\customer\customerList.component.ts" />
       <None Remove="ngStoreClient\app\login\login.component.ts" />
       <None Remove="ngStoreClient\app\order\order.ts" />
@@ -73,6 +74,7 @@
     <TypeScriptCompile Include="ngStoreClient\app\checkout\checkoutList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\customer\customer.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\customer\customerList.component.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\customer\customerForm.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\login\login.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\order.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\orderItem.ts" />

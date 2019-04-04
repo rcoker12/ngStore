@@ -1,0 +1,60 @@
+﻿<h1 class="text-left" style="margin-top: 20px">{{ title }}</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="form-row">
+        <div class="col-md-4 mb-2">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="customer.firstName" #firstName="ngModel" required />
+            <div class="text-danger" *ngIf="firstName.touched && firstName.invalid && firstName.errors.required">First name is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="customer.lastName" #lastName="ngModel" required />
+            <div class="text-danger" *ngIf="lastName.touched && lastName.invalid && lastName.errors.required">Last name is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="city">City</label>
+            <input type="text" class="form-control" name="city" [(ngModel)]="customer.city" #city="ngModel" required />
+            <div class="text-danger" *ngIf="city.touched && city.invalid && city.errors.required">City is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="country">Country</label>
+            <input type="text" class="form-control" name="country" [(ngModel)]="customer.country" #country="ngModel" required />
+            <div class="text-danger" *ngIf="country.touched && country.invalid && country.errors.required">Country is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" name="phone" [(ngModel)]="customer.phone" #phone="ngModel" required />
+            <div class="text-danger" *ngIf="phone.touched && phone.invalid && phone.errors.required">Phone is required!</div>
+        </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a routerLink="/Customer/Customers" class="btn btn-light" style="margin-left: 10px">Cancel</a>
+    <h3 class="text-left" style="margin-top: 20px">Orders</h3>
+    <div class="row">
+        <div class="table-responsive-md">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Order Date</th>
+                        <th scope="col">Order Number</th>
+                        <th scope="col">Total Amount</th>
+                        <th scope="col"># Items</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let o of customer.orders">
+                        <td>{{o.orderDate | date: 'MM/dd/yyyy'}}</td>
+                        <td>{{o.orderNumber}}</td>
+                        <td>{{o.totalAmount | currency:"USD":"symbol"}}</td>
+                        <td class="badge badge-dark text-center" style="margin-top: 10px">{{o.orderItems.length}}</td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>

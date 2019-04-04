@@ -17,7 +17,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let o of orders">
-                        <td>{{o.orderDate | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{o.orderDate | date: 'MM/dd/yyyy'}}</td>
                         <td>{{o.orderNumber}}</td>
                         <td>{{o.customerId}}</td>
                         <td>{{o.totalAmount | currency:"USD":"symbol"}}</td>
