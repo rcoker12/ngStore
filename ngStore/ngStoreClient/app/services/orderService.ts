@@ -43,6 +43,15 @@ export class OrderService {
         localStorage.setItem('order', JSON.stringify(this.order));
     }
 
+    getOrder(orderId: string): Observable<boolean> {
+        return this.http.get("/api/order/" + orderId)
+            .pipe(
+                map((data: Order) => {
+                    this.order = data;
+                    return true;
+                }));
+    }
+
     getOrders(): Observable<boolean> {
         return this.http.get("/api/orders")
             .pipe(

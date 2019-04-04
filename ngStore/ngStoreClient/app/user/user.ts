@@ -1,7 +1,7 @@
 ﻿import {Order } from '../order/order';
 
 export class User {
-    id: number;
+    id: string;
     userName: string;
     firstName: string;
     lastName: string;

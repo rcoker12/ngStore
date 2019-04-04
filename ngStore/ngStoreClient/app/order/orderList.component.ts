@@ -25,4 +25,15 @@ export class OrderList implements OnInit {
                 }
             });
     }
+
+    addOrder() {
+        localStorage.setItem('orderId', "0");
+        this.router.navigate(["Order/0"]);
+    }
+
+    editOrder(order: Order) {
+        console.log(order);
+        localStorage.setItem('orderId', JSON.stringify(order.id));
+        this.router.navigate(["Order/" + order.id]);
+    }
 }

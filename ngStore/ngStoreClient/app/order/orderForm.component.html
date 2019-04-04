@@ -1,0 +1,55 @@
+﻿<h1 class="text-left" style="margin-top: 20px">{{ title }}</h1>
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="form-row">
+        <div class="col-md-4 mb-2">
+            <label for="orderDate">Order Date</label>
+            <input type="text" class="form-control" name="orderDate" [(ngModel)]="order.orderDate" #orderDate="ngModel" required />
+            <div class="text-danger" *ngIf="orderDate.touched && orderDate.invalid && orderDate.errors.required">Order date is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="orderNumber">Order Number</label>
+            <input type="text" class="form-control" name="orderNumber" [(ngModel)]="order.orderNumber" #orderNumber="ngModel" />
+            <div class="text-danger" *ngIf="orderNumber.touched && orderNumber.invalid && orderNumber.errors.required">Order number is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="customerId">Customer ID</label>
+            <input type="text" class="form-control" name="customerId" [(ngModel)]="order.customerId" #customerId="ngModel" />
+            <div class="text-danger" *ngIf="customerId.touched && customerId.invalid && customerId.errors.required">Customer ID is required!</div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="totalAmount">Total Amount</label>
+            <input type="text" class="form-control" name="totalAmount" [(ngModel)]="order.totalAmount" #totalAmount="ngModel" required />
+            <div class="text-danger" *ngIf="totalAmount.touched && totalAmount.invalid && totalAmount.errors.required">Total amount is required!</div>
+        </div>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a routerLink="/Order/Orders" class="btn btn-light" style="margin-left: 10px">Cancel</a>
+    <h3 class="text-left" style="margin-top: 20px">Items</h3>
+    <div class="row">
+        <div class="table-responsive-md">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Package</th>
+                        <th scope="col" class="text-right">Price</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let i of order.orderItems">
+                        <td>{{i.product.productName}}</td>
+                        <td>{{i.product.package}}</td>
+                        <td>{{i.unitPrice | currency:"USD":"symbol"}}</td>
+                        <td>{{i.quantity}}</td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--</div>-->
+    </div>
+</form>

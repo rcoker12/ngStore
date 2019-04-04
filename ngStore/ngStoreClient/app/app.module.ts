@@ -19,7 +19,9 @@ import { SupplierForm } from "./supplier/supplierForm.component";
 import { CustomerList } from "./customer/customerList.component";
 import { CustomerForm } from "./customer/customerForm.component";
 import { OrderList } from "./order/orderList.component";
+import { OrderForm } from "./order/orderForm.component";
 import { UserList } from "./user/userList.component";
+import { UserForm } from "./user/userForm.component";
 
 import { ProductService } from "./services/productService";
 import { OrderService } from "./services/orderService";
@@ -45,8 +47,10 @@ let routes = [
     { path: "Supplier/:id", component: SupplierForm },
     { path: "Customer/Customers", component: CustomerList },
     { path: "Customer/:id", component: CustomerForm },
-    { path: "Order", component: OrderList },
-    { path: "User", component: UserList },
+    { path: "Order/Orders", component: OrderList },
+    { path: "Order/:id", component: OrderForm },
+    { path: "User/Users", component: UserList },
+    { path: "User/:id", component: UserForm },
     { path: "Cms", component: NullRoot }
 ];
 
@@ -64,7 +68,9 @@ let routes = [
         CustomerList,
         CustomerForm,
         OrderList,
+        OrderForm,
         UserList,
+        UserForm,
         YesNoBooleanPipe,
         Login
     ],

@@ -22,7 +22,14 @@ namespace ngStore.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Orders()
+        {
+            SetLayout();
+            return View("Index");
+        }
+
+        [Route("order/{id}")]
+        public IActionResult Order()
         {
             SetLayout();
             return View();

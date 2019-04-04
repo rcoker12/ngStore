@@ -14,7 +14,6 @@ using ngStore.ViewModels;
 
 namespace ngStore.Controllers.Api
 {
-    [Route("api/orders")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Produces("application/json")]
@@ -36,6 +35,7 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/orders")]
         [AllowAnonymous]
         public IActionResult Get()
         {
@@ -50,8 +50,9 @@ namespace ngStore.Controllers.Api
             }
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet]
         [AllowAnonymous]
+        [Route("api/order/{id}")]
         public IActionResult Get(int id)
         {
             try
@@ -74,6 +75,7 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpPost]
+        [Route("api/orders")]
         public async Task<IActionResult> Post([FromBody]OrderViewModel model)
         {
             try

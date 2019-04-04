@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { User } from './user';
 import { UserService } from '../services/userService';
@@ -12,7 +13,7 @@ export class UserList implements OnInit {
 
     public users: User[] = [];
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private router: Router) {
     }
 
     ngOnInit() {
@@ -23,5 +24,15 @@ export class UserList implements OnInit {
                 }
             });
 
+    }
+
+    addUser() {
+        localStorage.setItem('userId', "0");
+        this.router.navigate(["User/0"]);
+    }
+
+    editUser(user: User) {
+        localStorage.setItem('userId', JSON.stringify(user.id));
+        this.router.navigate(["User/" + user.id]);
     }
 }

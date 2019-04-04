@@ -12,7 +12,7 @@
                         <th scope="col">Is Admin</th>
                         <th scope="col"># Orders</th>
                         <th scope="col"></th>
-                        <th class="text-right"><button class="btn btn-sm btn-primary">Add</button></th>
+                        <th class="text-right"><button class="btn btn-sm btn-primary" (click)="addUser()">Add</button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,7 +24,7 @@
                         <td>{{u.phone}}</td>
                         <td>{{u.discontinued | yesnoBoolean}}</td>
                         <td class="badge badge-dark" style="margin-top: 10px">{{u.orders.length}}</td>
-                        <td class="text-right"><button class="btn btn-sm btn-success">Edit</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-success" (click)="editUser(u)">Edit</button></td>
                         <td class="text-right"><button class="btn btn-sm btn-danger" [disabled]="u.orders.length > 0">Delete</button></td>
                     </tr>
                 </tbody>

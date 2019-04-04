@@ -9,7 +9,6 @@ using ngStore.Database.Interfaces;
 
 namespace ngStore.Controllers.Api
 {
-    [Route("api/users")]
     [ApiController]
     public class UsersController : ControllerBase
     {
@@ -23,6 +22,7 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/users")]
         public IActionResult Get()
         {
             try
@@ -33,6 +33,21 @@ namespace ngStore.Controllers.Api
             {
                 _logger.LogError($"Failed to get users: {ex}");
                 return BadRequest("Failed to get users");
+            }
+        }
+
+        [HttpGet]
+        [Route("api/user/{id}")]
+        public IActionResult Get(string id)
+        {
+            try
+            {
+                return Ok(_userRepository.Get(id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get user: {ex}");
+                return BadRequest("Failed to get user");
             }
         }
     }

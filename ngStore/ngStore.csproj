@@ -14,6 +14,7 @@
       <None Remove="ngStoreClient\app\customer\customerList.component.ts" />
       <None Remove="ngStoreClient\app\login\login.component.ts" />
       <None Remove="ngStoreClient\app\order\order.ts" />
+      <None Remove="ngStoreClient\app\order\orderForm.component.ts" />
       <None Remove="ngStoreClient\app\order\orderItem.ts" />
       <None Remove="ngStoreClient\app\order\orderList.component.ts" />
       <None Remove="ngStoreClient\app\product\product.ts" />
@@ -33,6 +34,7 @@
       <None Remove="ngStoreClient\app\supplier\supplierForm.component.ts" />
       <None Remove="ngStoreClient\app\supplier\supplierList.component.ts" />
       <None Remove="ngStoreClient\app\user\user.ts" />
+      <None Remove="ngStoreClient\app\user\userForm.component.ts" />
       <None Remove="ngStoreClient\app\user\userList.component.ts" />
     </ItemGroup>
 
@@ -79,6 +81,7 @@
     <TypeScriptCompile Include="ngStoreClient\app\order\order.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\orderItem.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\order\orderList.component.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\order\orderForm.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\product.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\productList2.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\product\productList.component.ts" />
@@ -95,6 +98,7 @@
     <TypeScriptCompile Include="ngStoreClient\app\supplier\supplierForm.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\supplier\supplierList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\supplier\supplier.ts" />
+    <TypeScriptCompile Include="ngStoreClient\app\user\userForm.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\user\userList.component.ts" />
     <TypeScriptCompile Include="ngStoreClient\app\user\user.ts" />
   </ItemGroup>
