@@ -95,7 +95,7 @@ namespace ngStore.Database.Repositories
                         s.Country = supplier.Country;
                         s.Fax = supplier.Fax;
                         s.Phone = supplier.Phone;
-                        s.Products = supplier.Products;
+                        s.Products = null;
                     }
                 }
                 _ctx.SaveChanges();

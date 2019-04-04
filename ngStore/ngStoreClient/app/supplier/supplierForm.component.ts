@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { Supplier } from './supplier';
 import { SupplierService } from '../services/supplierService';
@@ -11,10 +12,11 @@ import { SupplierService } from '../services/supplierService';
 export class SupplierForm implements OnInit {
 
     private title: string;
+    private errorMessage: string = "";
     private supplierId: string;
     public supplier: Supplier = new Supplier();
 
-    constructor(private supplierService: SupplierService) {
+    constructor(private supplierService: SupplierService, private router: Router) {
         this.title = "Supplier";
         this.supplierId = localStorage.getItem("supplierId");
     }
@@ -28,5 +30,15 @@ export class SupplierForm implements OnInit {
                     }
                 });
         }
+    }
+
+    onSubmit() {
+        console.log(this.supplier);
+        this.supplierService.saveSupplier(this.supplier)
+            .subscribe(success => {
+                if (success) {
+                    this.router.navigate(["Supplier/Suppliers"]);
+                }
+            }, err => this.errorMessage = "Failed to save supplier");
     }
 }

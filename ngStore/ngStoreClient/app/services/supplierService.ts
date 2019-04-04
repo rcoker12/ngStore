@@ -32,4 +32,14 @@ export class SupplierService {
                     return true;
                 }));
     }
+
+    public saveSupplier(supplier): Observable<boolean> {
+        return this.http.post("/api/supplier", supplier)
+            .pipe(
+                map((response: Supplier) => {
+                this.supplier = response;
+                    console.log(this.supplier);
+                    return true;
+                }));
+    }
 }
