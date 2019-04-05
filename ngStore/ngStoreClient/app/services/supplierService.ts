@@ -4,12 +4,14 @@ import { Observable } from "rxjs"
 import { map } from 'rxjs/operators';
 
 import { Supplier } from '../supplier/supplier';
+import { Product } from '../product/product';
 
 @Injectable()
 export class SupplierService {
 
     public supplier: Supplier;
     public suppliers: Supplier[] = [];
+    public products: Product[] = [];
 
     constructor(private http: HttpClient) {
 
