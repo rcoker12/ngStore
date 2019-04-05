@@ -41,6 +41,32 @@ namespace ngStore.Database.Repositories
             }
         }
 
+        public int DeleteProduct(Supplier entity, int productId)
+        {
+            try
+            {
+                _logger.LogInformation("Delete<SupplierProduct> was called");
+                var result = 0;
+                var supplier = Get(entity.Id);
+
+                if (supplier != null)
+                {
+                    var product = supplier.Products.Where(p => p.Id == productId).FirstOrDefault();
+                    if (product != null)
+                    {
+                        supplier.Products.Remove(product);
+                        result = _ctx.SaveChanges();
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete supplier product: {ex}");
+                return 0;
+            }
+        }
+
         public Supplier Get(int id)
         {
             try

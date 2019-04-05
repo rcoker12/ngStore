@@ -35,11 +35,21 @@ export class SupplierService {
                 }));
     }
 
-    public saveSupplier(supplier): Observable<boolean> {
+    saveSupplier(supplier): Observable<boolean> {
         return this.http.post("/api/supplier", supplier)
             .pipe(
                 map((response: Supplier) => {
                 this.supplier = response;
+                    console.log(this.supplier);
+                    return true;
+                }));
+    }
+
+    deleteProduct(supplier): Observable<boolean> {
+        return this.http.post("/api/supplier/deleteProduct", supplier)
+            .pipe(
+                map((response: Supplier) => {
+                    this.supplier = response;
                     console.log(this.supplier);
                     return true;
                 }));

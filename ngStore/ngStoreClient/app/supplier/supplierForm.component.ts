@@ -18,7 +18,6 @@ export class SupplierForm implements OnInit {
     private supplierId: string;
     public supplier: Supplier = new Supplier();
     public products: Product[] = [];
-    public product: Product = new Product();
 
     constructor(private supplierService: SupplierService, private router: Router, private productService: ProductService) {
         this.title = "Supplier";
@@ -27,12 +26,7 @@ export class SupplierForm implements OnInit {
 
     ngOnInit() {
         if (this.supplierId != "0") {
-            this.supplierService.getSupplier(this.supplierId)
-                .subscribe(success => {
-                    if (success) {
-                        this.supplier = this.supplierService.supplier;
-                    }
-                });
+            this.getSupplier();
             this.productService.getProducts()
                 .subscribe(success => {
                     if (success) {
@@ -42,8 +36,16 @@ export class SupplierForm implements OnInit {
         }
     }
 
+    getSupplier() {
+        this.supplierService.getSupplier(this.supplierId)
+            .subscribe(success => {
+                if (success) {
+                    this.supplier = this.supplierService.supplier;
+                }
+            });
+    }
+
     onSubmit() {
-        console.log(this.supplier);
         this.supplierService.saveSupplier(this.supplier)
             .subscribe(success => {
                 if (success) {
@@ -54,25 +56,36 @@ export class SupplierForm implements OnInit {
 
     onProductChange(event): void {  
         var productId = event.target.value;
-        console.log(productId);
         this.productService.getProduct(productId)
             .subscribe(success => {
                 if (success) {
-                    this.product = this.productService.product;
+                    this.supplier.product = this.productService.product;
                 }
             });
     }
 
     addProduct() {
-        let p: Product = this.supplier.products.find(p => p.id == this.product.id);
-        if (this.product.id === undefined) {
-            this.product = this.products[0];
-            this.supplier.products.push(this.product);
+        let p: Product = this.supplier.products.find(p => p.id == this.supplier.product.id);
+        if (this.supplier.product.id === undefined) {
+            this.supplier.product = this.products[0];
+            this.supplier.products.push(this.supplier.product);
         }
         else if (!p) {
-            console.log(this.product);
-            this.supplier.products.push(this.product);
+            this.supplier.products.push(this.supplier.product);
         }
         console.log(this.supplier.products);
+    }
+
+    deleteProduct(supplier: Supplier, product: Product) {
+        supplier.product = product;
+        this.supplierService.deleteProduct(this.supplier)
+            .subscribe(success => {
+                if (success) {
+                    //  Removes item in typed array
+                    this.supplier.products.forEach((p, index) => {
+                        if (p === product) this.supplier.products.splice(index, 1);
+                    });                
+                }
+            }, err => this.errorMessage = "Failed to save supplier product");
     }
 }

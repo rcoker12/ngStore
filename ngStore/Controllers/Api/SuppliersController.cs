@@ -56,7 +56,6 @@ namespace ngStore.Controllers.Api
             }
         }
 
-
         [HttpPost]
         [Route("api/supplier")]
         public IActionResult Post([FromBody]SupplierViewModel model)
@@ -68,8 +67,24 @@ namespace ngStore.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to get product: {ex}");
-                return BadRequest("Failed to get product");
+                _logger.LogError($"Failed to save supplier: {ex}");
+                return BadRequest("Failed to save supplier");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/supplier/deleteProduct")]
+        public IActionResult DeleteProduct([FromBody]SupplierViewModel model)
+        {
+            try
+            {
+                var supplier = _mapper.Map<SupplierViewModel, Supplier>(model);
+                return Ok(_supplierRepository.DeleteProduct(supplier, model.Product.Id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete supplier product: {ex}");
+                return BadRequest("Failed to delete supplier product");
             }
         }
     }

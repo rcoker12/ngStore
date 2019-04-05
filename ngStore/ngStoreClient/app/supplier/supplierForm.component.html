@@ -71,7 +71,7 @@
                         <td>{{p.package}}</td>
                         <td>{{p.discontinued | yesnoBoolean}}</td>
                         <td>{{p.unitPrice | currency:"USD":"symbol"}}</td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger">Delete</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" type="button" (click)="deleteProduct(supplier, p)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
