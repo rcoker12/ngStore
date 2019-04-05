@@ -42,9 +42,9 @@
                 <option *ngFor="let p of products" [value]="p.id">{{p.productName}}</option>
             </select>
         </div>
-        <div class="col-md-2 mb-2">
-            <label for="add">Add Product to Supplier</label>
-            <button type="button" class="btn btn-sm btn-primary form-control" (click)="addProduct()">Add</button>
+        <div class="col-md-4 mb-2">
+            <label for="add">Assign This Product to This Supplier</label>
+            <button type="button" class="btn btn-sm btn-primary form-control" (click)="addProduct()">Assign Product</button>
         </div>
     </div>
     <br />

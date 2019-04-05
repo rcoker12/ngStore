@@ -73,5 +73,6 @@ export class SupplierForm implements OnInit {
             console.log(this.product);
             this.supplier.products.push(this.product);
         }
+        console.log(this.supplier.products);
     }
 }

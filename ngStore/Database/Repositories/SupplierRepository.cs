@@ -84,7 +84,9 @@ namespace ngStore.Database.Repositories
                 }
                 else
                 {
-                    var s = _ctx.Suppliers.Find(supplier.Id);
+                    var allSuppliers = _ctx.Suppliers.Include(p => p.Products);
+                    var allProducts = _ctx.Products;
+                    var s = allSuppliers.First(i => i.Id == supplier.Id);
                     if (s != null)
                     {
                         s.Id = supplier.Id;
@@ -95,7 +97,23 @@ namespace ngStore.Database.Repositories
                         s.Country = supplier.Country;
                         s.Fax = supplier.Fax;
                         s.Phone = supplier.Phone;
-                        s.Products = null;
+
+                        //  Save products, these are adds only. Supplier form doesn't allow product edits.
+                        foreach (var product in supplier.Products)
+                        {
+                            var p1= s.Products.FirstOrDefault(i => i.Id == product.Id);
+
+                            //  New product
+                            if (p1 == null)
+                            {
+                                var p2 = _ctx.Products.Find(product.Id);
+                                if (p2 != null)
+                                {
+                                    p2.Supplier = supplier;
+                                    p2.SupplierId = supplier.Id;
+                                }
+                            }
+                        }
                     }
                 }
                 _ctx.SaveChanges();
