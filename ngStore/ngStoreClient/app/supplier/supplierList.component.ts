@@ -12,6 +12,7 @@ import { SupplierService } from '../services/supplierService';
 export class SupplierList implements OnInit {
 
     private title: string;
+    private errorMessage: string = "";
     public suppliers: Supplier[] = [];
 
     constructor(private supplierService: SupplierService, private router: Router) {
@@ -36,5 +37,16 @@ export class SupplierList implements OnInit {
     editSupplier(supplier: Supplier) {
         localStorage.setItem('supplierId', JSON.stringify(supplier.id));
         this.router.navigate(["Supplier/" + supplier.id]);
+    }
+
+    deleteSupplier(supplier: Supplier) {
+        this.supplierService.deleteSupplier(supplier)
+            .subscribe(success => {
+                if (success) {
+                    this.suppliers.forEach((s, index) => {
+                        if (s === supplier) this.suppliers.splice(index, 1);
+                    });
+                }
+            }, err => this.errorMessage = "Failed to delete supplier");
     }
 }

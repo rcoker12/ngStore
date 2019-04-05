@@ -73,6 +73,22 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpPost]
+        [Route("api/supplier/delete")]
+        public IActionResult Delete([FromBody]SupplierViewModel model)
+        {
+            try
+            {
+                var supplier = _mapper.Map<SupplierViewModel, Supplier>(model);
+                return Ok(_supplierRepository.Delete(supplier.Id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete supplier product: {ex}");
+                return BadRequest("Failed to delete supplier product");
+            }
+        }
+
+        [HttpPost]
         [Route("api/supplier/deleteProduct")]
         public IActionResult DeleteProduct([FromBody]SupplierViewModel model)
         {

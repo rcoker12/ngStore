@@ -40,7 +40,15 @@ export class SupplierService {
             .pipe(
                 map((response: Supplier) => {
                 this.supplier = response;
-                    console.log(this.supplier);
+                    return true;
+                }));
+    }
+
+    deleteSupplier(supplier): Observable<boolean> {
+        return this.http.post("/api/supplier/delete", supplier)
+            .pipe(
+                map((response: Supplier) => {
+                    this.supplier = response;
                     return true;
                 }));
     }
@@ -50,7 +58,6 @@ export class SupplierService {
             .pipe(
                 map((response: Supplier) => {
                     this.supplier = response;
-                    console.log(this.supplier);
                     return true;
                 }));
     }

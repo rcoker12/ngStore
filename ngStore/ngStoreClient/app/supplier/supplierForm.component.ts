@@ -27,13 +27,13 @@ export class SupplierForm implements OnInit {
     ngOnInit() {
         if (this.supplierId != "0") {
             this.getSupplier();
-            this.productService.getProducts()
-                .subscribe(success => {
-                    if (success) {
-                        this.products = this.productService.products;
-                    }
-                });
         }
+        this.productService.getProducts()
+            .subscribe(success => {
+                if (success) {
+                    this.products = this.productService.products;
+                }
+            });
     }
 
     getSupplier() {
@@ -86,6 +86,6 @@ export class SupplierForm implements OnInit {
                         if (p === product) this.supplier.products.splice(index, 1);
                     });                
                 }
-            }, err => this.errorMessage = "Failed to save supplier product");
+            }, err => this.errorMessage = "Failed to delete supplier product");
     }
 }
