@@ -73,7 +73,6 @@ export class SupplierForm implements OnInit {
         else if (!p) {
             this.supplier.products.push(this.supplier.product);
         }
-        console.log(this.supplier.products);
     }
 
     deleteProduct(supplier: Supplier, product: Product) {

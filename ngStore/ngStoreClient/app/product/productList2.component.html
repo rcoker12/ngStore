@@ -1,6 +1,7 @@
 ﻿<h1 style="margin-top: 20px">{{ title }}</h1>
 
 <div class="container">
+    <div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
     <div class="row">
         <div class="table-responsive-md">
             <table class="table table-striped">
@@ -11,8 +12,8 @@
                         <th scope="col">Package</th>
                         <th scope="col">Supplier</th>
                         <th scope="col">Discontinued</th>
-                        <th scope="col" class="text-center">Quantity</th>
                         <th scope="col" class="text-right">Price</th>
+                        <th scope="col"># Items</th>
                         <th scope="col"></th>
                         <th class="text-right"><button class="btn btn-sm btn-primary" (click)="addProduct()">Add</button></th>
                     </tr>
@@ -24,10 +25,10 @@
                         <td>{{p.package}}</td>
                         <td>{{p.supplier.companyName}}</td>
                         <td>{{p.discontinued | yesnoBoolean}}</td>
-                        <td><input id="quantity" class="form-control" type="text" value="1" /></td>
                         <td>{{p.unitPrice | currency:"USD":"symbol"}}</td>
+                        <td class="badge badge-dark text-center" style="margin-top: 10px">{{p.orderItems.length}}</td>
                         <td class="text-right"><button class="btn btn-sm btn-success" (click)="editProduct(p)">Edit</button></td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger">Delete</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" type="button" (click)="deleteProduct(p)" [disabled]="p.orderItems.length > 0">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

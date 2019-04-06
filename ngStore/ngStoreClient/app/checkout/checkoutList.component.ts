@@ -22,7 +22,6 @@ export class CheckoutList implements OnInit {
         var o = localStorage.getItem('order');
         this.order = JSON.parse(o);
         this.getSubtotal();
-        console.log(this.order);
     }
 
     //  After creating order from JSON, functions on Order cannot be found, so we have to do it here

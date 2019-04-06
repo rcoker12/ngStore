@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ngStore.Database.Entities
 {
-    public class Product
+    public class ProductViewModel
     {
         public int Id { get; set; }
         public string ProductName { get; set; }

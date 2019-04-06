@@ -32,4 +32,22 @@ export class ProductService {
                     return true;
                 }));
     }
+
+    saveProduct(product): Observable<boolean> {
+        return this.http.post("/api/product", product)
+            .pipe(
+                map((response: Product) => {
+                    this.product = response;
+                    return true;
+                }));
+    }
+
+    deleteProduct(product): Observable<boolean> {
+        return this.http.post("/api/product/delete", product)
+            .pipe(
+                map((response: Product) => {
+                    this.product = response;
+                    return true;
+                }));
+    }
 }

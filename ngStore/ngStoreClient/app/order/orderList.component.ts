@@ -32,7 +32,6 @@ export class OrderList implements OnInit {
     }
 
     editOrder(order: Order) {
-        console.log(order);
         localStorage.setItem('orderId', JSON.stringify(order.id));
         this.router.navigate(["Order/" + order.id]);
     }

@@ -1,6 +1,7 @@
 ﻿<h1 class="text-left" style="margin-top: 20px">{{ title }}</h1>
 
-<form method="post">
+<form method="post" name="productForm" role="form" (submit)="onSubmit()" #productForm="ngForm" novalidate>
+    <div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
     <div asp-validation-summary="ModelOnly"></div>
     <div class="form-row">
         <div class="col-md-4 mb-2">
@@ -9,8 +10,10 @@
             <div class="text-danger" *ngIf="productName.touched && productName.invalid && productName.errors.required">Product name is required!</div>
         </div>
         <div class="col-md-4 mb-2">
-            <label for="companyName">Supplier Name</label>
-            <input type="text" class="form-control" name="companyName" [(ngModel)]="product.supplier.companyName" #companyName="ngModel" />
+            <label for="supplier">Supplier</label>
+            <select name="supplier" class="browser-default custom-select" (change)="onSupplierChange($event)">
+                <option *ngFor="let s of suppliers" [value]="s.id" [selected]="s.id === product.supplier.id">{{s.companyName}}</option>
+            </select>
         </div>
         <div class="col-md-4 mb-2">
             <label for="unitPrice">Unit Price</label>
@@ -26,8 +29,12 @@
             <label for="isDiscontinued">Discontinued</label>
             <input type="checkbox" style="margin-left: 10px" name="isDiscontinued" [(ngModel)]="product.isDiscontinued" #isDiscontinued="ngModel" />
         </div>
+        <div class="col-md-4 mb-2">
+            <label for="add">Remove Order Items Using This Product</label>
+            <button type="button" class="btn btn-sm btn-primary form-control" (click)="removeItems()">Remove Items</button>
+        </div>
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Save</button>
+    <input type="submit" class="btn btn-primary" value="Save" [disabled]="productForm.invalid" />
     <a routerLink="/Product/CmsProduct" class="btn btn-light" style="margin-left: 10px">Cancel</a>
 </form>

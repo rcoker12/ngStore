@@ -1,4 +1,5 @@
 ﻿import { Supplier } from '../supplier/supplier';
+import { OrderItem } from '../order/orderItem';
 
 export class Product {
     id: number;
@@ -7,4 +8,5 @@ export class Product {
     unitPrice: number;
     package: string;
     isDiscontinued: boolean;
+    orderItems: Array<OrderItem> = new Array<OrderItem>();
 }

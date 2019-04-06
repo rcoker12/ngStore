@@ -23,7 +23,6 @@ export class OrderService {
 
         var t = localStorage.getItem('token');
         this.token = JSON.parse(t);
-        console.log(this.token);
     }
 
     addToOrder(product: Product, quantity: number) {

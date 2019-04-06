@@ -20,7 +20,6 @@ export class UserService {
             .pipe(
                 map((data: User) => {
                     this.user = data;
-                    console.log(this.user);
                     return true;
                 }));
     }

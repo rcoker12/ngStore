@@ -25,7 +25,6 @@ export class CustomerForm implements OnInit {
                 .subscribe(success => {
                     if (success) {
                         this.customer = this.customerService.customer;
-                        console.log(this.customer);
                     }
                 });
         }

@@ -83,8 +83,8 @@ namespace ngStore.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to delete supplier product: {ex}");
-                return BadRequest("Failed to delete supplier product");
+                _logger.LogError($"Failed to delete supplier: {ex}");
+                return BadRequest("Failed to delete supplier");
             }
         }
 

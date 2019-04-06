@@ -26,7 +26,6 @@ export class SupplierList implements OnInit {
                     this.suppliers = this.supplierService.suppliers;
                 }
             });
-
     }
 
     addSupplier() {

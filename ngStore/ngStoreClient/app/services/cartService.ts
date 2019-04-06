@@ -29,7 +29,6 @@ export class CartService {
             .pipe(
                 map(response => {
                     this.order = new Order();
-                    console.log(this.order);
                     localStorage.setItem('order', JSON.stringify(this.order));
                     return true;
                 }));

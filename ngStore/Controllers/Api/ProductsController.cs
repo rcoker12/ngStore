@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,11 +17,13 @@ namespace ngStore.Controllers.Api
     {
         private readonly IProductRepository _productRepository;
         private readonly ILogger<ProductsController> _logger;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository productRepository, ILogger<ProductsController> logger)
+        public ProductsController(IProductRepository productRepository, ILogger<ProductsController> logger, IMapper mapper)
         {
             _productRepository = productRepository;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -50,6 +53,38 @@ namespace ngStore.Controllers.Api
             {
                 _logger.LogError($"Failed to get product: {ex}");
                 return BadRequest("Failed to get product");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/product")]
+        public IActionResult Post([FromBody]ProductViewModel model)
+        {
+            try
+            {
+                var product = _mapper.Map<ProductViewModel, Product>(model);
+                return Ok(_productRepository.Save(product));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save product: {ex}");
+                return BadRequest("Failed to save product");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/product/delete")]
+        public IActionResult Delete([FromBody]ProductViewModel model)
+        {
+            try
+            {
+                var product = _mapper.Map<ProductViewModel, Product>(model);
+                return Ok(_productRepository.Delete(product.Id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete product: {ex}");
+                return BadRequest("Failed to delete product");
             }
         }
     }

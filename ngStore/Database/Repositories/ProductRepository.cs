@@ -65,6 +65,7 @@ namespace ngStore.Database.Repositories
                 _logger.LogInformation("GetAll<Product> was called");
                 return _ctx.Products
                     .Include(p => p.Supplier)
+                    .Include(i => i.OrderItems)
                     .OrderBy(p => p.ProductName);
             }
             catch (Exception ex)
@@ -91,8 +92,7 @@ namespace ngStore.Database.Repositories
                         p.IsDiscontinued = product.IsDiscontinued;
                         p.Package = product.Package;
                         p.ProductName = product.ProductName;
-                        p.Supplier = product.Supplier;
-                        p.SupplierId = product.SupplierId;
+                        p.SupplierId = product.Supplier.Id;
                         p.UnitPrice = product.UnitPrice;
                     }
                 }

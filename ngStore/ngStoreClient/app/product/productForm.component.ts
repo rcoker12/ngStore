@@ -1,7 +1,9 @@
 ﻿import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { Product } from './product';
 import { ProductService } from '../services/productService';
+import { SupplierService } from '../services/supplierService';
 import { Supplier } from '../supplier/supplier';
 
 @Component({
@@ -12,15 +14,14 @@ import { Supplier } from '../supplier/supplier';
 export class ProductForm implements OnInit {
 
     private title: string;
+    private errorMessage: string = "";
     private productId: string;
-    public product: Product = new Product();
+    private product: Product = new Product();
+    private suppliers: Supplier[] = [];
 
-    constructor(private productService: ProductService) {
+    constructor(private productService: ProductService, private router: Router, private supplierService: SupplierService) {
         this.title = "Product";
         this.productId = localStorage.getItem("productId");
-
-        //  Must do this for embedded classes in product
-        this.product.supplier = new Supplier();
     }
 
     ngOnInit() {
@@ -29,9 +30,35 @@ export class ProductForm implements OnInit {
                 .subscribe(success => {
                     if (success) {
                         this.product = this.productService.product;
-                        console.log(this.product);
                     }
                 });
         }
+
+        this.supplierService.getSuppliers()
+            .subscribe(success => {
+                if (success) {
+                    this.suppliers = this.supplierService.suppliers;
+                }
+            });
+
+    }
+
+    onSupplierChange(event): void {
+        this.supplierService.getSupplier(event.target.value)
+            .subscribe(success => {
+                if (success) {
+                    this.product.supplier = this.supplierService.supplier;
+                    console.log(this.product.supplier);
+                }
+            });
+    }
+
+    onSubmit() {
+        this.productService.saveProduct(this.product)
+            .subscribe(success => {
+                if (success) {
+                    this.router.navigate(["Product/CmsProduct"]);
+                }
+            }, err => this.errorMessage = "Failed to save supplier");
     }
 }
