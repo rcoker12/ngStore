@@ -32,4 +32,13 @@ export class CustomerService {
                     return true;
                 }));
     }
+
+    deleteCustomer(customer): Observable<boolean> {
+        return this.http.post("/api/customer/delete", customer)
+            .pipe(
+                map((response: Customer) => {
+                    this.customer = response;
+                    return true;
+                }));
+    }
 }

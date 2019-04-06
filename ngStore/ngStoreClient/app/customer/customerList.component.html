@@ -1,6 +1,7 @@
 ﻿<h1 class="text-left" style="margin-top: 20px">{{ title }}</h1>
 
 <div class="container">
+    <div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
     <div class="row">
         <div class="table-responsive-md">
             <table class="table table-striped">
@@ -25,7 +26,7 @@
                         <td>{{c.phone}}</td>
                         <td class="badge badge-dark text-center" style="margin-top: 10px">{{c.orders.length}}</td>
                         <td class="text-right"><button class="btn btn-sm btn-success" (click)="editCustomer(c)">Edit</button></td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger" [disabled]="c.orders.length > 0">Delete</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" type="button" (click)="deleteCustomer(s)" [disabled]="c.orders.length > 0">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

@@ -12,6 +12,7 @@ import { CustomerService } from '../services/customerService';
 export class CustomerList implements OnInit {
 
     private title: string;
+    private errorMessage: string = "";
     public customers: Customer[] = [];
 
     constructor(private customerService: CustomerService, private router: Router) {
@@ -36,5 +37,17 @@ export class CustomerList implements OnInit {
     editCustomer(customer: Customer) {
         localStorage.setItem('customerId', JSON.stringify(customer.id));
         this.router.navigate(["Customer/" + customer.id]);
+    }
+
+    deleteCustomer(customer: Customer) {
+        this.customerService.deleteCustomer(customer)
+            .subscribe(success => {
+                    if (success) {
+                        this.customers.forEach((c, index) => {
+                            if (c === customer) this.customers.splice(index, 1);
+                        });
+                    }
+                },
+                err => this.errorMessage = "Failed to delete customer");
     }
 }

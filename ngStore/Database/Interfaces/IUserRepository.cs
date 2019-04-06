@@ -5,7 +5,7 @@ namespace ngStore.Database.Interfaces
 {
     public interface IUserRepository
     {
-        int Delete(int id);
+        int Delete(string id);
         User Get(string id);
         IEnumerable<User> GetAll();
         string Save(User entity);

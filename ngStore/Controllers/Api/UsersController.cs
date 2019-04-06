@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ngStore.Database.Entities;
 using ngStore.Database.Interfaces;
+using ngStore.ViewModels;
 
 namespace ngStore.Controllers.Api
 {
@@ -14,11 +17,13 @@ namespace ngStore.Controllers.Api
     {
         private readonly IUserRepository _userRepository;
         private readonly ILogger<UsersController> _logger;
+        private readonly IMapper _mapper;
 
-        public UsersController(IUserRepository userRepository, ILogger<UsersController> logger)
+        public UsersController(IUserRepository userRepository, ILogger<UsersController> logger, IMapper mapper)
         {
             _userRepository = userRepository;
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -48,6 +53,22 @@ namespace ngStore.Controllers.Api
             {
                 _logger.LogError($"Failed to get user: {ex}");
                 return BadRequest("Failed to get user");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/user/delete")]
+        public IActionResult Delete([FromBody]UserViewModel model)
+        {
+            try
+            {
+                var user = _mapper.Map<UserViewModel, User>(model);
+                return Ok(_userRepository.Delete(user.Id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete customer: {ex}");
+                return BadRequest("Failed to delete customer");
             }
         }
     }

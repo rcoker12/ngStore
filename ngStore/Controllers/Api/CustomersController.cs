@@ -86,5 +86,21 @@ namespace ngStore.Controllers.Api
                 return BadRequest("Failed to save customer");
             }
         }
+
+        [HttpPost]
+        [Route("api/customer/delete")]
+        public IActionResult Delete([FromBody]CustomerViewModel model)
+        {
+            try
+            {
+                var customer = _mapper.Map<CustomerViewModel, Customer>(model);
+                return Ok(_customerRepository.Delete(customer.Id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete customer: {ex}");
+                return BadRequest("Failed to delete customer");
+            }
+        }
     }
 }

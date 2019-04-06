@@ -32,6 +32,8 @@ export class ProductForm implements OnInit {
                         this.product = this.productService.product;
                     }
                 });
+        } else {
+            this.product.supplier = new Supplier();
         }
 
         this.supplierService.getSuppliers()
@@ -40,7 +42,6 @@ export class ProductForm implements OnInit {
                     this.suppliers = this.supplierService.suppliers;
                 }
             });
-
     }
 
     onSupplierChange(event): void {

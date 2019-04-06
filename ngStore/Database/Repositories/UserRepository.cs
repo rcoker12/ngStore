@@ -20,7 +20,7 @@ namespace ngStore.Database.Repositories
             _logger = logger;
         }
 
-        public int Delete(int id)
+        public int Delete(string id)
         {
             try
             {
