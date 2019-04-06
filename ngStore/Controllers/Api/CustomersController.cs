@@ -57,28 +57,13 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpPost]
-        [Route("api/customers")]
+        [Route("api/customer")]
         public IActionResult Post([FromBody]CustomerViewModel model)
         {
             try
             {
                 var customer = _mapper.Map<CustomerViewModel, Customer>(model);
-
-                if (ModelState.IsValid)
-                {
-                    var result = _customerRepository.Save(customer);
-                    if (result != 0)
-                    {
-                        return Created($"/api/customers/{customer.Id}", _mapper.Map<Customer, CustomerViewModel>(customer));
-                    }
-                    {
-                        return BadRequest(ModelState);
-                    }
-                }
-                else
-                {
-                    return BadRequest(ModelState);
-                }
+                return Ok(_customerRepository.Save(customer));
             }
             catch (Exception ex)
             {
@@ -86,6 +71,37 @@ namespace ngStore.Controllers.Api
                 return BadRequest("Failed to save customer");
             }
         }
+
+        //[HttpPost]
+        //[Route("api/customers")]
+        //public IActionResult Post([FromBody]CustomerViewModel model)
+        //{
+        //    try
+        //    {
+        //        var customer = _mapper.Map<CustomerViewModel, Customer>(model);
+
+        //        if (ModelState.IsValid)
+        //        {
+        //            var result = _customerRepository.Save(customer);
+        //            if (result != 0)
+        //            {
+        //                return Created($"/api/customers/{customer.Id}", _mapper.Map<Customer, CustomerViewModel>(customer));
+        //            }
+        //            {
+        //                return BadRequest(ModelState);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            return BadRequest(ModelState);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError($"Failed to save customer: {ex}");
+        //        return BadRequest("Failed to save customer");
+        //    }
+        //}
 
         [HttpPost]
         [Route("api/customer/delete")]

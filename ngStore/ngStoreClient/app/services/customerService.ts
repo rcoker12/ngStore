@@ -33,6 +33,15 @@ export class CustomerService {
                 }));
     }
 
+    saveCustomer(customer): Observable<boolean> {
+        return this.http.post("/api/customer", customer)
+            .pipe(
+                map((response: Customer) => {
+                    this.customer = response;
+                    return true;
+                }));
+    }
+
     deleteCustomer(customer): Observable<boolean> {
         return this.http.post("/api/customer/delete", customer)
             .pipe(

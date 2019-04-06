@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { Customer } from './customer';
 import { CustomerService } from '../services/customerService';
@@ -11,10 +12,11 @@ import { CustomerService } from '../services/customerService';
 export class CustomerForm implements OnInit {
 
     private title: string;
+    private errorMessage: string = "";
     private customerId: string;
     public customer: Customer = new Customer();
 
-    constructor(private customerService: CustomerService) {
+    constructor(private customerService: CustomerService, private router: Router) {
         this.title = "Customer";
         this.customerId = localStorage.getItem("customerId");
     }
@@ -28,5 +30,14 @@ export class CustomerForm implements OnInit {
                     }
                 });
         }
+    }
+
+    onSubmit() {
+        this.customerService.saveCustomer(this.customer)
+            .subscribe(success => {
+                if (success) {
+                    this.router.navigate(["Customer/Customers"]);
+                }
+            }, err => this.errorMessage = "Failed to save customer");
     }
 }
