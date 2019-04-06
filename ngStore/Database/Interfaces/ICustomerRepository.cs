@@ -10,5 +10,6 @@ namespace ngStore.Database.Interfaces
         IEnumerable<Customer> GetAll();
         Customer GetCustomerByName(string firstName, string lastName);
         int Save(Customer customer);
+        int DeleteOrder(Customer entity, int orderId);
     }
 }

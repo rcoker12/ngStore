@@ -49,7 +49,6 @@ export class ProductForm implements OnInit {
             .subscribe(success => {
                 if (success) {
                     this.product.supplier = this.supplierService.supplier;
-                    console.log(this.product.supplier);
                 }
             });
     }

@@ -8,4 +8,5 @@ export class Customer {
     country: string;
     phone: string;
     orders: Array<Order> = new Array<Order>();
+    order: Order = new Order();
 }

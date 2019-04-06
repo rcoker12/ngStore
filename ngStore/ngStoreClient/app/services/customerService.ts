@@ -50,4 +50,14 @@ export class CustomerService {
                     return true;
                 }));
     }
+
+    deleteOrder(customer): Observable<boolean> {
+        console.log(customer);
+        return this.http.post("/api/customer/deleteOrder", customer)
+            .pipe(
+                map((response: Customer) => {
+                    this.customer = response;
+                    return true;
+                }));
+    }
 }

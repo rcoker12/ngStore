@@ -103,5 +103,31 @@ namespace ngStore.Database.Repositories
             var customer = _ctx.Customers.Where(c => c.FirstName == firstName && c.LastName == lastName).FirstOrDefault();
             return customer;
         }
+
+        public int DeleteOrder(Customer entity, int orderId)
+        {
+            try
+            {
+                _logger.LogInformation("Delete<CustomerOrder> was called");
+                var result = 0;
+                var customer = Get(entity.Id);
+
+                if (customer != null)
+                {
+                    var order = customer.Orders.Where(o => o.Id == orderId).FirstOrDefault();
+                    if (order != null)
+                    {
+                        customer.Orders.Remove(order);
+                        result = _ctx.SaveChanges();
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete customer order: {ex}");
+                return 0;
+            }
+        }
     }
 }

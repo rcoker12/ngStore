@@ -14,5 +14,6 @@ namespace ngStore.Database.Entities
         public string Country { get; set; }
         public string Phone { get; set; }
         public ICollection<Order> Orders { get; set; }
+        public Order Order { get; set; }
     }
 }

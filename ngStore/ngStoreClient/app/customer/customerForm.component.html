@@ -52,7 +52,7 @@
                         <td>{{o.orderNumber}}</td>
                         <td>{{o.totalAmount | currency:"USD":"symbol"}}</td>
                         <td class="badge badge-dark text-center" style="margin-top: 10px">{{o.orderItems.length}}</td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger">Delete</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" type="button" (click)="deleteOrder(customer, o)" [disabled]="o.orderItems.length > 0">Delete</button></td>
                     </tr>
                 </tbody>
             </table>
