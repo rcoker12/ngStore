@@ -12,7 +12,6 @@ export class OrderService {
 
     public order: Order;
     public orders: Order[] = [];
-    private token: string = "";
 
     constructor(private http: HttpClient) {
         var o = localStorage.getItem('order');
@@ -20,9 +19,6 @@ export class OrderService {
         if (this.order === null) {
             this.order = new Order();
         }
-
-        var t = localStorage.getItem('token');
-        this.token = JSON.parse(t);
     }
 
     addToOrder(product: Product, quantity: number) {
