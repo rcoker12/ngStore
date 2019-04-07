@@ -18,6 +18,7 @@ export class SupplierForm implements OnInit {
     private supplierId: string;
     public supplier: Supplier = new Supplier();
     public products: Product[] = [];
+    public product: Product = new Product();
 
     constructor(private supplierService: SupplierService, private router: Router, private productService: ProductService) {
         this.title = "Supplier";
@@ -59,24 +60,24 @@ export class SupplierForm implements OnInit {
         this.productService.getProduct(productId)
             .subscribe(success => {
                 if (success) {
-                    this.supplier.product = this.productService.product;
+                    this.product = this.productService.product;
                 }
             });
     }
 
     addProduct() {
-        let p: Product = this.supplier.products.find(p => p.id == this.supplier.product.id);
-        if (this.supplier.product.id === undefined) {
-            this.supplier.product = this.products[0];
-            this.supplier.products.push(this.supplier.product);
+        let p: Product = this.supplier.products.find(p => p.id == this.product.id);
+        if (this.product.id === undefined) {
+            this.product = this.products[0];
+            this.products.push(this.product);
         }
         else if (!p) {
-            this.supplier.products.push(this.supplier.product);
+            this.supplier.products.push(this.product);
         }
     }
 
     deleteProduct(supplier: Supplier, product: Product) {
-        supplier.product = product;
+        this.product = product;
         this.supplierService.deleteProduct(this.supplier)
             .subscribe(success => {
                 if (success) {

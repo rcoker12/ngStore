@@ -10,5 +10,4 @@ export class Supplier {
     phone: string;
     fax: string;
     products: Array<Product> = new Array<Product>();
-    product: Product = new Product();
 }
