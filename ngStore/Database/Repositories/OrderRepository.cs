@@ -67,7 +67,6 @@ namespace ngStore.Database.Repositories
                 _logger.LogInformation("GetAll<Order> was called");
                 return _ctx.Orders
                     .Include(i => i.OrderItems)
-                    .ThenInclude(p => p.Product)
                     .OrderBy(o => o.OrderDate);
             }
             catch (Exception ex)
