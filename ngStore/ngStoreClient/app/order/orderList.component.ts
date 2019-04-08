@@ -12,6 +12,7 @@ import { OrderService } from '../services/orderService';
 export class OrderList implements OnInit {
 
     private title: string = "Orders";
+    private errorMessage: string = "";
     public orders: Order[] = [];
 
     constructor(private orderService: OrderService, private router: Router) {
@@ -34,5 +35,16 @@ export class OrderList implements OnInit {
     editOrder(order: Order) {
         localStorage.setItem('orderId', JSON.stringify(order.id));
         this.router.navigate(["Order/" + order.id]);
+    }
+
+    deleteOrder(order: Order) {
+        this.orderService.deleteOrder(order)
+            .subscribe(success => {
+                if (success) {
+                    this.orders.forEach((o, index) => {
+                        if (o === order) this.orders.splice(index, 1);
+                    });
+                }
+            }, err => this.errorMessage = "Failed to delete order");
     }
 }

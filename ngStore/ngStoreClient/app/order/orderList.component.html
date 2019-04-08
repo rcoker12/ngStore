@@ -1,6 +1,7 @@
 ﻿<h1 style="margin-top: 20px">{{ title }}</h1>
 
 <div class="container">
+    <div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
     <div class="row">
         <div class="table-responsive-md">
             <table class="table table-striped">
@@ -23,7 +24,7 @@
                         <td>{{o.totalAmount | currency:"USD":"symbol"}}</td>
                         <td class="badge badge-dark text-center" style="margin-top: 10px">{{o.orderItems.length}}</td>
                         <td class="text-right"><button class="btn btn-sm btn-success" (click)="editOrder(o)">Edit</button></td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger" [disabled]="o.orderItems.length > 0">Delete</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" type="button" (click)="deleteOrder(o)" [disabled]="o.orderItems.length.length > 0">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

@@ -1,11 +1,12 @@
 ﻿<h1 class="text-left" style="margin-top: 20px">{{ title }}</h1>
 
-<form method="post">
+<form method="post" name="orderForm" role="form" (submit)="onSubmit()" #orderForm="ngForm" novalidate>
+    <div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
     <div asp-validation-summary="ModelOnly"></div>
     <div class="form-row">
         <div class="col-md-4 mb-2">
             <label for="orderDate">Order Date</label>
-            <input type="text" class="form-control" name="orderDate" [(ngModel)]="order.orderDate" #orderDate="ngModel" required />
+            <input type="text" class="form-control" name="orderDate" [ngModel]="order.orderDate | date: 'MM/dd/yyyy'" #orderDate="ngModel" required />
             <div class="text-danger" *ngIf="orderDate.touched && orderDate.invalid && orderDate.errors.required">Order date is required!</div>
         </div>
         <div class="col-md-4 mb-2">
@@ -25,7 +26,7 @@
         </div>
     </div>
     <br />
-    <button type="submit" class="btn btn-primary">Save</button>
+    <input type="submit" class="btn btn-primary" value="Save" [disabled]="orderForm.invalid" />
     <a routerLink="/Order/Orders" class="btn btn-light" style="margin-left: 10px">Cancel</a>
     <h3 class="text-left" style="margin-top: 20px">Items</h3>
     <div class="row">

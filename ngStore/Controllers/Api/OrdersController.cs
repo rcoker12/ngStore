@@ -75,8 +75,40 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpPost]
+        [Route("api/order")]
+        public IActionResult Post([FromBody]OrderViewModel model)
+        {
+            try
+            {
+                var order = _mapper.Map<OrderViewModel, Order>(model);
+                return Ok(_orderRepository.Save(order));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save order: {ex}");
+                return BadRequest("Failed to save order");
+            }
+        }
+
+        [HttpPost]
+        [Route("api/order/delete")]
+        public IActionResult Delete([FromBody]OrderViewModel model)
+        {
+            try
+            {
+                var order = _mapper.Map<OrderViewModel, Order>(model);
+                return Ok(_orderRepository.Delete(order.Id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete order: {ex}");
+                return BadRequest("Failed to delete order");
+            }
+        }
+
+        [HttpPost]
         [Route("api/orders")]
-        public async Task<IActionResult> Post([FromBody]OrderViewModel model)
+        public async Task<IActionResult> Checkout([FromBody]OrderViewModel model)
         {
             try
             {

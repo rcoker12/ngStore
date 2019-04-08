@@ -55,4 +55,22 @@ export class OrderService {
                     return true;
                 }));
     }
+
+    saveOrder(order): Observable<boolean> {
+        return this.http.post("/api/order", order)
+            .pipe(
+                map((response: Order) => {
+                    this.order = response;
+                    return true;
+                }));
+    }
+
+    deleteOrder(order): Observable<boolean> {
+        return this.http.post("/api/order/delete", order)
+            .pipe(
+                map((response: Order) => {
+                    this.order = response;
+                    return true;
+                }));
+    }
 }
