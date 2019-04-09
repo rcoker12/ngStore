@@ -10,6 +10,7 @@ import { OrderItem } from '../order/orderItem';
 @Injectable()
 export class OrderService {
 
+    private token: string = "";
     public order: Order;
     public orders: Order[] = [];
 
@@ -19,6 +20,8 @@ export class OrderService {
         if (this.order === null) {
             this.order = new Order();
         }
+        var t = localStorage.getItem('token');
+        this.token = JSON.parse(t);
     }
 
     addToOrder(product: Product, quantity: number) {
@@ -57,7 +60,9 @@ export class OrderService {
     }
 
     saveOrder(order): Observable<boolean> {
-        return this.http.post("/api/order", order)
+        return this.http.post("/api/order", order, {
+                headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
+            })
             .pipe(
                 map((response: Order) => {
                     this.order = response;
@@ -66,7 +71,9 @@ export class OrderService {
     }
 
     deleteOrder(order): Observable<boolean> {
-        return this.http.post("/api/order/delete", order)
+        return this.http.post("/api/order/delete", order, {
+                headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
+            })
             .pipe(
                 map((response: Order) => {
                     this.order = response;

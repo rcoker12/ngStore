@@ -33,6 +33,7 @@ export class OrderForm implements OnInit {
     }
 
     onSubmit() {
+        console.log(this.order);
         this.orderService.saveOrder(this.order)
             .subscribe(success => {
                 if (success) {

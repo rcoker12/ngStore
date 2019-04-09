@@ -52,7 +52,6 @@ export class CustomerService {
     }
 
     deleteOrder(customer): Observable<boolean> {
-        console.log(customer);
         return this.http.post("/api/customer/deleteOrder", customer)
             .pipe(
                 map((response: Customer) => {
