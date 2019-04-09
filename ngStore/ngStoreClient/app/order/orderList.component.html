@@ -9,7 +9,7 @@
                     <tr>
                         <th scope="col">Order Date</th>
                         <th scope="col">Order Number</th>
-                        <th scope="col">Customer ID</th>
+                        <th scope="col">Customer Name</th>
                         <th scope="col">Amount</th>
                         <th scope="col"># Items</th>
                         <th scope="col"></th>
@@ -20,7 +20,7 @@
                     <tr *ngFor="let o of orders">
                         <td>{{o.orderDate | date: 'MM/dd/yyyy'}}</td>
                         <td>{{o.orderNumber}}</td>
-                        <td>{{o.customerId}}</td>
+                        <td>{{o.customer.firstName}} {{o.customer.lastName}}</td>
                         <td>{{o.totalAmount | currency:"USD":"symbol"}}</td>
                         <td class="badge badge-dark text-center" style="margin-top: 10px">{{o.orderItems.length}}</td>
                         <td class="text-right"><button class="btn btn-sm btn-success" (click)="editOrder(o)">Edit</button></td>

@@ -15,9 +15,10 @@
             <div class="text-danger" *ngIf="orderNumber.touched && orderNumber.invalid && orderNumber.errors.required">Order number is required!</div>
         </div>
         <div class="col-md-4 mb-2">
-            <label for="customerId">Customer ID</label>
-            <input type="text" class="form-control" name="customerId" [(ngModel)]="order.customerId" #customerId="ngModel" />
-            <div class="text-danger" *ngIf="customerId.touched && customerId.invalid && customerId.errors.required">Customer ID is required!</div>
+            <label for="customer">Customer</label>
+            <select name="customer" class="browser-default custom-select" (change)="onCustomerChange($event)">
+                <option *ngFor="let c of customers" value="{{c.id}}" [selected]="c.id === order.customer.id">{{c.firstName}} {{c.lastName}}</option>
+            </select>
         </div>
         <div class="col-md-4 mb-2">
             <label for="totalAmount">Total Amount</label>

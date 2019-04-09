@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 
 import { Order } from './order';
 import { OrderService } from '../services/orderService';
+import { Customer } from '../customer/customer';
+import { CustomerService } from '../services/customerService';
 
 @Component({
     selector: "order",
@@ -15,8 +17,9 @@ export class OrderForm implements OnInit {
     private errorMessage: string = "";
     private orderId: string;
     public order: Order = new Order();
+    private customers: Customer[] = [];
 
-    constructor(private orderService: OrderService, private router: Router) {
+    constructor(private orderService: OrderService, private router: Router, private customerService: CustomerService) {
         this.title = "Order";
         this.orderId = localStorage.getItem("orderId");
     }
@@ -29,11 +32,29 @@ export class OrderForm implements OnInit {
                         this.order = this.orderService.order;
                     }
                 });
+        } else {
+            this.order.customer = new Customer();
         }
+
+        this.customerService.getCustomers()
+            .subscribe(success => {
+                if (success) {
+                    this.customers = this.customerService.customers;
+                }
+            });
+    }
+
+    onCustomerChange(event): void {
+        console.log(event.target.value);
+        this.customerService.getCustomer(event.target.value)
+            .subscribe(success => {
+                if (success) {
+                    this.order.customer = this.customerService.customer;
+                }
+            });
     }
 
     onSubmit() {
-        console.log(this.order);
         this.orderService.saveOrder(this.order)
             .subscribe(success => {
                 if (success) {

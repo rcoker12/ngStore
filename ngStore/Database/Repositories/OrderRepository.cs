@@ -50,6 +50,7 @@ namespace ngStore.Database.Repositories
                 return _ctx.Orders
                     .Include(o => o.OrderItems)
                     .ThenInclude(i => i.Product)
+                    .Include(c => c.Customer)
                     .Where(o => o.Id == id)
                     .FirstOrDefault();
             }
@@ -67,6 +68,7 @@ namespace ngStore.Database.Repositories
                 _logger.LogInformation("GetAll<Order> was called");
                 return _ctx.Orders
                     .Include(i => i.OrderItems)
+                    .Include(c => c.Customer)
                     .OrderBy(o => o.OrderDate);
             }
             catch (Exception ex)
@@ -98,7 +100,7 @@ namespace ngStore.Database.Repositories
                     if (o != null)
                     {
                         o.Id = order.Id;
-                        o.CustomerId = order.CustomerId;
+                        o.Customer = order.Customer;
                         o.OrderDate = order.OrderDate;
                         o.OrderNumber = order.OrderNumber;
                         o.TotalAmount = order.TotalAmount;
