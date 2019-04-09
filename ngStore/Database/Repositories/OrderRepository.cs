@@ -100,11 +100,10 @@ namespace ngStore.Database.Repositories
                     if (o != null)
                     {
                         o.Id = order.Id;
-                        o.Customer = order.Customer;
+                        o.CustomerId = order.CustomerId;
                         o.OrderDate = order.OrderDate;
                         o.OrderNumber = order.OrderNumber;
                         o.TotalAmount = order.TotalAmount;
-                        o.OrderItems = order.OrderItems;
                     }
                 }
                 _ctx.SaveChanges();

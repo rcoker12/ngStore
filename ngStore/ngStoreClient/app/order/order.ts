@@ -1,5 +1,6 @@
 ﻿import { OrderItem } from '../order/orderItem';
 import { Customer } from '../customer/customer';
+import { Product } from '../product/product';
 
 export class Order {
     id: number;
@@ -9,4 +10,5 @@ export class Order {
     totalAmount: number;
     subTotal: number;
     orderItems: Array<OrderItem> = new Array <OrderItem>();
+    products: Array<Product> = new Array<Product>();
 }

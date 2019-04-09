@@ -11,6 +11,7 @@ namespace ngStore.Database.Entities
         public DateTime OrderDate { get; set; }
         public string OrderNumber { get; set; }
         public Customer Customer { get; set; }
+        public int CustomerId { get; set; }
         public decimal TotalAmount { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
         public User User { get; set; }

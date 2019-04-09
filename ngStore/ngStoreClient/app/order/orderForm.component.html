@@ -25,6 +25,16 @@
             <input type="text" class="form-control" name="totalAmount" [(ngModel)]="order.totalAmount" #totalAmount="ngModel" required />
             <div class="text-danger" *ngIf="totalAmount.touched && totalAmount.invalid && totalAmount.errors.required">Total amount is required!</div>
         </div>
+        <div class="col-md-4 mb-2">
+            <label for="items">All Products</label>
+            <select class="browser-default custom-select" (change)="onProductChange($event)">
+                <option *ngFor="let p of products" [value]="p.id">{{p.productName}}</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label for="add">Add This Product to This Order</label>
+            <button type="button" class="btn btn-sm btn-primary form-control" (click)="addProduct()">Add Product</button>
+        </div>
     </div>
     <br />
     <input type="submit" class="btn btn-primary" value="Save" [disabled]="orderForm.invalid" />

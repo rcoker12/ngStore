@@ -60,6 +60,7 @@ export class OrderService {
     }
 
     saveOrder(order): Observable<boolean> {
+        order.customerId = order.customer.id;
         return this.http.post("/api/order", order, {
                 headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
             })
