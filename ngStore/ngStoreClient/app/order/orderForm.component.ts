@@ -82,12 +82,23 @@ export class OrderForm implements OnInit {
         if (this.product === undefined || this.product.id === undefined) {
             this.product = this.products[0];
         }
-        let orderItem: OrderItem = new OrderItem();
-        orderItem.quantity = 1;
+        let orderItem: OrderItem = this.order.orderItems.find(i => i.product.id == this.product.id);
+        if (orderItem) {
+            orderItem.quantity++;
+            this.order.orderItems.forEach((i, index) => {
+                if (i === orderItem) this.order.orderItems.splice(index, 1);
+            });
+        } else {
+            
+            orderItem = new OrderItem();
+            orderItem.quantity = 1;
+        }
         orderItem.product = this.product;
         orderItem.unitPrice = this.product.unitPrice;
         orderItem.orderId = this.order.id;
         this.order.orderItems.push(orderItem);
+        this.getTotalAmount();
+        console.log(this.order);
     }
 
     onSubmit() {
@@ -101,7 +112,6 @@ export class OrderForm implements OnInit {
 
     deleteItem(order: Order, item: OrderItem) {
         order.orderItem = item;
-        console.log(order.orderItem);
         this.orderService.deleteItem(order)
             .subscribe(success => {
                 if (success) {
@@ -109,7 +119,16 @@ export class OrderForm implements OnInit {
                     this.order.orderItems.forEach((i, index) => {
                         if (i === item) this.order.orderItems.splice(index, 1);
                     });
+                    this.getTotalAmount();
                 }
             }, err => this.errorMessage = "Failed to delete order item");
     }
+
+    getTotalAmount() {
+        var sum = 0;
+        for (var i = 0; i < this.order.orderItems.length; i++) {
+            sum += this.order.orderItems[i].unitPrice * this.order.orderItems[i].quantity;
+        }
+        this.order.totalAmount = sum;
+    };
 }
