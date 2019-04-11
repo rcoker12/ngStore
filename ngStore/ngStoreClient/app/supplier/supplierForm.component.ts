@@ -78,6 +78,7 @@ export class SupplierForm implements OnInit {
 
     deleteProduct(supplier: Supplier, product: Product) {
         this.product = product;
+        this.supplier.product = this.product;
         this.supplierService.deleteProduct(this.supplier)
             .subscribe(success => {
                 if (success) {

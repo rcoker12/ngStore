@@ -104,6 +104,7 @@ namespace ngStore.Database.Repositories
         {
             try
             {
+                var products = supplier.Products;
                 if (supplier.Id == 0)
                 {
                     _ctx.Add(supplier);
@@ -111,7 +112,6 @@ namespace ngStore.Database.Repositories
                 else
                 {
                     var allSuppliers = _ctx.Suppliers.Include(p => p.Products);
-                    var allProducts = _ctx.Products;
                     var s = allSuppliers.First(i => i.Id == supplier.Id);
                     if (s != null)
                     {
@@ -123,23 +123,18 @@ namespace ngStore.Database.Repositories
                         s.Country = supplier.Country;
                         s.Fax = supplier.Fax;
                         s.Phone = supplier.Phone;
+                    }
+                }
+                supplier.Products = null;
+                _ctx.SaveChanges();
 
-                        //  Save products, these are adds only. Supplier form doesn't allow product edits.
-                        foreach (var product in supplier.Products)
-                        {
-                            var p1= s.Products.FirstOrDefault(i => i.Id == product.Id);
-
-                            //  New product
-                            if (p1 == null)
-                            {
-                                var p2 = _ctx.Products.Find(product.Id);
-                                if (p2 != null)
-                                {
-                                    p2.Supplier = supplier;
-                                    p2.SupplierId = supplier.Id;
-                                }
-                            }
-                        }
+                //  Save products, these are adds only. Supplier form doesn't allow product edits. 
+                foreach (var product in products)
+                {
+                    var p = _ctx.Products.Find(product.Id);
+                    if (p != null)
+                    {
+                        p.SupplierId = supplier.Id;
                     }
                 }
                 _ctx.SaveChanges();
