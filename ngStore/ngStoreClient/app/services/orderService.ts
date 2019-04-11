@@ -81,4 +81,15 @@ export class OrderService {
                     return true;
                 }));
     }
+
+    deleteItem(order): Observable<boolean> {
+        return this.http.post("/api/order/deleteItem", order, {
+                headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
+            })
+            .pipe(
+                map((response: Order) => {
+                    this.order = response;
+                    return true;
+                }));
+    }
 }

@@ -11,4 +11,5 @@ export class Order {
     subTotal: number;
     orderItems: Array<OrderItem> = new Array <OrderItem>();
     products: Array<Product> = new Array<Product>();
+    orderItem: OrderItem;
 }

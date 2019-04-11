@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections.ObjectModel;
 
 namespace ngStore.Database.Repositories
 {
@@ -40,6 +41,32 @@ namespace ngStore.Database.Repositories
                 return 0;
             }
 
+        }
+
+        public int DeleteItem(Order entity, int orderItemId)
+        {
+            try
+            {
+                _logger.LogInformation("Delete<OrderItem> was called");
+                var result = 0;
+                var order = Get(entity.Id);
+
+                if (order != null)
+                {
+                    var item = order.OrderItems.Where(i => i.Id == orderItemId).FirstOrDefault();
+                    if (item != null)
+                    {
+                        order.OrderItems.Remove(item);
+                        result = _ctx.SaveChanges();
+                    }
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete order item: {ex}");
+                return 0;
+            }
         }
 
         public Order Get(int id)
@@ -104,6 +131,24 @@ namespace ngStore.Database.Repositories
                         o.OrderDate = order.OrderDate;
                         o.OrderNumber = order.OrderNumber;
                         o.TotalAmount = order.TotalAmount;
+                    }
+                }
+                _ctx.SaveChanges();
+                foreach (var item in order.OrderItems)
+                {
+                    item.Product = null;
+                    if (item.Id == 0)
+                    {
+                        _ctx.OrderItems.Add(item);
+                    }
+                    else
+                    {
+                        var i = _ctx.OrderItems.Find(item.Id);
+                        i.OrderId = item.OrderId;
+                        i.ProductId = item.ProductId;
+                        i.UnitPrice = item.UnitPrice;
+                        i.Quantity = item.Quantity;
+                        i.Product = null;
                     }
                 }
                 _ctx.SaveChanges();

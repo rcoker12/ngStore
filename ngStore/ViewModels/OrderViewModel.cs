@@ -20,5 +20,6 @@ namespace ngStore.ViewModels
         public decimal TotalAmount { get; set; }
 
         public ICollection<OrderItemViewModel> OrderItems { get; set; }
+        public OrderItem OrderItem { get; set; }
     }
 }

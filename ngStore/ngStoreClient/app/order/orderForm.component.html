@@ -28,7 +28,7 @@
         <div class="col-md-4 mb-2">
             <label for="items">All Products</label>
             <select class="browser-default custom-select" (change)="onProductChange($event)">
-                <option *ngFor="let p of products" [value]="p.id">{{p.productName}}</option>
+                <option *ngFor="let p of products" [value]="p.id" [selected]="p.id === product.id">{{p.productName}}</option>
             </select>
         </div>
         <div class="col-md-4 mb-2">
@@ -57,7 +57,7 @@
                         <td>{{i.product.package}}</td>
                         <td>{{i.unitPrice | currency:"USD":"symbol"}}</td>
                         <td>{{i.quantity}}</td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger">Delete</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" type="button" (click)="deleteItem(order, i)">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

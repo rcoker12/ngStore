@@ -81,18 +81,12 @@ export class OrderForm implements OnInit {
         //  Product not defined so take first product from dropdown
         if (this.product === undefined || this.product.id === undefined) {
             this.product = this.products[0];
-            console.log(this.product);
         }
-
-        //  Find whether item already is on this order
-        let orderItem: OrderItem = this.order.orderItems.find(i => i.product.id == this.product.id);
-        if (orderItem === undefined) {
-            orderItem = new OrderItem();
-        } else {
-            orderItem.quantity++;
-        }
+        let orderItem: OrderItem = new OrderItem();
+        orderItem.quantity = 1;
         orderItem.product = this.product;
         orderItem.unitPrice = this.product.unitPrice;
+        orderItem.orderId = this.order.id;
         this.order.orderItems.push(orderItem);
     }
 
@@ -103,5 +97,19 @@ export class OrderForm implements OnInit {
                     this.router.navigate(["Order/Orders"]);
                 }
             }, err => this.errorMessage = "Failed to save order");
+    }
+
+    deleteItem(order: Order, item: OrderItem) {
+        order.orderItem = item;
+        console.log(order.orderItem);
+        this.orderService.deleteItem(order)
+            .subscribe(success => {
+                if (success) {
+                    //  Removes item in typed array
+                    this.order.orderItems.forEach((i, index) => {
+                        if (i === item) this.order.orderItems.splice(index, 1);
+                    });
+                }
+            }, err => this.errorMessage = "Failed to delete order item");
     }
 }

@@ -10,5 +10,6 @@ namespace ngStore.Database.Interfaces
         IEnumerable<Order> GetAll();
         int Save(Order entity);
         string GetNextOrderNumber();
+        int DeleteItem(Order entity, int orderItemId);
     }
 }

@@ -107,6 +107,22 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpPost]
+        [Route("api/order/deleteItem")]
+        public IActionResult DeleteItem([FromBody]OrderViewModel model)
+        {
+            try
+            {
+                var order = _mapper.Map<OrderViewModel, Order>(model);
+                return Ok(_orderRepository.DeleteItem(order, model.OrderItem.Id));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to delete order item: {ex}");
+                return BadRequest("Failed to delete order item");
+            }
+        }
+
+        [HttpPost]
         [Route("api/orders")]
         public async Task<IActionResult> Checkout([FromBody]OrderViewModel model)
         {
