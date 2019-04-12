@@ -11,8 +11,7 @@
         </div>
         <div class="col-md-4 mb-2">
             <label for="orderNumber">Order Number</label>
-            <input type="text" class="form-control" name="orderNumber" [(ngModel)]="order.orderNumber" #orderNumber="ngModel" />
-            <div class="text-danger" *ngIf="orderNumber.touched && orderNumber.invalid && orderNumber.errors.required">Order number is required!</div>
+            <input type="text" class="form-control" name="orderNumber" [(ngModel)]="order.orderNumber" #orderNumber="ngModel" [disabled]="true" />
         </div>
         <div class="col-md-4 mb-2">
             <label for="customer">Customer</label>

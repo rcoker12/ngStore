@@ -42,7 +42,9 @@ export class OrderService {
     }
 
     getOrder(orderId: string): Observable<boolean> {
-        return this.http.get("/api/order/" + orderId)
+        return this.http.get("/api/order/" + orderId, {
+                headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
+            })
             .pipe(
                 map((data: Order) => {
                     this.order = data;
@@ -55,6 +57,15 @@ export class OrderService {
             .pipe(
                 map((data: Order[]) => {
                     this.orders = data;
+                    return true;
+                }));
+    }
+
+    getNextOrder(): Observable<boolean> {
+        return this.http.get("/api/orders/getNextOrder")
+            .pipe(
+            map((data: string) => {
+                    this.order.orderNumber = data;
                     return true;
                 }));
     }

@@ -51,7 +51,22 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/orders/getNextOrder")]
         [AllowAnonymous]
+        public IActionResult GetNextOrderNumber()
+        {
+            try
+            {
+                return Ok(_orderRepository.GetNextOrderNumber());
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get orders: {ex}");
+                return BadRequest("Failed to get orders");
+            }
+        }
+
+        [HttpGet]
         [Route("api/order/{id}")]
         public IActionResult Get(int id)
         {

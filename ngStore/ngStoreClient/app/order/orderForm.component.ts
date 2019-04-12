@@ -39,6 +39,12 @@ export class OrderForm implements OnInit {
                 });
         } else {
             this.order.customer = new Customer();
+            this.orderService.getNextOrder()
+                .subscribe(success => {
+                    if (success) {
+                        this.order.orderNumber = this.orderService.order.orderNumber;
+                    }
+                });
         }
 
         this.customerService.getCustomers()
@@ -57,7 +63,6 @@ export class OrderForm implements OnInit {
     }
 
     onCustomerChange(event): void {
-        console.log(event.target.value);
         this.customerService.getCustomer(event.target.value)
             .subscribe(success => {
                 if (success) {
@@ -98,7 +103,6 @@ export class OrderForm implements OnInit {
         orderItem.orderId = this.order.id;
         this.order.orderItems.push(orderItem);
         this.getTotalAmount();
-        console.log(this.order);
     }
 
     onSubmit() {
