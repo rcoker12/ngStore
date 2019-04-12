@@ -119,6 +119,10 @@ namespace ngStore.Database.Repositories
             {
                 if (order.Id == 0)
                 {
+                    foreach (var item in order.OrderItems)
+                    {
+                        item.Product = null;
+                    }
                     _ctx.Add(order);
                 }
                 else

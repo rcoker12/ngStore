@@ -30,7 +30,7 @@ export class Login implements OnInit {
             .subscribe(success => {
                 if (success) {
                     if (this.order.orderItems.length == 0) {
-                        this.router.navigate([""]);
+                        this.router.navigate(["Orders/Order"]);
                     } else {
                         this.router.navigate(["Checkout"]);
                     }

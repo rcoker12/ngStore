@@ -35,6 +35,8 @@ export class OrderList implements OnInit {
     }
 
     public get loginRequired(): boolean {
+        console.log(this.token);
+        console.log(this.tokenExpiration);
         if (this.token == null || this.tokenExpiration == null) {
             return true;
         } else {
