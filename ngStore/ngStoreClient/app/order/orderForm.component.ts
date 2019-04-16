@@ -30,6 +30,7 @@ export class OrderForm implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.orderId);
         if (this.orderId != "0") {
             this.orderService.getOrder(this.orderId)
                 .subscribe(success => {

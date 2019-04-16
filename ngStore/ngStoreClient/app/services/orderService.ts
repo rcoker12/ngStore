@@ -72,9 +72,7 @@ export class OrderService {
 
     saveOrder(order): Observable<boolean> {
         order.customerId = order.customer.id;
-        return this.http.post("/api/order", order, {
-                headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
-            })
+        return this.http.post("/api/order", order)
             .pipe(
                 map((response: Order) => {
                     this.order = response;
@@ -83,9 +81,7 @@ export class OrderService {
     }
 
     deleteOrder(order): Observable<boolean> {
-        return this.http.post("/api/order/delete", order, {
-                headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
-            })
+        return this.http.post("/api/order/delete", order)
             .pipe(
                 map((response: Order) => {
                     this.order = response;
@@ -94,9 +90,7 @@ export class OrderService {
     }
 
     deleteItem(order): Observable<boolean> {
-        return this.http.post("/api/order/deleteItem", order, {
-                headers: new HttpHeaders({ "Authorization": "Bearer " + this.token })
-            })
+        return this.http.post("/api/order/deleteItem", order)
             .pipe(
                 map((response: Order) => {
                     this.order = response;

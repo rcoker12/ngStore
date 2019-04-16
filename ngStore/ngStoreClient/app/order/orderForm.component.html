@@ -21,8 +21,8 @@
         </div>
         <div class="col-md-4 mb-2">
             <label for="totalAmount">Total Amount</label>
-            <input type="text" class="form-control" name="totalAmount" [(ngModel)]="order.totalAmount" #totalAmount="ngModel" required />
-            <div class="text-danger" *ngIf="totalAmount.touched && totalAmount.invalid && totalAmount.errors.required">Total amount is required!</div>
+            <input type="text" class="form-control" name="totalAmount" [(ngModel)]="order.totalAmount" #totalAmount="ngModel" [disabled]="true" required />
+            <div class="text-danger" *ngIf="totalAmount.touched && totalAmount.invalid && totalAmount.errors.required" di>Total amount is required!</div>
         </div>
         <div class="col-md-4 mb-2">
             <label for="items">All Products</label>

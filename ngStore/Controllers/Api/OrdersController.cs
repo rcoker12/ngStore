@@ -68,6 +68,7 @@ namespace ngStore.Controllers.Api
 
         [HttpGet]
         [Route("api/order/{id}")]
+        [AllowAnonymous]
         public IActionResult Get(int id)
         {
             try
@@ -91,6 +92,7 @@ namespace ngStore.Controllers.Api
 
         [HttpPost]
         [Route("api/order")]
+        [AllowAnonymous]
         public IActionResult Post([FromBody]OrderViewModel model)
         {
             try
@@ -107,6 +109,7 @@ namespace ngStore.Controllers.Api
 
         [HttpPost]
         [Route("api/order/delete")]
+        [AllowAnonymous]
         public IActionResult Delete([FromBody]OrderViewModel model)
         {
             try
@@ -123,6 +126,7 @@ namespace ngStore.Controllers.Api
 
         [HttpPost]
         [Route("api/order/deleteItem")]
+        [AllowAnonymous]
         public IActionResult DeleteItem([FromBody]OrderViewModel model)
         {
             try

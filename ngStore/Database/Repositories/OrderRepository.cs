@@ -119,11 +119,11 @@ namespace ngStore.Database.Repositories
             {
                 if (order.Id == 0)
                 {
-                    _ctx.Entry<Order>(order).State = EntityState.Detached;
                     foreach (var item in order.OrderItems)
                     {
                         item.Product = null;
                     }
+                    order.Customer = null;
                     _ctx.Add(order);
                 }
                 else

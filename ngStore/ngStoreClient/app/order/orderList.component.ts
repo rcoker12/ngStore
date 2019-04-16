@@ -34,44 +34,24 @@ export class OrderList implements OnInit {
             });
     }
 
-    public get loginRequired(): boolean {
-        if (this.token == null || this.tokenExpiration == null) {
-            return true;
-        } else {
-            return this.token.length == 0 || this.tokenExpiration < new Date();
-        }
-    }
-
     addOrder() {
-        if (this.loginRequired) {
-            this.router.navigate(["Login"]);
-        } else {
-            localStorage.setItem('orderId', "0");
-            this.router.navigate(["Order/0"]);
-        }
+        localStorage.setItem('orderId', "0");
+        this.router.navigate(["Order/0"]);
     }
 
     editOrder(order: Order) {
-        if (this.loginRequired) {
-            this.router.navigate(["Login"]);
-        } else {
-            localStorage.setItem('orderId', JSON.stringify(order.id));
-            this.router.navigate(["Order/" + order.id]);
-        }
+        localStorage.setItem('orderId', JSON.stringify(order.id));
+        this.router.navigate(["Order/" + order.id]);
     }
 
     deleteOrder(order: Order) {
-        if (this.loginRequired) {
-            this.router.navigate(["Login"]);
-        } else {
-            this.orderService.deleteOrder(order)
-                .subscribe(success => {
-                    if (success) {
-                        this.orders.forEach((o, index) => {
-                            if (o === order) this.orders.splice(index, 1);
-                        });
-                    }
-                }, err => this.errorMessage = "Failed to delete order");
-        }
+        this.orderService.deleteOrder(order)
+            .subscribe(success => {
+                if (success) {
+                    this.orders.forEach((o, index) => {
+                        if (o === order) this.orders.splice(index, 1);
+                    });
+                }
+            }, err => this.errorMessage = "Failed to delete order");
     }
 }
