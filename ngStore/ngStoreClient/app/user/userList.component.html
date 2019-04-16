@@ -1,4 +1,5 @@
 ﻿<div class="container">
+    <div *ngIf="errorMessage" class="alert alert-warning">{{ errorMessage }}</div>
     <div class="row">
         <div class="table-responsive-md">
             <table class="table table-striped">
@@ -25,7 +26,7 @@
                         <td>{{u.discontinued | yesnoBoolean}}</td>
                         <td class="badge badge-dark" style="margin-top: 10px">{{u.orders.length}}</td>
                         <td class="text-right"><button class="btn btn-sm btn-success" (click)="editUser(u)" [disabled]="true">Edit</button></td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger" [disabled]="u.orders.length > 0">Delete</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" (click)="deleteUser" [disabled]="u.orders.length > 0">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

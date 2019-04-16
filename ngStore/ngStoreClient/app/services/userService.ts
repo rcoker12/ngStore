@@ -33,6 +33,15 @@ export class UserService {
                 }));
     }
 
+    saveUser(user): Observable<boolean> {
+        return this.http.post("/api/user", user)
+            .pipe(
+                map((response: User) => {
+                    this.user = response;
+                    return true;
+                }));
+    }
+
     deleteUser(user): Observable<boolean> {
         return this.http.post("/api/user/delete", user)
             .pipe(
