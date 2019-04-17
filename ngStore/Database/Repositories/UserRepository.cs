@@ -77,7 +77,7 @@ namespace ngStore.Database.Repositories
             }
         }
 
-        public string Save(User user)
+        public User Save(User user)
         {
             try
             {
@@ -103,7 +103,7 @@ namespace ngStore.Database.Repositories
                     }
                 }
                 _ctx.SaveChanges();
-                return user.Id;
+                return user;
             }
             catch (Exception ex)
             {
