@@ -6,7 +6,7 @@ export class User {
     firstName: string;
     lastName: string;
     email: string;
-    phone: string;
+    phoneNumber: string;
     isAdmin: boolean;
     orders: Array<Order> = new Array<Order>();
 }

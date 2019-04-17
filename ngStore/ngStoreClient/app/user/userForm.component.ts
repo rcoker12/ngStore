@@ -30,8 +30,9 @@ export class UserForm implements OnInit {
                 .subscribe(success => {
                     if (success) {
                         this.user = this.userService.user;
+                        console.log(this.user);
                     }
-                });
+                }, err => this.errorMessage = "Failed to get user");
         }
     }
 
@@ -41,7 +42,7 @@ export class UserForm implements OnInit {
                 if (success) {
                     this.router.navigate(["User/Users"]);
                 }
-            }, err => this.errorMessage = "Failed to save supplier");
+            }, err => this.errorMessage = "Failed to save user");
     }
 
     deleteOrder(order: Order) {

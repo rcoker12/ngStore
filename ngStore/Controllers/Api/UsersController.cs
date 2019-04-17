@@ -57,6 +57,22 @@ namespace ngStore.Controllers.Api
         }
 
         [HttpPost]
+        [Route("api/user")]
+        public IActionResult Post([FromBody]UserViewModel model)
+        {
+            try
+            {
+                var user = _mapper.Map<UserViewModel, User>(model);
+                return Ok(_userRepository.Save(user));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to save supplier: {ex}");
+                return BadRequest("Failed to save supplier");
+            }
+        }
+
+        [HttpPost]
         [Route("api/user/delete")]
         public IActionResult Delete([FromBody]UserViewModel model)
         {

@@ -45,11 +45,13 @@ namespace ngStore.Database.Repositories
         {
             try
             {
+                id = id.Trim('"');
                 _logger.LogInformation("Get<User> was called");
-                return _ctx.Users
+                var user = _ctx.Users
                     .Include(u => u.Orders)
                     .Where(u => u.Id == id)
                     .FirstOrDefault();
+                return user;
             }
             catch (Exception ex)
             {
@@ -63,9 +65,10 @@ namespace ngStore.Database.Repositories
             try
             {
                 _logger.LogInformation("GetAll<User> was called");
-                return _ctx.Users
+                var users = _ctx.Users
                     .Include(u => u.Orders)
                     .OrderBy(u => u.UserName);
+                return users;
             }
             catch (Exception ex)
             {
