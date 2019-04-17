@@ -26,7 +26,7 @@
                         <td>{{u.isAdmin | yesnoBoolean}}</td>
                         <td class="badge badge-dark" style="margin-top: 10px">{{u.orders.length}}</td>
                         <td class="text-right"><button class="btn btn-sm btn-success" (click)="editUser(u)">Edit</button></td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger" (click)="deleteUser" [disabled]="u.orders.length > 0">Delete</button></td>
+                        <td class="text-right"><button class="btn btn-sm btn-danger" (click)="deleteUser(u)" [disabled]="u.orders.length > 0">Delete</button></td>
                     </tr>
                 </tbody>
             </table>

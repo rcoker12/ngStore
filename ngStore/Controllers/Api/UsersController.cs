@@ -67,8 +67,8 @@ namespace ngStore.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to save supplier: {ex}");
-                return BadRequest("Failed to save supplier");
+                _logger.LogError($"Failed to save user: {ex}");
+                return BadRequest("Failed to save user");
             }
         }
 
@@ -83,8 +83,8 @@ namespace ngStore.Controllers.Api
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to delete customer: {ex}");
-                return BadRequest("Failed to delete customer");
+                _logger.LogError($"Failed to delete user: {ex}");
+                return BadRequest("Failed to delete user");
             }
         }
     }
