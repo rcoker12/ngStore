@@ -13,10 +13,8 @@ namespace ngStore.ViewModels
         [Required]
         public DateTime OrderDate { get; set; }
         public string OrderNumber { get; set; }
-        [Required]
         public Customer Customer { get; set; }
         public int CustomerId { get; set; }
-        [Required]
         public decimal TotalAmount { get; set; }
 
         public ICollection<OrderItemViewModel> OrderItems { get; set; }

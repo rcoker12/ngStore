@@ -20,6 +20,7 @@ export class CartService {
 
         var t = localStorage.getItem('token');
         this.token = JSON.parse(t);
+        console.log(this.token);
     }
 
     public checkout() {

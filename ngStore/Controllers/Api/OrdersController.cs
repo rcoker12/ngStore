@@ -151,6 +151,7 @@ namespace ngStore.Controllers.Api
                 var order = _mapper.Map<OrderViewModel, Order>(model);
                 var customer = _customerRepository.GetCustomerByName(user.FirstName, user.LastName);
                 order.User = user;
+                order.CustomerId = customer.Id;
                 order.Customer = customer;
                 order.OrderNumber = _orderRepository.GetNextOrderNumber();
 
