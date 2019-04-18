@@ -103,10 +103,4 @@
     <TypeScriptCompile Include="ngStoreClient\app\user\user.ts" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="wwwroot\img\underconstruction.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>
